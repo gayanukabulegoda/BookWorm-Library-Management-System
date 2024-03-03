@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="575.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInFormController">
+    <children>
+        <TextField fx:id="txtUsername" layoutX="96.0" layoutY="255.0" onAction="#txtUsernameOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  Username" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+            <font>
+                <Font size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </TextField>
+        <PasswordField fx:id="txtPassword" layoutX="96.0" layoutY="316.0" onAction="#txtPasswordOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  Password" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-border-color: #727374; -fx-border-radius: 12px;">
+            <font>
+                <Font size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </PasswordField>
+        <Pane layoutX="461.6" prefHeight="575.0" prefWidth="469.0" style="-fx-background-color: black; -fx-background-radius: 40 0 0 40;">
+            <children>
+                <ImageView fitHeight="157.41" fitWidth="264.38" layoutX="106.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assests/img/bookWormLogoSignIn.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="WAIT" />
+                    </cursor>
+                </ImageView>
+                <Label layoutX="122.0" layoutY="360.0" text="New to our platform? Sign Up now." textFill="WHITE" />
+                <Pane fx:id="signUpPane" layoutX="144.0" layoutY="408.0" prefHeight="42.0" prefWidth="185.0" style="-fx-background-color: black; -fx-background-radius: 15px; -fx-border-color: white; -fx-border-radius: 15px;">
+                    <children>
+                        <Label fx:id="lblSignUp" layoutX="66.0" layoutY="13.0" text="SIGN UP" textFill="WHITE" />
+                    </children>
+                </Pane>
+                <JFXButton layoutX="144.0" layoutY="408.0" onAction="#btnSignUpOnAction" onMouseEntered="#btnSignUpOnMouseEntered" onMouseExited="#btnSignUpOnMouseExited" prefHeight="42.0" prefWidth="185.0" style="-fx-background-radius: 15px;" text=" ">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </JFXButton>
+            </children>
+        </Pane>
+        <ImageView fitHeight="60.8" fitWidth="72.6" layoutX="194.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assests/img/bookWormBadge.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="102.0" layoutY="137.0" text="Welcome Back !!">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Label layoutX="115.0" layoutY="203.0" text="Please enter your credentials to log in">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Label>
+        <Hyperlink layoutX="96.0" layoutY="374.0" onAction="#hyperForgotPasswordOnAction" style="-fx-text-fill: black;" text="Forgot Password?" />
+        <Pane fx:id="signInPane" layoutX="96.0" layoutY="420.0" prefHeight="42.0" prefWidth="267.0" style="-fx-background-color: black; -fx-background-radius: 15px;">
+            <children>
+                <Label fx:id="lblSignIn" layoutX="109.0" layoutY="13.0" text="SIGN IN" textFill="WHITE" />
+            </children>
+        </Pane>
+        <JFXButton layoutX="96.0" layoutY="420.0" onAction="#btnSignInOnAction" onMouseEntered="#btnSignInOnMouseEntered" onMouseExited="#btnSignInOnMouseExited" prefHeight="42.0" prefWidth="267.0" style="-fx-background-radius: 15px;" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+    </children>
+</AnchorPane>

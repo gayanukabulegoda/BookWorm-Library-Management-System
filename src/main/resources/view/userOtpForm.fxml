@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="575.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserOtpFormController">
+    <children>
+        <TextField fx:id="txtOtp" layoutX="102.0" layoutY="328.0" onAction="#txtOtpOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  OTP" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+            <font>
+                <Font size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </TextField>
+        <Pane layoutX="461.6" prefHeight="575.0" prefWidth="469.0" style="-fx-background-color: black; -fx-background-radius: 40 0 0 40;">
+            <children>
+                <ImageView fitHeight="157.41" fitWidth="264.38" layoutX="106.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assests/img/bookWormLogoSignIn.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="WAIT" />
+                    </cursor>
+                </ImageView>
+                <Text fill="WHITE" layoutX="97.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Your premier digital library for borrowing and reading books&quot;" textAlignment="CENTER" wrappingWidth="278.52252197265625">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+        <ImageView fitHeight="60.8" fitWidth="72.6" layoutX="202.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assests/img/bookWormBadge.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="86.0" layoutY="207.0" text="Check your Mailbox">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Label layoutX="138.0" layoutY="266.0" text="Please enter the OTP to proceed">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Label>
+        <Pane fx:id="verifyPane" layoutX="102.0" layoutY="391.0" prefHeight="42.0" prefWidth="267.0" style="-fx-background-color: black; -fx-background-radius: 15px;">
+            <children>
+                <Label fx:id="lblVerify" layoutX="111.0" layoutY="13.0" text="VERIFY" textFill="WHITE" />
+            </children>
+        </Pane>
+        <JFXButton layoutX="102.0" layoutY="391.0" onAction="#btnVerifyOnAction" onMouseEntered="#btnVerifyOnMouseEntered" onMouseExited="#btnVerifyOnMouseExited" prefHeight="42.0" prefWidth="267.0" style="-fx-background-radius: 15px;" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <Pane fx:id="backPane" layoutX="-1.0" layoutY="12.0" prefHeight="22.0" prefWidth="53.0" style="-fx-background-color: white; -fx-background-radius: 0 20 20 0; -fx-border-color: black; -fx-border-radius: 0 20 20 0;">
+            <children>
+                <Label fx:id="lblBack" layoutX="13.0" layoutY="4.0" text="BACK">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <JFXButton layoutX="-1.0" layoutY="12.0" onAction="#btnBackOnAction" onMouseEntered="#btnBackOnMouseEntered" onMouseExited="#btnBackOnMouseExited" prefHeight="22.0" prefWidth="53.0" style="-fx-background-radius: 0 20 20 0;" text=" ">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+    </children>
+</AnchorPane>
