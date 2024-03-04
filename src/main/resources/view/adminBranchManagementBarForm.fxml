@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="60.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminBranchManagementBarFormController">
+   <children>
+      <Label fx:id="lblId" layoutX="44.0" layoutY="20.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblName" layoutX="286.0" layoutY="20.0" text="BookWorm-Matara">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblContactNo" layoutX="660.0" layoutY="20.0" text="0702410874">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLocation" layoutX="1019.0" layoutY="20.0" text="Colombo">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgDelete" fitHeight="24.0" fitWidth="24.0" layoutX="1352.5" layoutY="18.0" onMouseClicked="#imgDeleteOnMouseClicked" onMouseEntered="#imgDeleteOnMouseEntered" onMouseExited="#imgDeleteOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/deleteIconBlack.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgView" fitHeight="24.0" fitWidth="24.0" layoutX="1385.0" layoutY="18.0" onMouseClicked="#imgViewOnMouseClicked" onMouseEntered="#imgViewOnMouseEntered" onMouseExited="#imgViewOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/viewIconBlack.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgEdit" fitHeight="24.0" fitWidth="24.0" layoutX="1320.0" layoutY="18.0" onMouseClicked="#imgEditOnMouseClicked" onMouseEntered="#imgEditOnMouseEntered" onMouseExited="#imgEditOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/editIconBlack.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

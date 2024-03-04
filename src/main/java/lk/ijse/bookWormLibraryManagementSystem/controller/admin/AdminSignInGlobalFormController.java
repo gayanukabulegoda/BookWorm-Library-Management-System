@@ -12,7 +12,17 @@ import java.util.ResourceBundle;
 public class AdminSignInGlobalFormController implements Initializable {
 
     @FXML
-    private AnchorPane signInSignUpPane;
+    public AnchorPane signInSignUpPane;
+
+    private static AdminSignInGlobalFormController controller;
+
+    public AdminSignInGlobalFormController() {
+        controller = this;
+    }
+
+    public static AdminSignInGlobalFormController getInstance() {
+        return controller;
+    }
 
     private void loadSignInPage() {
         try {

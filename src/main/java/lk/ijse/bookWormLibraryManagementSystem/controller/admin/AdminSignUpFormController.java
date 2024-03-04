@@ -46,7 +46,7 @@ public class AdminSignUpFormController {
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
-                AdminSignInGlobalFormController.signInSignUpPane, "adminSignInForm.fxml");
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminSignInForm.fxml");
     }
 
     @FXML

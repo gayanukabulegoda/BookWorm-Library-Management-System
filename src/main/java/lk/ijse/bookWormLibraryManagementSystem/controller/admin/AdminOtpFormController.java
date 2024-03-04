@@ -30,7 +30,7 @@ public class AdminOtpFormController {
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
-                AdminSignInGlobalFormController.signInSignUpPane, "adminForgotPasswordForm.fxml");
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminForgotPasswordForm.fxml");
     }
 
     @FXML
@@ -46,7 +46,7 @@ public class AdminOtpFormController {
     @FXML
     void btnVerifyOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
-                AdminSignInGlobalFormController.signInSignUpPane, "adminResetPasswordForm.fxml");
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminResetPasswordForm.fxml");
     }
 
     @FXML

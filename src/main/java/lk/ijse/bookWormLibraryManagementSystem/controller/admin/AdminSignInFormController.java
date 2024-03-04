@@ -49,7 +49,7 @@ public class AdminSignInFormController {
     @FXML
     void btnSignUpOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
-                AdminSignInGlobalFormController.signInSignUpPane, "adminSignUpForm.fxml");
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminSignUpForm.fxml");
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class AdminSignInFormController {
     @FXML
     void hyperForgotPasswordOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
-                AdminSignInGlobalFormController.signInSignUpPane, "adminForgotPasswordForm.fxml");
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminForgotPasswordForm.fxml");
     }
 
     @FXML

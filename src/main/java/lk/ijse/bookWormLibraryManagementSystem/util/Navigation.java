@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminGlobalFormController;
 
 import java.io.IOException;
 
@@ -29,14 +30,14 @@ public class Navigation {
         pane.getChildren().add(root);
     }
 
-    public static void exit() {
-        System.exit(0);
-    }
-
     public static void close(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
         stage = (Stage) node.getScene().getWindow();
         stage.close();
+    }
+
+    public static void exit() {
+        System.exit(0);
     }
 
     public static void close(javafx.scene.input.MouseEvent mouseEvent) {
@@ -45,11 +46,11 @@ public class Navigation {
         stage.close();
     }
 
-//    public static void closePane(){
-//        GlobalFormController.getInstance().popUpPane.getChildren().clear();
-//        GlobalFormController.getInstance().popUpPane.setVisible(false);
-//        GlobalFormController.getInstance().imgPopUpBackground.setVisible(false);
-//    }
+    public static void closePopUpPane(){
+        AdminGlobalFormController.getInstance().popUpPane.getChildren().clear();
+        AdminGlobalFormController.getInstance().popUpPane.setVisible(false);
+        AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
 //
 //    public static void closeOrderPopUpPane() {
 //        GlobalFormController.getInstance().orderPopUpPane.getChildren().clear();
@@ -57,9 +58,12 @@ public class Navigation {
 //        GlobalFormController.getInstance().imgPopUpBackground.setVisible(false);
 //    }
 //
-//    public static void imgPopUpBackground(String path) throws IOException {
-//        GlobalFormController.getInstance().imgPopUpBackground.setVisible(true);
-//
+    public static void imgPopUpBackground(String path) throws IOException {
+        AdminGlobalFormController.getInstance().imgTransparent.setVisible(true);
+
+        AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
+        switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
+
 //        if (path.equals("customerOrderAddPopUpForm.fxml") | path.equals("customerOrderViewPopUpForm.fxml")) {
 //            GlobalFormController.getInstance().orderPopUpPane.setVisible(true);
 //            switchPaging(GlobalFormController.getInstance().orderPopUpPane, path);
@@ -72,5 +76,5 @@ public class Navigation {
 //            GlobalFormController.getInstance().popUpPane.setVisible(true);
 //            switchPaging(GlobalFormController.getInstance().popUpPane, path);
 //        }
-//    }
+    }
 }

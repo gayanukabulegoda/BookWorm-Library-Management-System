@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class AdminResetPasswordFormController {
 
@@ -28,8 +31,9 @@ public class AdminResetPasswordFormController {
     private PasswordField txtNewPassword;
 
     @FXML
-    void btnBackOnAction(ActionEvent event) {
-
+    void btnBackOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminSignInForm.fxml");
     }
 
     @FXML
@@ -43,8 +47,9 @@ public class AdminResetPasswordFormController {
     }
 
     @FXML
-    void btnResetPasswordOnAction(ActionEvent event) {
-
+    void btnResetPasswordOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminSignInForm.fxml");
     }
 
     @FXML
@@ -58,13 +63,13 @@ public class AdminResetPasswordFormController {
     }
 
     @FXML
-    void txtConfirmPasswordOnAction(ActionEvent event) {
-
+    void txtConfirmPasswordOnAction(ActionEvent event) throws IOException {
+        btnResetPasswordOnAction(event);
     }
 
     @FXML
-    void txtNewPasswordOnAction(ActionEvent event) {
-
+    void txtNewPasswordOnAction(ActionEvent event) throws IOException {
+        txtConfirmPasswordOnAction(event);
     }
 
 }

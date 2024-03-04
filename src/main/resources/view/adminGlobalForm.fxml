@@ -138,7 +138,7 @@
             <JFXButton layoutX="1472.0" layoutY="16.0" minHeight="40.0" onAction="#btnChangeCredentialsOnAction" prefWidth="40.0" style="-fx-background-radius: 12;" text=" " />
          </children>
       </Pane>
-      <Pane fx:id="pagingPane" layoutX="224.0" layoutY="75.0" prefHeight="905.0" prefWidth="1522.0" visible="false" />
+      <Pane fx:id="pagingPane" layoutX="223.0" layoutY="77.0" prefHeight="905.0" prefWidth="1522.0" visible="false" />
       <ImageView fx:id="imgTransparent" fitHeight="982.0" fitWidth="1795.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assests/img/transparentImage.png" />

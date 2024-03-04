@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="905.0" prefWidth="1522.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminOverdueBorrowersFormController">
+   <children>
+      <Pane fx:id="borrowedBooksPane" layoutX="18.0" layoutY="27.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: black; -fx-background-radius: 12 0 0 12;">
+         <children>
+            <Label fx:id="lblBorrowedBooks" layoutX="59.0" layoutY="9.0" text="Borrowed Books" textFill="WHITE">
+               <font>
+                  <Font size="15.5" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="283.0" layoutY="27.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #E3E3E3; -fx-background-radius: 0 12 12 0;">
+         <children>
+            <Label layoutX="47.0" layoutY="9.0" text="Overdue Borrowers">
+               <font>
+                  <Font size="15.5" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="92.0" prefHeight="799.0" prefWidth="1492.0" style="-fx-background-color: white; -fx-background-radius: 12px;">
+         <children>
+            <Line endX="1349.369140625" layoutX="121.0" layoutY="71.0" startX="-100.0" />
+            <HBox alignment="CENTER_LEFT" layoutX="62.0" layoutY="15.0" prefHeight="60.0" prefWidth="1409.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="168.0" text="ID">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="30.0" prefHeight="20.0" prefWidth="232.0" text="User ID">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="30.0" prefHeight="20.0" prefWidth="264.0" text="Amount">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="45.0" layoutY="30.0" prefHeight="20.0" prefWidth="305.0" text="Due Date">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="62.0" layoutY="30.0" prefHeight="20.0" prefWidth="332.0" text="Date &amp; Time">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="79.0" layoutY="30.0" text="Action">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane layoutX="21.0" layoutY="75.0" prefHeight="722.0" prefWidth="1467.0" style="-fx-background-color: white;">
+               <content>
+                  <VBox fx:id="vBoxOverdueBorrowers" prefHeight="719.0" prefWidth="1450.0" style="-fx-background-color: white;" />
+               </content>
+            </ScrollPane>
+            <Pane layoutX="1472.0" layoutY="73.0" prefHeight="722.0" prefWidth="17.0" style="-fx-background-color: white;" />
+         </children>
+      </Pane>
+      <Pane fx:id="searchPane" layoutX="1207.0" layoutY="23.0" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/searchIcon.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtSearch" layoutX="46.0" layoutY="1.5" onAction="#txtSearchOnAction" prefHeight="43.5" prefWidth="251.0" promptText="Search by ID" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <JFXButton layoutX="18.0" layoutY="27.0" onAction="#btnBorrowedBooksOnAction" onMouseEntered="#btnBorrowedBooksOnMouseEntered" onMouseExited="#btnBorrowedBooksOnMouseExited" prefHeight="38.0" prefWidth="244.0" style="-fx-background-radius: 12 0 0 12;" text=" " />
+      <JFXButton layoutX="283.0" layoutY="27.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-radius: 0 12 12 0;" text=" " />
+   </children>
+</Pane>
