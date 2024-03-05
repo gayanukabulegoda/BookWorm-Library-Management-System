@@ -85,17 +85,17 @@ public class AdminChangeCredentialsPopUpFormController {
 
     @FXML
     void txtConfirmNewPasswordOnAction(ActionEvent event) {
-
+        btnConfirmOnAction(event);
     }
 
     @FXML
     void txtCurrentPasswordOnAction(ActionEvent event) {
-
+        txtNewPasswordOnAction(event);
     }
 
     @FXML
     void txtNewPasswordOnAction(ActionEvent event) {
-
+        txtConfirmNewPasswordOnAction(event);
     }
 
 }

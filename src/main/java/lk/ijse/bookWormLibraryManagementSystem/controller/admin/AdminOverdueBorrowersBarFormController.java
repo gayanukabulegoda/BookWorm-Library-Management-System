@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class AdminOverdueBorrowersBarFormController {
 
@@ -26,8 +29,8 @@ public class AdminOverdueBorrowersBarFormController {
     private Label lblUserId;
 
     @FXML
-    void imgViewOnMouseClicked(MouseEvent event) {
-
+    void imgViewOnMouseClicked(MouseEvent event) throws IOException {
+        Navigation.imgPopUpBackground("adminOverdueBooksViewPopUpForm.fxml");
     }
 
     @FXML

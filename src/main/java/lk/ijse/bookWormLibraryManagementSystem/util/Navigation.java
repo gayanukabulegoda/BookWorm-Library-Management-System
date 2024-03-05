@@ -51,30 +51,24 @@ public class Navigation {
         AdminGlobalFormController.getInstance().popUpPane.setVisible(false);
         AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
     }
-//
-//    public static void closeOrderPopUpPane() {
-//        GlobalFormController.getInstance().orderPopUpPane.getChildren().clear();
-//        GlobalFormController.getInstance().orderPopUpPane.setVisible(false);
-//        GlobalFormController.getInstance().imgPopUpBackground.setVisible(false);
-//    }
-//
+
+    public static void closePopUpLargePane() {
+        AdminGlobalFormController.getInstance().popUpLargePane.getChildren().clear();
+        AdminGlobalFormController.getInstance().popUpLargePane.setVisible(false);
+        AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
+
     public static void imgPopUpBackground(String path) throws IOException {
+//        if (path.startsWith("user"))
         AdminGlobalFormController.getInstance().imgTransparent.setVisible(true);
 
-        AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
-        switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
-
-//        if (path.equals("customerOrderAddPopUpForm.fxml") | path.equals("customerOrderViewPopUpForm.fxml")) {
-//            GlobalFormController.getInstance().orderPopUpPane.setVisible(true);
-//            switchPaging(GlobalFormController.getInstance().orderPopUpPane, path);
-//        }
-//        else if (path.equals("supplierOrderAddPopUpForm.fxml") | path.equals("supplierOrderViewPopUpForm.fxml")) {
-//            GlobalFormController.getInstance().orderPopUpPane.setVisible(true);
-//            switchPaging(GlobalFormController.getInstance().orderPopUpPane, path);
-//        }
-//        else {
-//            GlobalFormController.getInstance().popUpPane.setVisible(true);
-//            switchPaging(GlobalFormController.getInstance().popUpPane, path);
-//        }
+        if (path.equals("adminBorrowedBooksViewPopUpForm.fxml") | path.equals("adminOverdueBooksViewPopUpForm.fxml")) {
+            AdminGlobalFormController.getInstance().popUpLargePane.setVisible(true);
+            switchPaging(AdminGlobalFormController.getInstance().popUpLargePane, path);
+        }
+        else {
+            AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
+            switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
+        }
     }
 }

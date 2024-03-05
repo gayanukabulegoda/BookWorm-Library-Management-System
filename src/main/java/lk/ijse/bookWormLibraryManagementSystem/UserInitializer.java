@@ -15,7 +15,7 @@ public class UserInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(
-                FXMLLoader.load(getClass().getResource("/view/userSignUpForm.fxml"))));
+                FXMLLoader.load(getClass().getResource("/view/userSignInGlobalForm.fxml"))));
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.centerOnScreen();

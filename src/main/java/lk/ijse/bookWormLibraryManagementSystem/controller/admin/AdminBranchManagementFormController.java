@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class AdminBranchManagementFormController {
 
@@ -30,8 +33,8 @@ public class AdminBranchManagementFormController {
     private VBox vBoxBranchManage;
 
     @FXML
-    void btnAddBranchOnAction(ActionEvent event) {
-
+    void btnAddBranchOnAction(ActionEvent event) throws IOException {
+        Navigation.imgPopUpBackground("addBranchPopUpForm.fxml");
     }
 
     @FXML

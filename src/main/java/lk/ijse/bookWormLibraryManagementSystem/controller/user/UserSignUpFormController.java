@@ -7,6 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class UserSignUpFormController {
 
@@ -41,13 +44,14 @@ public class UserSignUpFormController {
     private TextField txtUsername;
 
     @FXML
-    void btnSignInOnAction(ActionEvent event) {
-
+    void btnSignInOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                UserSignInGlobalFormController.getInstance().signInSignUpPane, "userSignInForm.fxml");
     }
 
     @FXML
-    void btnSignUpOnAction(ActionEvent event) {
-
+    void btnSignUpOnAction(ActionEvent event) throws IOException {
+        Navigation.switchNavigation("userGlobalForm.fxml", event);
     }
 
     @FXML
@@ -61,33 +65,33 @@ public class UserSignUpFormController {
     }
 
     @FXML
-    void txtContactNoOnAction(ActionEvent event) {
-
+    void txtContactNoOnAction(ActionEvent event) throws IOException {
+        txtEmailOnAction(event);
     }
 
     @FXML
-    void txtEmailOnAction(ActionEvent event) {
-
+    void txtEmailOnAction(ActionEvent event) throws IOException {
+        txtUsernameOnAction(event);
     }
 
     @FXML
-    void txtFirstNameOnAction(ActionEvent event) {
-
+    void txtFirstNameOnAction(ActionEvent event) throws IOException {
+        txtLastNameOnAction(event);
     }
 
     @FXML
-    void txtLastNameOnAction(ActionEvent event) {
-
+    void txtLastNameOnAction(ActionEvent event) throws IOException {
+        txtContactNoOnAction(event);
     }
 
     @FXML
-    void txtPasswordOnAction(ActionEvent event) {
-
+    void txtPasswordOnAction(ActionEvent event) throws IOException {
+        btnSignUpOnAction(event);
     }
 
     @FXML
-    void txtUsernameOnAction(ActionEvent event) {
-
+    void txtUsernameOnAction(ActionEvent event) throws IOException {
+        txtPasswordOnAction(event);
     }
 
 }

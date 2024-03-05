@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class UserOtpFormController {
 
@@ -25,8 +28,9 @@ public class UserOtpFormController {
     private Pane verifyPane;
 
     @FXML
-    void btnBackOnAction(ActionEvent event) {
-
+    void btnBackOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                UserSignInGlobalFormController.getInstance().signInSignUpPane, "userForgotPasswordForm.fxml");
     }
 
     @FXML
@@ -40,8 +44,9 @@ public class UserOtpFormController {
     }
 
     @FXML
-    void btnVerifyOnAction(ActionEvent event) {
-
+    void btnVerifyOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                UserSignInGlobalFormController.getInstance().signInSignUpPane, "userResetPasswordForm.fxml");
     }
 
     @FXML
@@ -55,8 +60,8 @@ public class UserOtpFormController {
     }
 
     @FXML
-    void txtOtpOnAction(ActionEvent event) {
-
+    void txtOtpOnAction(ActionEvent event) throws IOException {
+        btnVerifyOnAction(event);
     }
 
 }

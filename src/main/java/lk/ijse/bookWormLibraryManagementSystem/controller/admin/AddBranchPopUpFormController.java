@@ -9,7 +9,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UpdateBookPopUpFormController {
+public class AddBranchPopUpFormController {
+
+    @FXML
+    private Pane addPane;
 
     @FXML
     private Pane cancelPane;
@@ -21,25 +24,34 @@ public class UpdateBookPopUpFormController {
     private ImageView imgClose;
 
     @FXML
+    private Label lblAdd;
+
+    @FXML
     private Label lblCancel;
 
     @FXML
-    private Label lblUpdate;
+    private TextField txtContactNo;
 
     @FXML
-    private TextField txtLanguage;
+    private TextField txtLocation;
 
     @FXML
     private TextField txtName;
 
     @FXML
-    private TextField txtQuantity;
+    void btnAddOnAction(ActionEvent event) {
+        Navigation.closePopUpPane();
+    }
 
     @FXML
-    private TextField txtType;
+    void btnAddOnMouseEntered(MouseEvent event) {
+
+    }
 
     @FXML
-    private Pane updatePane;
+    void btnAddOnMouseExited(MouseEvent event) {
+
+    }
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -72,38 +84,18 @@ public class UpdateBookPopUpFormController {
     }
 
     @FXML
-    void btnUpdateOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+    void txtContactNoOnAction(ActionEvent event) {
+        txtLocationOnAction(event);
     }
 
     @FXML
-    void btnUpdateOnMouseEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOnMouseExited(MouseEvent event) {
-
-    }
-
-    @FXML
-    void txtLanguageOnAction(ActionEvent event) {
-        txtTypeOnAction(event);
+    void txtLocationOnAction(ActionEvent event) {
+        btnAddOnAction(event);
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtLanguageOnAction(event);
-    }
-
-    @FXML
-    void txtQuantityOnAction(ActionEvent event) {
-        btnUpdateOnAction(event);
-    }
-
-    @FXML
-    void txtTypeOnAction(ActionEvent event) {
-        txtQuantityOnAction(event);
+        txtContactNoOnAction(event);
     }
 
 }

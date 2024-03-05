@@ -3,58 +3,34 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class ViewBookPopUpFormController {
+public class AdminBorrowedBooksViewPopUpFormController {
 
     @FXML
     private Pane closePane;
 
     @FXML
-    private Pane exitPane;
-
-    @FXML
-    private ImageView imgExit;
-
-    @FXML
     private Label lblClose;
+
+    @FXML
+    private Label lblDueDate;
 
     @FXML
     private Label lblId;
 
     @FXML
-    private Label lblLanguage;
+    private Label lblTotalBooks;
 
     @FXML
-    private Label lblName;
-
-    @FXML
-    private Label lblSavedBy;
-
-    @FXML
-    private Label lblType;
+    private VBox vBox;
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
-    }
-
-    @FXML
-    void btnExitOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
-    }
-
-    @FXML
-    void btnExitOnMouseEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void btnExitOnMouseExited(MouseEvent event) {
-
+        Navigation.closePopUpLargePane();
     }
 
     @FXML

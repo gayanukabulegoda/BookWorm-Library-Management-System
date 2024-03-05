@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class AdminUserManagementBarFormController {
 
@@ -29,8 +32,8 @@ public class AdminUserManagementBarFormController {
     private Label lblUsername;
 
     @FXML
-    void imgDeleteOnMouseClicked(MouseEvent event) {
-
+    void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
+        Navigation.imgPopUpBackground("deleteConfirmationForm.fxml");
     }
 
     @FXML
@@ -44,8 +47,8 @@ public class AdminUserManagementBarFormController {
     }
 
     @FXML
-    void imgEditOnMouseClicked(MouseEvent event) {
-
+    void imgEditOnMouseClicked(MouseEvent event) throws IOException {
+        Navigation.imgPopUpBackground("updateUserPopUpForm.fxml");
     }
 
     @FXML
@@ -59,8 +62,8 @@ public class AdminUserManagementBarFormController {
     }
 
     @FXML
-    void imgViewOnMouseClicked(MouseEvent event) {
-
+    void imgViewOnMouseClicked(MouseEvent event) throws IOException {
+        Navigation.imgPopUpBackground("viewUserPopUpForm.fxml");
     }
 
     @FXML

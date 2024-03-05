@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UpdateBookPopUpFormController {
+public class UpdateBranchPopUpFormController {
 
     @FXML
     private Pane cancelPane;
@@ -27,16 +27,13 @@ public class UpdateBookPopUpFormController {
     private Label lblUpdate;
 
     @FXML
-    private TextField txtLanguage;
+    private TextField txtContactNo;
+
+    @FXML
+    private TextField txtLocation;
 
     @FXML
     private TextField txtName;
-
-    @FXML
-    private TextField txtQuantity;
-
-    @FXML
-    private TextField txtType;
 
     @FXML
     private Pane updatePane;
@@ -87,23 +84,18 @@ public class UpdateBookPopUpFormController {
     }
 
     @FXML
-    void txtLanguageOnAction(ActionEvent event) {
-        txtTypeOnAction(event);
+    void txtContactNoOnAction(ActionEvent event) {
+        txtLocationOnAction(event);
     }
 
     @FXML
-    void txtNameOnAction(ActionEvent event) {
-        txtLanguageOnAction(event);
-    }
-
-    @FXML
-    void txtQuantityOnAction(ActionEvent event) {
+    void txtLocationOnAction(ActionEvent event) {
         btnUpdateOnAction(event);
     }
 
     @FXML
-    void txtTypeOnAction(ActionEvent event) {
-        txtQuantityOnAction(event);
+    void txtNameOnAction(ActionEvent event) {
+        txtContactNoOnAction(event);
     }
 
 }

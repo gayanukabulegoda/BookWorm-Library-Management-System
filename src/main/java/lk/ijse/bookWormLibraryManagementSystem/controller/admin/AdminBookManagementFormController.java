@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class AdminBookManagementFormController {
 
@@ -30,8 +33,8 @@ public class AdminBookManagementFormController {
     private VBox vBoxBookManage;
 
     @FXML
-    void btnAddBookOnAction(ActionEvent event) {
-
+    void btnAddBookOnAction(ActionEvent event) throws IOException {
+        Navigation.imgPopUpBackground("addBookPopUpForm.fxml");
     }
 
     @FXML

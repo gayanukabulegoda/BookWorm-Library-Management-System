@@ -7,6 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+
+import java.io.IOException;
 
 public class UserSignInFormController {
 
@@ -29,8 +32,8 @@ public class UserSignInFormController {
     private TextField txtUsername;
 
     @FXML
-    void btnSignInOnAction(ActionEvent event) {
-
+    void btnSignInOnAction(ActionEvent event) throws IOException {
+        Navigation.switchNavigation("userGlobalForm.fxml", event);
     }
 
     @FXML
@@ -44,8 +47,9 @@ public class UserSignInFormController {
     }
 
     @FXML
-    void btnSignUpOnAction(ActionEvent event) {
-
+    void btnSignUpOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                UserSignInGlobalFormController.getInstance().signInSignUpPane, "userSignUpForm.fxml");
     }
 
     @FXML
@@ -59,18 +63,19 @@ public class UserSignInFormController {
     }
 
     @FXML
-    void hyperForgotPasswordOnAction(ActionEvent event) {
-
+    void hyperForgotPasswordOnAction(ActionEvent event) throws IOException {
+        Navigation.switchPaging(
+                UserSignInGlobalFormController.getInstance().signInSignUpPane, "userForgotPasswordForm.fxml");
     }
 
     @FXML
-    void txtPasswordOnAction(ActionEvent event) {
-
+    void txtPasswordOnAction(ActionEvent event) throws IOException {
+        btnSignInOnAction(event);
     }
 
     @FXML
-    void txtUsernameOnAction(ActionEvent event) {
-
+    void txtUsernameOnAction(ActionEvent event) throws IOException {
+        txtPasswordOnAction(event);
     }
 
 }

@@ -65,36 +65,32 @@ public class AdminSignUpFormController {
     }
 
     @FXML
-    void txtContactNoOnAction(ActionEvent event) {
+    void txtContactNoOnAction(ActionEvent event) throws IOException {
         txtEmailOnAction(event);
     }
 
     @FXML
-    void txtEmailOnAction(ActionEvent event) {
+    void txtEmailOnAction(ActionEvent event) throws IOException {
         txtUsernameOnAction(event);
     }
 
     @FXML
-    void txtFirstNameOnAction(ActionEvent event) {
+    void txtFirstNameOnAction(ActionEvent event) throws IOException {
         txtLastNameOnAction(event);
     }
 
     @FXML
-    void txtLastNameOnAction(ActionEvent event) {
+    void txtLastNameOnAction(ActionEvent event) throws IOException {
         txtContactNoOnAction(event);
     }
 
     @FXML
-    void txtPasswordOnAction(ActionEvent event) {
-        try {
-            btnSignUpOnAction(event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void txtPasswordOnAction(ActionEvent event) throws IOException {
+        btnSignUpOnAction(event);
     }
 
     @FXML
-    void txtUsernameOnAction(ActionEvent event) {
+    void txtUsernameOnAction(ActionEvent event) throws IOException {
         txtPasswordOnAction(event);
     }
 

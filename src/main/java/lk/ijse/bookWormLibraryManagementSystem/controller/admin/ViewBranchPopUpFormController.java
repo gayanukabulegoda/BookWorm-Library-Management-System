@@ -8,19 +8,34 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class DeleteConfirmationFormController {
+public class ViewBranchPopUpFormController {
 
     @FXML
     private Pane closePane;
 
     @FXML
-    private Pane confirmPane;
+    private Pane exitPane;
 
     @FXML
-    private ImageView imgClose;
+    private ImageView imgExit;
 
     @FXML
-    private Label lblConfirm;
+    private Label lblClose;
+
+    @FXML
+    private Label lblContactNo;
+
+    @FXML
+    private Label lblId;
+
+    @FXML
+    private Label lblLocation;
+
+    @FXML
+    private Label lblName;
+
+    @FXML
+    private Label lblSavedBy;
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
@@ -38,17 +53,17 @@ public class DeleteConfirmationFormController {
     }
 
     @FXML
-    void btnConfirmOnAction(ActionEvent event) {
+    void btnExitOnAction(ActionEvent event) {
         Navigation.closePopUpPane();
     }
 
     @FXML
-    void btnConfirmOnMouseEntered(MouseEvent event) {
+    void btnExitOnMouseEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void btnConfirmOnMouseExited(MouseEvent event) {
+    void btnExitOnMouseExited(MouseEvent event) {
 
     }
 

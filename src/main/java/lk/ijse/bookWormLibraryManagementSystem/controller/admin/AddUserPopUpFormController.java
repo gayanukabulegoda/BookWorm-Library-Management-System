@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class AddBookPopUpFormController {
+public class AddUserPopUpFormController {
 
     @FXML
     private Pane addPane;
@@ -30,16 +30,16 @@ public class AddBookPopUpFormController {
     private Label lblCancel;
 
     @FXML
-    private TextField txtLanguage;
+    private TextField txtEmail;
 
     @FXML
     private TextField txtName;
 
     @FXML
-    private TextField txtQuantity;
+    private TextField txtPassword;
 
     @FXML
-    private TextField txtType;
+    private TextField txtUsername;
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
@@ -87,23 +87,23 @@ public class AddBookPopUpFormController {
     }
 
     @FXML
-    void txtLanguageOnAction(ActionEvent event) {
-        txtTypeOnAction(event);
+    void txtEmailOnAction(ActionEvent event) {
+        txtUsernameOnAction(event);
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtLanguageOnAction(event);
+        txtEmailOnAction(event);
     }
 
     @FXML
-    void txtQuantityOnAction(ActionEvent event) {
+    void txtPasswordOnAction(ActionEvent event) {
         btnAddOnAction(event);
     }
 
     @FXML
-    void txtTypeOnAction(ActionEvent event) {
-        txtQuantityOnAction(event);
+    void txtUsernameOnAction(ActionEvent event) {
+        txtPasswordOnAction(event);
     }
 
 }
