@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="60.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserReturnedBooksBarFormController">
+   <children>
+      <JFXButton layoutX="-176.0" layoutY="15.0" text=" " />
+      <Label fx:id="lblId" layoutX="67.0" layoutY="20.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAmount" layoutX="270.0" layoutY="20.0" text="02 Books">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDueDate" layoutX="586.0" layoutY="20.0" text="13-03-2024">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDateAndTime" layoutX="941.0" layoutY="20.0" text="25-02-2024  10:39:43">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgView" fitHeight="24.0" fitWidth="24.0" layoutX="1371.0" layoutY="19.0" onMouseClicked="#imgViewOnMouseClicked" onMouseEntered="#imgViewOnMouseEntered" onMouseExited="#imgViewOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/viewIconBlack.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

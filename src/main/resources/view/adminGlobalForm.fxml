@@ -113,7 +113,7 @@
                   <Image url="@../assests/icon/userIcon.png" />
                </image>
             </ImageView>
-            <Label layoutX="61.0" layoutY="16.0" text="Nisal Gunasekara">
+            <Label fx:id="lblAdmin" layoutX="61.0" layoutY="16.0" text="Nisal Gunasekara">
                <font>
                   <Font size="16.0" />
                </font>

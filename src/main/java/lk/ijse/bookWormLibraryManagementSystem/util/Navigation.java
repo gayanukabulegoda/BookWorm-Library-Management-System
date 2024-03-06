@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminGlobalFormController;
+import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserGlobalFormController;
 
 import java.io.IOException;
 
@@ -58,17 +59,36 @@ public class Navigation {
         AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
     }
 
-    public static void imgPopUpBackground(String path) throws IOException {
-//        if (path.startsWith("user"))
-        AdminGlobalFormController.getInstance().imgTransparent.setVisible(true);
+    public static void closeUserPopUpLargePane() {
+        UserGlobalFormController.getInstance().popUpLargePane.getChildren().clear();
+        UserGlobalFormController.getInstance().popUpLargePane.setVisible(false);
+        UserGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
 
-        if (path.equals("adminBorrowedBooksViewPopUpForm.fxml") | path.equals("adminOverdueBooksViewPopUpForm.fxml")) {
-            AdminGlobalFormController.getInstance().popUpLargePane.setVisible(true);
-            switchPaging(AdminGlobalFormController.getInstance().popUpLargePane, path);
+    public static void imgPopUpBackground(String path) throws IOException {
+        if (path.startsWith("user")) {
+            UserGlobalFormController.getInstance().imgTransparent.setVisible(true);
+
+            if (path.equals("userChangeCredentialsPopUpForm.fxml")) {
+                UserGlobalFormController.getInstance().popUpPane.setVisible(true);
+                switchPaging(UserGlobalFormController.getInstance().popUpPane, path);
+            }
+            else {
+                UserGlobalFormController.getInstance().popUpLargePane.setVisible(true);
+                switchPaging(UserGlobalFormController.getInstance().popUpLargePane, path);
+            }
         }
         else {
-            AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
-            switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
+            AdminGlobalFormController.getInstance().imgTransparent.setVisible(true);
+
+            if (path.equals("adminBorrowedBooksViewPopUpForm.fxml") | path.equals("adminOverdueBooksViewPopUpForm.fxml")) {
+                AdminGlobalFormController.getInstance().popUpLargePane.setVisible(true);
+                switchPaging(AdminGlobalFormController.getInstance().popUpLargePane, path);
+            }
+            else {
+                AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
+                switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
+            }
         }
     }
 }

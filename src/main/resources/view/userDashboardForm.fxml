@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane prefHeight="905.0" prefWidth="1655.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserDashboardFormController">
+   <children>
+      <JFXButton layoutX="-71.0" text=" " />
+      <Pane fx:id="borrowedBookPane" layoutX="52.0" layoutY="52.0" prefHeight="204.0" prefWidth="435.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <Pane layoutX="54.0" layoutY="35.0" prefHeight="135.0" prefWidth="122.0" style="-fx-background-color: #D7D7D7; -fx-background-radius: 12;">
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="91.0" layoutX="16.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/icon/bookListIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Text layoutX="207.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Borrowed Book List" wrappingWidth="208.80120849609375">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Line endX="3.136810302734375" endY="109.91000366210938" layoutX="24.0" layoutY="73.0" startX="3.136810302734375" startY="-52.51482391357422" />
+         </children>
+      </Pane>
+      <Circle layoutX="1295.0" layoutY="359.0" radius="300.0" stroke="BLACK" strokeType="INSIDE" />
+      <Pane layoutX="52.0" layoutY="548.0" prefHeight="302.0" prefWidth="917.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <Text fx:id="textQuote" layoutX="104.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Embarking on the journey of reading fosters personal growth, nurturing a path towards excellence and the refinement of character.&quot;" wrappingWidth="739.4623107910156">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <Text layoutX="674.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="~ BookWorm Team">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="1035.0" layoutY="699.0" prefHeight="148.0" prefWidth="515.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <ImageView fitHeight="66.8" fitWidth="79.77" layoutX="37.0" layoutY="41.02" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/img/bookWormBadge.png" />
+               </image>
+            </ImageView>
+            <Circle fill="#3d3e3e" layoutX="187.0" layoutY="44.02" radius="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#151619" layoutX="187.0" layoutY="107.02" radius="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label layoutX="229.0" layoutY="32.0" text="Total Borrowed Books ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="229.0" layoutY="94.0" text="Total Returned Books ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Line endX="-11.268310546875" endY="77.54852294921875" layoutX="159.0" layoutY="55.0" startX="-11.268310546875" startY="-37.02764892578125" />
+         </children>
+      </Pane>
+      <Pane fx:id="availableBookPane" layoutX="52.0" layoutY="299.0" prefHeight="204.0" prefWidth="509.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <Pane layoutX="54.0" layoutY="36.0" prefHeight="135.0" prefWidth="122.0" style="-fx-background-color: #D7D7D7; -fx-background-radius: 12;">
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="91.0" layoutX="16.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/icon/clickIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Text layoutX="207.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Let's browse available book inventory" wrappingWidth="296.07421875">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Line endX="3.136810302734375" endY="109.91000366210938" layoutX="24.0" layoutY="74.0" startX="3.136810302734375" startY="-52.51482391357422" />
+         </children>
+      </Pane>
+      <Pane fx:id="returnedBookPane" layoutX="522.0" layoutY="52.0" prefHeight="204.0" prefWidth="435.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <Pane layoutX="54.0" layoutY="35.0" prefHeight="135.0" prefWidth="122.0" style="-fx-background-color: #D7D7D7; -fx-background-radius: 12;">
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="91.0" layoutX="16.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/icon/returnIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Text layoutX="207.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Returned Book List" wrappingWidth="208.80120849609375">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Line endX="3.136810302734375" endY="109.91000366210938" layoutX="24.0" layoutY="73.0" startX="3.136810302734375" startY="-52.51482391357422" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="157.41" fitWidth="264.38" layoutX="639.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/img/bookWormLogoBlack.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="52.0" layoutY="52.0" onAction="#btnBorrowedBookOnAction" onMouseEntered="#btnBorrowedBookOnMouseEntered" onMouseExited="#btnBorrowedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
+      <JFXButton layoutX="522.0" layoutY="52.0" onAction="#btnReturnedBookOnAction" onMouseEntered="#btnReturnedBookOnMouseEntered" onMouseExited="#btnReturnedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
+      <JFXButton layoutX="52.0" layoutY="299.0" onAction="#btnAvailableBookOnAction" onMouseEntered="#btnAvailableBookOnMouseEntered" onMouseExited="#btnAvailableBookOnMouseExited" prefHeight="204.0" prefWidth="509.0" style="-fx-background-radius: 12;" text=" " />
+   </children>
+</Pane>

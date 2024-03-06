@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="60.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowedBooksBarFormController">
+   <children>
+      <JFXButton layoutX="-176.0" layoutY="15.0" text=" " />
+      <Label fx:id="lblId" layoutX="67.0" layoutY="20.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAmount" layoutX="270.0" layoutY="20.0" text="02 Books">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDueDate" layoutX="586.0" layoutY="20.0" text="13-03-2024">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDateAndTime" layoutX="941.0" layoutY="20.0" text="25-02-2024  10:39:43">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Pane fx:id="returnBtnPane" layoutX="1329.0" layoutY="8.0" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: black; -fx-background-radius: 12;">
+         <children>
+            <ImageView fx:id="returnBtnImg" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/returnIconBtnWhite.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblReturn" layoutX="44.0" layoutY="12.0" text="Return" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXButton layoutX="1329.0" layoutY="8.0" onAction="#btnReturnOnAction" onMouseEntered="#btnReturnOnMouseEntered" onMouseExited="#btnReturnOnMouseExited" prefHeight="44.0" prefWidth="110.0" style="-fx-background-radius: 12;" text=" " />
+   </children>
+</Pane>

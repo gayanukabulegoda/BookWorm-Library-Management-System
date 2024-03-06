@@ -49,6 +49,9 @@ public class AdminGlobalFormController implements Initializable {
     private ImageView imgUsers;
 
     @FXML
+    private Label lblAdmin;
+
+    @FXML
     private Label lblBooks;
 
     @FXML

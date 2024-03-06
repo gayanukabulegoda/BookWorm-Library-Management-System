@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="68.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowBookConfirmPopUpBarFormController">
+   <children>
+      <Label fx:id="lblId" layoutX="47.0" layoutY="23.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblName" layoutX="218.0" layoutY="23.0" text="Hibernate-Core">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblType" layoutX="474.0" layoutY="23.0" text="Educational">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLanguage" layoutX="714.0" layoutY="23.0" text="English">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgDelete" fitHeight="24.0" fitWidth="24.0" layoutX="947.0" layoutY="21.0" onMouseClicked="#imgDeleteOnMouseClicked" onMouseEntered="#imgDeleteOnMouseEntered" onMouseExited="#imgDeleteOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/deleteIconBlack.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
