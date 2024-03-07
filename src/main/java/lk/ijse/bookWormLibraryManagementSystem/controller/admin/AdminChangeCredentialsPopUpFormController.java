@@ -90,12 +90,12 @@ public class AdminChangeCredentialsPopUpFormController {
 
     @FXML
     void txtCurrentPasswordOnAction(ActionEvent event) {
-        txtNewPasswordOnAction(event);
+        txtNewPassword.requestFocus();
     }
 
     @FXML
     void txtNewPasswordOnAction(ActionEvent event) {
-        txtConfirmNewPasswordOnAction(event);
+        txtConfirmNewPassword.requestFocus();
     }
 
 }

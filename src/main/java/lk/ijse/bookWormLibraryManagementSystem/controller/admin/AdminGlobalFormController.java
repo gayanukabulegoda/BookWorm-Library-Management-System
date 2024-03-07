@@ -82,6 +82,9 @@ public class AdminGlobalFormController implements Initializable {
     public Pane popUpPane;
 
     @FXML
+    public Pane settingsPane;
+
+    @FXML
     private Pane usersPane;
 
     private static AdminGlobalFormController controller;
@@ -140,8 +143,12 @@ public class AdminGlobalFormController implements Initializable {
     }
 
     @FXML
-    void btnChangeCredentialsOnAction(ActionEvent event) throws IOException {
-        Navigation.imgPopUpBackground("adminChangeCredentialsPopUpForm.fxml");
+    void btnSettingsOnAction(ActionEvent event) throws IOException {
+        if (AdminGlobalFormController.getInstance().settingsPane.isVisible()) {
+            Navigation.closeAdminSettingsPane();
+        } else {
+            Navigation.imgPopUpBackground("adminSettingsPopUpForm.fxml");
+        }
     }
 
     @FXML

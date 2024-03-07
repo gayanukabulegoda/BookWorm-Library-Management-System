@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="140.0" prefWidth="282.0" style="-fx-background-color: white; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminSettingsPopUpFormController">
+   <children>
+      <JFXButton layoutX="-135.0" text=" " />
+      <Pane layoutX="8.0" layoutY="5.0" prefHeight="129.0" prefWidth="266.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #DDDDDD; -fx-border-radius: 12;">
+         <children>
+            <Pane layoutX="5.0" layoutY="7.0" prefHeight="54.0" prefWidth="256.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: black; -fx-border-radius: 12;">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/icon/settingsIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="66.0" layoutY="17.0" text="Change Credentials">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="5.0" layoutY="68.0" prefHeight="54.0" prefWidth="256.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #FF2626; -fx-border-radius: 12;">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/icon/deleteIconRed.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="66.0" layoutY="17.0" text="Delete Account" textFill="#ff2626">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton layoutX="5.0" layoutY="7.0" onAction="#btnChangeCredentialsOnAction" prefHeight="54.0" prefWidth="256.0" style="-fx-background-radius: 12;" text=" " />
+            <JFXButton layoutX="5.0" layoutY="68.0" onAction="#btnDeleteAccountOnAction" prefHeight="54.0" prefWidth="256.0" style="-fx-background-radius: 12;" text=" " />
+         </children>
+      </Pane>
+   </children>
+</Pane>

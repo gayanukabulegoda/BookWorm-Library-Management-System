@@ -7,6 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
+import lk.ijse.bookWormLibraryManagementSystem.embedded.Name;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -43,6 +47,10 @@ public class AdminSignUpFormController {
     @FXML
     private TextField txtUsername;
 
+    AdminService adminService =
+            (AdminService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.ADMIN);
+
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
@@ -51,7 +59,21 @@ public class AdminSignUpFormController {
 
     @FXML
     void btnSignUpOnAction(ActionEvent event) throws IOException {
-        Navigation.switchNavigation("adminGlobalForm.fxml", event);
+        if (adminService.saveAdmin(
+                new AdminDto(
+                        new Name(txtFirstName.getText(), txtLastName.getText()),
+                        txtContactNo.getText(),
+                        txtEmail.getText(),
+                        txtUsername.getText(),
+                        txtPassword.getText()
+                ))
+        )
+        {
+            Navigation.switchNavigation("adminGlobalForm.fxml", event);
+        }
+        else {
+            System.out.println("Unable to save admin!");
+        }
     }
 
     @FXML

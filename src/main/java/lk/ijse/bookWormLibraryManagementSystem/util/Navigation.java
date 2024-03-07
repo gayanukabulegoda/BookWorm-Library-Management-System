@@ -41,16 +41,16 @@ public class Navigation {
         System.exit(0);
     }
 
-    public static void close(javafx.scene.input.MouseEvent mouseEvent) {
-        Node node = (Node) mouseEvent.getSource();
-        stage = (Stage) node.getScene().getWindow();
-        stage.close();
-    }
-
-    public static void closePopUpPane(){
+    public static void closePopUpPane() {
         AdminGlobalFormController.getInstance().popUpPane.getChildren().clear();
         AdminGlobalFormController.getInstance().popUpPane.setVisible(false);
         AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
+
+    public static void closeUserPopUpPane() {
+        UserGlobalFormController.getInstance().popUpPane.getChildren().clear();
+        UserGlobalFormController.getInstance().popUpPane.setVisible(false);
+        UserGlobalFormController.getInstance().imgTransparent.setVisible(false);
     }
 
     public static void closePopUpLargePane() {
@@ -65,15 +65,29 @@ public class Navigation {
         UserGlobalFormController.getInstance().imgTransparent.setVisible(false);
     }
 
+    public static void closeAdminSettingsPane() {
+        AdminGlobalFormController.getInstance().settingsPane.getChildren().clear();
+        AdminGlobalFormController.getInstance().settingsPane.setVisible(false);
+        AdminGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
+
+    public static void closeUserSettingsPane() {
+        UserGlobalFormController.getInstance().settingsPane.getChildren().clear();
+        UserGlobalFormController.getInstance().settingsPane.setVisible(false);
+        UserGlobalFormController.getInstance().imgTransparent.setVisible(false);
+    }
+
     public static void imgPopUpBackground(String path) throws IOException {
         if (path.startsWith("user")) {
             UserGlobalFormController.getInstance().imgTransparent.setVisible(true);
 
-            if (path.equals("userChangeCredentialsPopUpForm.fxml")) {
+            if (path.equals("userChangeCredentialsPopUpForm.fxml") | path.equals("userDeleteConfirmationForm.fxml")) {
                 UserGlobalFormController.getInstance().popUpPane.setVisible(true);
                 switchPaging(UserGlobalFormController.getInstance().popUpPane, path);
-            }
-            else {
+            } else if (path.equals("userSettingsPopUpForm.fxml")) {
+                UserGlobalFormController.getInstance().settingsPane.setVisible(true);
+                switchPaging(UserGlobalFormController.getInstance().settingsPane, path);
+            } else {
                 UserGlobalFormController.getInstance().popUpLargePane.setVisible(true);
                 switchPaging(UserGlobalFormController.getInstance().popUpLargePane, path);
             }
@@ -84,8 +98,10 @@ public class Navigation {
             if (path.equals("adminBorrowedBooksViewPopUpForm.fxml") | path.equals("adminOverdueBooksViewPopUpForm.fxml")) {
                 AdminGlobalFormController.getInstance().popUpLargePane.setVisible(true);
                 switchPaging(AdminGlobalFormController.getInstance().popUpLargePane, path);
-            }
-            else {
+            } else if (path.equals("adminSettingsPopUpForm.fxml")) {
+                AdminGlobalFormController.getInstance().settingsPane.setVisible(true);
+                switchPaging(AdminGlobalFormController.getInstance().settingsPane, path);
+            } else {
                 AdminGlobalFormController.getInstance().popUpPane.setVisible(true);
                 switchPaging(AdminGlobalFormController.getInstance().popUpPane, path);
             }

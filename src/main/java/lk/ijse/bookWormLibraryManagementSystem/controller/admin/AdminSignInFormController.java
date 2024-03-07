@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -31,9 +33,21 @@ public class AdminSignInFormController {
     @FXML
     private TextField txtUsername;
 
+    AdminService adminService =
+            (AdminService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.ADMIN);
+
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
-        Navigation.switchNavigation("adminGlobalForm.fxml", event);
+        if (adminService.checkUsernameAndPassword(
+                txtUsername.getText(),
+                txtPassword.getText()))
+        {
+            Navigation.switchNavigation("adminGlobalForm.fxml", event);
+        }
+        else {
+            System.out.println("Unable to Sign In");
+        }
     }
 
     @FXML
@@ -74,8 +88,8 @@ public class AdminSignInFormController {
     }
 
     @FXML
-    void txtUsernameOnAction(ActionEvent event) throws IOException {
-        txtPasswordOnAction(event);
+    void txtUsernameOnAction(ActionEvent event) {
+        txtPassword.requestFocus();
     }
 
 }

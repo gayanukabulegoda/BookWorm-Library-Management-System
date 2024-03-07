@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminGlobalFormController;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -54,6 +55,9 @@ public class UserGlobalFormController implements Initializable {
     @FXML
     public Pane popUpPane;
 
+    @FXML
+    public Pane settingsPane;
+
     private static UserGlobalFormController controller;
 
     public UserGlobalFormController() {
@@ -95,8 +99,12 @@ public class UserGlobalFormController implements Initializable {
     }
 
     @FXML
-    void btnChangeCredentialsOnAction(ActionEvent event) throws IOException {
-        Navigation.imgPopUpBackground("userChangeCredentialsPopUpForm.fxml");
+    void btnSettingsOnAction(ActionEvent event) throws IOException {
+        if (UserGlobalFormController.getInstance().settingsPane.isVisible()) {
+            Navigation.closeUserSettingsPane();
+        } else {
+            Navigation.imgPopUpBackground("userSettingsPopUpForm.fxml");
+        }
     }
 
     @FXML

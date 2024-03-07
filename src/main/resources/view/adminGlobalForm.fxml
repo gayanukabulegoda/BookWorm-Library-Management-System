@@ -123,11 +123,6 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1473.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assests/icon/settingsIcon.png" />
-               </image>
-            </ImageView>
             <Line endX="100.0" endY="7.636669158935547" layoutX="1360.0" layoutY="57.0" startX="100.0" startY="-48.727176666259766" strokeWidth="2.0" />
             <Label layoutX="1369.0" layoutY="15.0" text="12:29 PM">
                <font>
@@ -135,7 +130,6 @@
                </font>
             </Label>
             <Label layoutX="1367.0" layoutY="39.0" text="Mar 02, 2024" />
-            <JFXButton layoutX="1472.0" layoutY="16.0" minHeight="40.0" onAction="#btnChangeCredentialsOnAction" prefWidth="40.0" style="-fx-background-radius: 12;" text=" " />
          </children>
       </Pane>
       <Pane fx:id="pagingPane" layoutX="223.0" layoutY="77.0" prefHeight="905.0" prefWidth="1522.0" visible="false" />
@@ -144,7 +138,14 @@
             <Image url="@../assests/img/transparentImage.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1696.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/settingsIcon.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="1694.5" layoutY="16.0" minHeight="40.0" onAction="#btnSettingsOnAction" prefWidth="40.0" style="-fx-background-radius: 12;" text=" " />
       <Pane fx:id="popUpPane" layoutX="615.0" layoutY="218.0" prefHeight="491.0" prefWidth="627.0" style="-fx-background-radius: 10;" visible="false" />
       <Pane fx:id="popUpLargePane" layoutX="428.0" layoutY="112.0" prefHeight="729.0" prefWidth="1139.0" style="-fx-background-radius: 10;" visible="false" />
+      <Pane fx:id="settingsPane" layoutX="1454.0" layoutY="82.0" prefHeight="140.0" prefWidth="282.0" visible="false" />
    </children>
 </AnchorPane>
