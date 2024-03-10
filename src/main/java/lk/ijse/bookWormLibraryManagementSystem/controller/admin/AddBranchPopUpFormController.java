@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 public class AddBranchPopUpFormController {
@@ -38,9 +41,24 @@ public class AddBranchPopUpFormController {
     @FXML
     private TextField txtName;
 
+    BranchService branchService =
+            (BranchService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BRANCH);
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        BranchDto branchDto = new BranchDto();
+        branchDto.setName(txtName.getText());
+        branchDto.setLocation(txtLocation.getText());
+        branchDto.setContactNo(txtContactNo.getText());
+        branchDto.setAdmin(AdminSignInFormController.admin);
+
+        if (branchService.saveBranch(branchDto)) {
+            Navigation.closePopUpPane();
+            AdminBranchManagementFormController.getInstance().allBranchId();
+        } else {
+            System.out.println("Unable to save branch!");
+        }
     }
 
     @FXML
@@ -85,7 +103,7 @@ public class AddBranchPopUpFormController {
 
     @FXML
     void txtContactNoOnAction(ActionEvent event) {
-        txtLocationOnAction(event);
+        txtLocation.requestFocus();
     }
 
     @FXML
@@ -95,7 +113,7 @@ public class AddBranchPopUpFormController {
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtContactNoOnAction(event);
+        txtContactNo.requestFocus();
     }
 
 }

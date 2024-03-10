@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRepositoryImpl implements AdminRepository {
@@ -36,18 +35,9 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public List<Admin> getAllId() {
-        List<Admin> admins = new ArrayList<>();
-        try {
-            String hqlQuery = "From Admin";
-            Query<Admin> query = session.createQuery(hqlQuery);
-            admins = query.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return admins;
+        String hqlQuery = "From admin";
+        Query<Admin> query = session.createQuery(hqlQuery);
+        return query.list();
     }
 
     @Override

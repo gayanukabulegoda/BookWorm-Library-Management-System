@@ -2,6 +2,8 @@ package lk.ijse.bookWormLibraryManagementSystem.service.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.entity.Book;
+import lk.ijse.bookWormLibraryManagementSystem.entity.Branch;
+import lk.ijse.bookWormLibraryManagementSystem.entity.User;
 import lk.ijse.bookWormLibraryManagementSystem.repository.RepositoryFactory;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.AdminRepository;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.BookRepository;
@@ -9,6 +11,8 @@ import lk.ijse.bookWormLibraryManagementSystem.repository.custom.BranchRepositor
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.UserRepository;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.AdminRepositoryImpl;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.BookRepositoryImpl;
+import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.BranchRepositoryImpl;
+import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.UserRepositoryImpl;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.DeleteService;
 import lk.ijse.bookWormLibraryManagementSystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
@@ -75,12 +79,40 @@ public class DeleteServiceImpl implements DeleteService {
 
     @Override
     public boolean deleteBranch(int id) {
-        return false;
+        initializeSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            BranchRepositoryImpl.setSession(session);
+            Branch branch = branchRepository.getData(id);
+            branchRepository.delete(branch);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public boolean deleteUser(int id) {
-        return false;
+        initializeSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            UserRepositoryImpl.setSession(session);
+            User user = userRepository.getData(id);
+            userRepository.delete(user);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
 }

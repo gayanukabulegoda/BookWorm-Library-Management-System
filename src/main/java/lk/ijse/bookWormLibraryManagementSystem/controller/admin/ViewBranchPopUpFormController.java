@@ -2,13 +2,20 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class ViewBranchPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ViewBranchPopUpFormController implements Initializable {
 
     @FXML
     private Pane closePane;
@@ -36,6 +43,10 @@ public class ViewBranchPopUpFormController {
 
     @FXML
     private Label lblSavedBy;
+
+    BranchService branchService =
+            (BranchService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BRANCH);
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
@@ -65,6 +76,25 @@ public class ViewBranchPopUpFormController {
     @FXML
     void btnExitOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData() {
+        BranchDto branchDto = branchService
+                .getBranchData(AdminBranchManagementBarFormController.branchId);
+
+        lblId.setText(String.valueOf(branchDto.getId()));
+        lblName.setText(branchDto.getName());
+        lblContactNo.setText(branchDto.getContactNo());
+        lblLocation.setText(branchDto.getLocation());
+        lblSavedBy.setText(
+                branchDto.getAdmin().getName().getFirstName() + " " +
+                        branchDto.getAdmin().getName().getLastName()
+        );
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
     }
 
 }

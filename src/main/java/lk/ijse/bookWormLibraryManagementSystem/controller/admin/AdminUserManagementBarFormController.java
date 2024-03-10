@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -31,8 +34,16 @@ public class AdminUserManagementBarFormController {
     @FXML
     private Label lblUsername;
 
+    public static int userId;
+
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
+
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
+        DeleteConfirmationFormController.objectName = "user";
+        DeleteConfirmationFormController.id = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("deleteConfirmationForm.fxml");
     }
 
@@ -48,6 +59,7 @@ public class AdminUserManagementBarFormController {
 
     @FXML
     void imgEditOnMouseClicked(MouseEvent event) throws IOException {
+        userId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("updateUserPopUpForm.fxml");
     }
 
@@ -63,6 +75,7 @@ public class AdminUserManagementBarFormController {
 
     @FXML
     void imgViewOnMouseClicked(MouseEvent event) throws IOException {
+        userId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("viewUserPopUpForm.fxml");
     }
 
@@ -74,6 +87,15 @@ public class AdminUserManagementBarFormController {
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData(int id) {
+        UserDto userDto = userService.getUserData(id);
+
+        lblId.setText(String.valueOf(userDto.getId()));
+        lblName.setText(userDto.getName());
+        lblEmail.setText(userDto.getEmail());
+        lblUsername.setText(userDto.getUsername());
     }
 
 }

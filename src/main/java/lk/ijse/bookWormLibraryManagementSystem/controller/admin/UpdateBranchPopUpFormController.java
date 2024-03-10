@@ -2,14 +2,21 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UpdateBranchPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class UpdateBranchPopUpFormController implements Initializable {
 
     @FXML
     private Pane cancelPane;
@@ -37,6 +44,12 @@ public class UpdateBranchPopUpFormController {
 
     @FXML
     private Pane updatePane;
+
+    private BranchDto branchData;
+
+    BranchService branchService =
+            (BranchService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BRANCH);
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -70,7 +83,20 @@ public class UpdateBranchPopUpFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        BranchDto branchDto = new BranchDto();
+        branchDto.setName(txtName.getText());
+        branchDto.setContactNo(txtContactNo.getText());
+        branchDto.setLocation(txtLocation.getText());
+        branchDto.setAdmin(AdminSignInFormController.admin);
+
+        branchDto.setId(branchData.getId());
+
+        if (branchService.updateBranch(branchDto)) {
+            Navigation.closePopUpPane();
+            AdminBranchManagementFormController.getInstance().allBranchId();
+        } else {
+            System.out.println("Unable to update branch!");
+        }
     }
 
     @FXML
@@ -85,7 +111,7 @@ public class UpdateBranchPopUpFormController {
 
     @FXML
     void txtContactNoOnAction(ActionEvent event) {
-        txtLocationOnAction(event);
+        txtLocation.requestFocus();
     }
 
     @FXML
@@ -95,7 +121,21 @@ public class UpdateBranchPopUpFormController {
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtContactNoOnAction(event);
+        txtContactNo.requestFocus();
+    }
+
+    public void setData() {
+        branchData = branchService
+                .getBranchData(AdminBranchManagementBarFormController.branchId);
+
+        txtName.setText(branchData.getName());
+        txtContactNo.setText(branchData.getContactNo());
+        txtLocation.setText(branchData.getLocation());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
     }
 
 }

@@ -2,13 +2,20 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class ViewUserPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ViewUserPopUpFormController implements Initializable {
 
     @FXML
     private Pane closePane;
@@ -36,6 +43,10 @@ public class ViewUserPopUpFormController {
 
     @FXML
     private Label lblUsername;
+
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
@@ -65,6 +76,25 @@ public class ViewUserPopUpFormController {
     @FXML
     void btnExitOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData() {
+        UserDto userDto = userService
+                .getUserData(AdminUserManagementBarFormController.userId);
+
+        lblId.setText(String.valueOf(userDto.getId()));
+        lblName.setText(userDto.getName());
+        lblEmail.setText(userDto.getEmail());
+        lblUsername.setText(userDto.getUsername());
+        lblSavedBy.setText(
+                userDto.getAdmin().getName().getFirstName() + " " +
+                        userDto.getAdmin().getName().getLastName()
+        );
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
     }
 
 }

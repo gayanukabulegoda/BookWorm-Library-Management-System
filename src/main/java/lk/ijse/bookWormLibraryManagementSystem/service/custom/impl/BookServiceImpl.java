@@ -120,7 +120,6 @@ public class BookServiceImpl implements BookService {
     }
 
     private AdminDto convertToAdminDto(Admin entity) {
-        System.out.println(entity.getId());
         return new AdminDto(
                 entity.getId(),
                 entity.getName(),
@@ -132,7 +131,6 @@ public class BookServiceImpl implements BookService {
     }
 
     private Admin convertToAdminEntity(AdminDto dto) {
-        System.out.println(dto);
         Admin admin = new Admin();
         admin.setId(dto.getId());
         admin.setName(dto.getName());

@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -31,8 +34,16 @@ public class AdminBranchManagementBarFormController {
     @FXML
     private Label lblName;
 
+    public static int branchId;
+
+    BranchService branchService =
+            (BranchService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BRANCH);
+
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
+        DeleteConfirmationFormController.objectName = "branch";
+        DeleteConfirmationFormController.id = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("deleteConfirmationForm.fxml");
     }
 
@@ -48,6 +59,7 @@ public class AdminBranchManagementBarFormController {
 
     @FXML
     void imgEditOnMouseClicked(MouseEvent event) throws IOException {
+        branchId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("updateBranchPopUpForm.fxml");
     }
 
@@ -63,6 +75,7 @@ public class AdminBranchManagementBarFormController {
 
     @FXML
     void imgViewOnMouseClicked(MouseEvent event) throws IOException {
+        branchId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("viewBranchPopUpForm.fxml");
     }
 
@@ -74,6 +87,15 @@ public class AdminBranchManagementBarFormController {
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData(int id) {
+        BranchDto branchDto = branchService.getBranchData(id);
+
+        lblId.setText(String.valueOf(branchDto.getId()));
+        lblName.setText(branchDto.getName());
+        lblLocation.setText(branchDto.getLocation());
+        lblContactNo.setText(branchDto.getContactNo());
     }
 
 }

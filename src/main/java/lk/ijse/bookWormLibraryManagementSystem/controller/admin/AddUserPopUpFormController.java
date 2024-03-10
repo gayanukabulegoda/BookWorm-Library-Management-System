@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 public class AddUserPopUpFormController {
@@ -41,9 +44,25 @@ public class AddUserPopUpFormController {
     @FXML
     private TextField txtUsername;
 
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        UserDto userDto = new UserDto();
+        userDto.setName(txtName.getText());
+        userDto.setEmail(txtEmail.getText());
+        userDto.setUsername(txtUsername.getText());
+        userDto.setPassword(txtPassword.getText());
+        userDto.setAdmin(AdminSignInFormController.admin);
+
+        if (userService.saveUser(userDto)) {
+            Navigation.closePopUpPane();
+            AdminUserManagementFormController.getInstance().allUserId();
+        } else {
+            System.out.println("Unable to save user!");
+        }
     }
 
     @FXML
@@ -88,12 +107,12 @@ public class AddUserPopUpFormController {
 
     @FXML
     void txtEmailOnAction(ActionEvent event) {
-        txtUsernameOnAction(event);
+        txtUsername.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtEmailOnAction(event);
+        txtEmail.requestFocus();
     }
 
     @FXML
@@ -103,7 +122,7 @@ public class AddUserPopUpFormController {
 
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
-        txtPasswordOnAction(event);
+        txtPassword.requestFocus();
     }
 
 }

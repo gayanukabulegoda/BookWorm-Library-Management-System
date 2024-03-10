@@ -115,14 +115,7 @@ public class AdminServiceImpl implements AdminService {
             initializeSession();
             AdminRepositoryImpl.setSession(session);
             Admin admin = adminRepository.getAdmin(username);
-            return new AdminDto(
-                    admin.getId(),
-                    admin.getName(),
-                    admin.getContactNo(),
-                    admin.getEmail(),
-                    admin.getUsername(),
-                    admin.getPassword()
-            );
+            return convertToDto(admin);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

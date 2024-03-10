@@ -2,14 +2,21 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UpdateUserPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class UpdateUserPopUpFormController implements Initializable {
 
     @FXML
     private Pane cancelPane;
@@ -40,6 +47,12 @@ public class UpdateUserPopUpFormController {
 
     @FXML
     private Pane updatePane;
+
+    private UserDto userData;
+
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -73,7 +86,21 @@ public class UpdateUserPopUpFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        UserDto userDto = new UserDto();
+        userDto.setName(txtName.getText());
+        userDto.setEmail(txtEmail.getText());
+        userDto.setUsername(txtUsername.getText());
+        userDto.setPassword(txtPassword.getText());
+        userDto.setAdmin(AdminSignInFormController.admin);
+
+        userDto.setId(userData.getId());
+
+        if (userService.updateUser(userDto)) {
+            Navigation.closePopUpPane();
+            AdminUserManagementFormController.getInstance().allUserId();
+        } else {
+            System.out.println("Unable to update user!");
+        }
     }
 
     @FXML
@@ -88,12 +115,12 @@ public class UpdateUserPopUpFormController {
 
     @FXML
     void txtEmailOnAction(ActionEvent event) {
-        txtUsernameOnAction(event);
+        txtUsername.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtEmailOnAction(event);
+        txtEmail.requestFocus();
     }
 
     @FXML
@@ -103,7 +130,24 @@ public class UpdateUserPopUpFormController {
 
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
-        txtPasswordOnAction(event);
+        txtPassword.requestFocus();
+    }
+
+    public void setData() {
+        userData = userService
+                .getUserData(AdminUserManagementBarFormController.userId);
+
+        txtName.setText(userData.getName());
+        txtEmail.setText(userData.getEmail());
+        txtUsername.setText(userData.getUsername());
+        txtPassword.setText(userData.getPassword());
+
+        txtPassword.setEditable(false);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
     }
 
 }

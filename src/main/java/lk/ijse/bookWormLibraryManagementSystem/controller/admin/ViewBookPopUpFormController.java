@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
-import lk.ijse.bookWormLibraryManagementSystem.repository.RepositoryFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;

@@ -73,13 +73,13 @@ public class DeleteConfirmationFormController {
                 break;
             case "branch":
                 if (deleteService.deleteBranch(id)) {
-//                AdminBookManagementFormController.getInstance().allBookId();
+                    AdminBranchManagementFormController.getInstance().allBranchId();
                     Navigation.closePopUpPane();
                 } else System.out.println("Unable to Delete Branch!");
                 break;
             case "user":
                 if (deleteService.deleteUser(id)) {
-//                AdminBookManagementFormController.getInstance().allBookId();
+                    AdminUserManagementFormController.getInstance().allUserId();
                     Navigation.closePopUpPane();
                 } else System.out.println("Unable to Delete User!");
                 break;

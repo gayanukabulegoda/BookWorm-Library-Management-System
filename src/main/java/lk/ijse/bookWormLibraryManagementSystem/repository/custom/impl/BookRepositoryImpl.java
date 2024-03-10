@@ -1,13 +1,11 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
-import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.entity.Book;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.BookRepository;
 import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookRepositoryImpl implements BookRepository {
@@ -37,17 +35,9 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> getAllId() {
-        List<Book> books = new ArrayList<>();
-        try {
-            String hqlQuery = "From book";
-            Query<Book> query = session.createQuery(hqlQuery);
-            books = query.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return books;
+        String hqlQuery = "From book";
+        Query<Book> query = session.createQuery(hqlQuery);
+        return query.list();
     }
+
 }
