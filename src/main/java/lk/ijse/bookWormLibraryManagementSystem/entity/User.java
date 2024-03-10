@@ -25,10 +25,6 @@ public class User {
     private String username;
     private String password;
 
-    @CreationTimestamp
-    @Column(name = "date_and_time")
-    private Timestamp dateAndTime;
-
     @UpdateTimestamp
     @Column(name = "last_updated")
     private Timestamp dateTimeUpdate;

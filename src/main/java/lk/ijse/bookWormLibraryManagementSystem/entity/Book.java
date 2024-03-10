@@ -23,14 +23,8 @@ public class Book {
     private String name;
     private String type;
     private String language;
-    @Column(name = "quantity")
-    private int qty;
     @Column(name = "availability_status")
     private String status;
-
-    @CreationTimestamp
-    @Column(name = "date_and_time")
-    private Timestamp dateAndTime;
 
     @UpdateTimestamp
     @Column(name = "last_updated")

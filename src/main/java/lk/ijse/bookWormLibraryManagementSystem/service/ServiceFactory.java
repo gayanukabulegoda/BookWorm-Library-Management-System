@@ -1,9 +1,6 @@
 package lk.ijse.bookWormLibraryManagementSystem.service;
 
-import lk.ijse.bookWormLibraryManagementSystem.service.custom.impl.AdminServiceImpl;
-import lk.ijse.bookWormLibraryManagementSystem.service.custom.impl.BookServiceImpl;
-import lk.ijse.bookWormLibraryManagementSystem.service.custom.impl.BranchServiceImpl;
-import lk.ijse.bookWormLibraryManagementSystem.service.custom.impl.UserServiceImpl;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.impl.*;
 
 public class ServiceFactory {
 
@@ -18,7 +15,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceTypes {
-        ADMIN, BOOK, BRANCH, USER
+        ADMIN, BOOK, BRANCH, USER, DELETE
     }
 
     public SuperService getService(ServiceTypes types) {
@@ -31,6 +28,8 @@ public class ServiceFactory {
                 return new BranchServiceImpl();
             case USER:
                 return new UserServiceImpl();
+            case DELETE:
+                return new DeleteServiceImpl();
             default:
                 return null;
         }

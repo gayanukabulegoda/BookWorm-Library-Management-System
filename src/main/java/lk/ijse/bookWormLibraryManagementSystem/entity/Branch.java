@@ -25,10 +25,6 @@ public class Branch {
     @Column(name = "contact_no")
     private String contactNo;
 
-    @CreationTimestamp
-    @Column(name = "date_and_time")
-    private Timestamp dateAndTime;
-
     @UpdateTimestamp
     @Column(name = "last_updated")
     private Timestamp dateTimeUpdate;

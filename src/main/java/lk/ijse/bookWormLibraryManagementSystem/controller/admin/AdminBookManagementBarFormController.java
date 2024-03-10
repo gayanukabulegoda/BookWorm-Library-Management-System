@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -34,10 +37,17 @@ public class AdminBookManagementBarFormController {
     @FXML
     private Label lblType;
 
+    public static int bookId;
+
+    BookService bookService =
+            (BookService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BOOK);
+
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
-        Navigation.switchPaging(
-                AdminGlobalFormController.getInstance().popUpPane, "deleteConfirmationForm.fxml");
+        DeleteConfirmationFormController.objectName = "book";
+        DeleteConfirmationFormController.id = Integer.parseInt(lblId.getText());
+        Navigation.imgPopUpBackground("deleteConfirmationForm.fxml");
     }
 
     @FXML
@@ -52,8 +62,8 @@ public class AdminBookManagementBarFormController {
 
     @FXML
     void imgEditOnMouseClicked(MouseEvent event) throws IOException {
-        Navigation.switchPaging(
-                AdminGlobalFormController.getInstance().popUpPane, "updateBookPopUpForm.fxml");
+        bookId = Integer.parseInt(lblId.getText());
+        Navigation.imgPopUpBackground("updateBookPopUpForm.fxml");
     }
 
     @FXML
@@ -68,8 +78,8 @@ public class AdminBookManagementBarFormController {
 
     @FXML
     void imgViewOnMouseClicked(MouseEvent event) throws IOException {
-        Navigation.switchPaging(
-                AdminGlobalFormController.getInstance().popUpPane, "viewBookPopUpForm.fxml");
+        bookId = Integer.parseInt(lblId.getText());
+        Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
     }
 
     @FXML
@@ -80,6 +90,16 @@ public class AdminBookManagementBarFormController {
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData(int id) {
+        BookDto bookDto = bookService.getBookData(id);
+
+        lblId.setText(String.valueOf(bookDto.getId()));
+        lblName.setText(bookDto.getName());
+        lblType.setText(bookDto.getType());
+        lblLanguage.setText(bookDto.getLanguage());
+        lblAvailability.setText(bookDto.getStatus());
     }
 
 }

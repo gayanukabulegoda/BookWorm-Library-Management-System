@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
+import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
@@ -33,6 +35,8 @@ public class AdminSignInFormController {
     @FXML
     private TextField txtUsername;
 
+    public static AdminDto admin;
+
     AdminService adminService =
             (AdminService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.ADMIN);
@@ -43,6 +47,7 @@ public class AdminSignInFormController {
                 txtUsername.getText(),
                 txtPassword.getText()))
         {
+            admin = adminService.getAdmin(txtUsername.getText());
             Navigation.switchNavigation("adminGlobalForm.fxml", event);
         }
         else {

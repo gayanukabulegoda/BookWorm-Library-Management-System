@@ -1,24 +1,25 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.entity.Branch;
+import lk.ijse.bookWormLibraryManagementSystem.entity.User;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.BranchRepository;
 
 import java.util.List;
 
 public class BranchRepositoryImpl implements BranchRepository {
     @Override
-    public boolean save(Branch entity) {
-        return false;
+    public void save(Branch entity) {
+
     }
 
     @Override
-    public boolean update(Branch entity) {
-        return false;
+    public void update(Branch entity) {
+
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public void delete(Branch entity) {
+
     }
 
     @Override

@@ -2,9 +2,8 @@ package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.AdminRepository;
-import lk.ijse.bookWormLibraryManagementSystem.util.SessionFactoryConfig;
+import lombok.Setter;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
@@ -12,51 +11,27 @@ import java.util.List;
 
 public class AdminRepositoryImpl implements AdminRepository {
 
-    private final Session session;
+    @Setter
+    private static Session session;
 
-    public AdminRepositoryImpl() {
-        session = SessionFactoryConfig.getInstance().getSession();
+    @Override
+    public void save(Admin entity) {
+        session.save(entity);
     }
 
     @Override
-    public boolean save(Admin entity) {
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.save(entity);
-            transaction.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            transaction.rollback();
-            return false;
-        }
-        finally {
-            session.close();
-        }
+    public void update(Admin entity) {
+        session.update(entity);
     }
 
     @Override
-    public boolean update(Admin entity) {
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.update(entity);
-            transaction.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            transaction.rollback();
-            return false;
-        }
-        finally {
-            session.close();
-        }
+    public void delete(Admin admin) {
+        session.delete(admin);
     }
 
     @Override
     public Admin getData(int id) {
-        Admin admin = session.get(Admin.class, id);
-        session.close();
-        return admin;
+        return session.get(Admin.class, id);
     }
 
     @Override
@@ -91,8 +66,13 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public Admin getAdmin(String username) {
+        String jpqlQuery = "SELECT a FROM admin a WHERE a.username = :inputUsername";
+
+        Query query = session.createQuery(jpqlQuery)
+                .setParameter("inputUsername", username);
+
+        return (Admin) query.uniqueResult();
     }
 
 }

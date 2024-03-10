@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 public class AddBookPopUpFormController {
@@ -36,14 +39,27 @@ public class AddBookPopUpFormController {
     private TextField txtName;
 
     @FXML
-    private TextField txtQuantity;
-
-    @FXML
     private TextField txtType;
+
+    BookService bookService =
+            (BookService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BOOK);
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        BookDto bookDto = new BookDto();
+        bookDto.setName(txtName.getText());
+        bookDto.setLanguage(txtLanguage.getText());
+        bookDto.setType(txtType.getText());
+        bookDto.setAdmin(AdminSignInFormController.admin);
+        bookDto.setStatus("Available");
+
+        if (bookService.saveBook(bookDto)) {
+            Navigation.closePopUpPane();
+            AdminBookManagementFormController.getInstance().allBookId();
+        } else {
+            System.out.println("Unable to save book!");
+        }
     }
 
     @FXML
@@ -88,22 +104,17 @@ public class AddBookPopUpFormController {
 
     @FXML
     void txtLanguageOnAction(ActionEvent event) {
-        txtTypeOnAction(event);
+        txtType.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtLanguageOnAction(event);
-    }
-
-    @FXML
-    void txtQuantityOnAction(ActionEvent event) {
-        btnAddOnAction(event);
+        txtLanguage.requestFocus();
     }
 
     @FXML
     void txtTypeOnAction(ActionEvent event) {
-        txtQuantityOnAction(event);
+        btnAddOnAction(event);
     }
 
 }

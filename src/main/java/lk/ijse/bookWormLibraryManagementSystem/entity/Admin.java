@@ -34,10 +34,6 @@ public class Admin {
     @Column(name = "date_and_time")
     private Timestamp dateAndTime;
 
-    @UpdateTimestamp
-    @Column(name = "last_updated")
-    private Timestamp dateTimeUpdate;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
     private List<User> users = new ArrayList<>();
 

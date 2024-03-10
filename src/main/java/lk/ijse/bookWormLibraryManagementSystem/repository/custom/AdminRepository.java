@@ -6,5 +6,6 @@ import lk.ijse.bookWormLibraryManagementSystem.repository.CrudRepository;
 public interface AdminRepository extends CrudRepository<Admin> {
 
     boolean checkUsernameAndPassword(String username, String password);
+    Admin getAdmin(String username);
 
 }

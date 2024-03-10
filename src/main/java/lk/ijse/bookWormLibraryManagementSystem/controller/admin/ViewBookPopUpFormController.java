@@ -2,13 +2,21 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.repository.RepositoryFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class ViewBookPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ViewBookPopUpFormController implements Initializable {
 
     @FXML
     private Pane closePane;
@@ -36,6 +44,10 @@ public class ViewBookPopUpFormController {
 
     @FXML
     private Label lblType;
+
+    BookService bookService =
+            (BookService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BOOK);
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
@@ -67,4 +79,22 @@ public class ViewBookPopUpFormController {
 
     }
 
+    public void setData() {
+        BookDto bookDto = bookService
+                .getBookData(AdminBookManagementBarFormController.bookId);
+
+        lblId.setText(String.valueOf(bookDto.getId()));
+        lblName.setText(bookDto.getName());
+        lblType.setText(bookDto.getType());
+        lblLanguage.setText(bookDto.getLanguage());
+        lblSavedBy.setText(
+                bookDto.getAdmin().getName().getFirstName() + " " +
+                bookDto.getAdmin().getName().getLastName()
+        );
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
+    }
 }

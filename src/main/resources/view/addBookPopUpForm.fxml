@@ -74,15 +74,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="txtType" layoutX="93.0" layoutY="302.0" onAction="#txtTypeOnAction" prefHeight="42.0" prefWidth="293.0" promptText="  Type" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <TextField fx:id="txtQuantity" layoutX="401.0" layoutY="302.0" onAction="#txtQuantityOnAction" prefHeight="42.0" prefWidth="133.0" promptText="  Quantity" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+      <TextField fx:id="txtType" layoutX="93.0" layoutY="302.0" onAction="#txtTypeOnAction" prefHeight="42.0" prefWidth="441.0" promptText="  Type" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
          <font>
             <Font size="15.0" />
          </font>

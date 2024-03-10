@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
 import lk.ijse.bookWormLibraryManagementSystem.embedded.Name;
+import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
@@ -59,16 +60,15 @@ public class AdminSignUpFormController {
 
     @FXML
     void btnSignUpOnAction(ActionEvent event) throws IOException {
-        if (adminService.saveAdmin(
-                new AdminDto(
-                        new Name(txtFirstName.getText(), txtLastName.getText()),
-                        txtContactNo.getText(),
-                        txtEmail.getText(),
-                        txtUsername.getText(),
-                        txtPassword.getText()
-                ))
-        )
-        {
+        AdminDto adminDto = new AdminDto();
+        adminDto.setName(new Name(txtFirstName.getText(), txtLastName.getText()));
+        adminDto.setContactNo(txtContactNo.getText());
+        adminDto.setEmail(txtEmail.getText());
+        adminDto.setUsername(txtUsername.getText());
+        adminDto.setPassword( txtPassword.getText());
+
+        if (adminService.saveAdmin(adminDto)) {
+            AdminSignInFormController.admin = adminService.getAdmin(txtUsername.getText());
             Navigation.switchNavigation("adminGlobalForm.fxml", event);
         }
         else {
@@ -88,22 +88,22 @@ public class AdminSignUpFormController {
 
     @FXML
     void txtContactNoOnAction(ActionEvent event) throws IOException {
-        txtEmailOnAction(event);
+        txtEmail.requestFocus();
     }
 
     @FXML
     void txtEmailOnAction(ActionEvent event) throws IOException {
-        txtUsernameOnAction(event);
+        txtUsername.requestFocus();
     }
 
     @FXML
     void txtFirstNameOnAction(ActionEvent event) throws IOException {
-        txtLastNameOnAction(event);
+        txtLastName.requestFocus();
     }
 
     @FXML
     void txtLastNameOnAction(ActionEvent event) throws IOException {
-        txtContactNoOnAction(event);
+        txtContactNo.requestFocus();
     }
 
     @FXML
@@ -113,7 +113,7 @@ public class AdminSignUpFormController {
 
     @FXML
     void txtUsernameOnAction(ActionEvent event) throws IOException {
-        txtPasswordOnAction(event);
+        txtPassword.requestFocus();
     }
 
 }

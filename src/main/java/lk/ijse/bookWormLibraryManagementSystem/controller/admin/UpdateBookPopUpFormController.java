@@ -2,14 +2,21 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UpdateBookPopUpFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class UpdateBookPopUpFormController implements Initializable {
 
     @FXML
     private Pane cancelPane;
@@ -33,13 +40,16 @@ public class UpdateBookPopUpFormController {
     private TextField txtName;
 
     @FXML
-    private TextField txtQuantity;
-
-    @FXML
     private TextField txtType;
 
     @FXML
     private Pane updatePane;
+
+    private BookDto bookData;
+
+    BookService bookService =
+            (BookService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BOOK);
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -73,7 +83,21 @@ public class UpdateBookPopUpFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        Navigation.closePopUpPane();
+        BookDto bookDto = new BookDto();
+        bookDto.setName(txtName.getText());
+        bookDto.setLanguage(txtLanguage.getText());
+        bookDto.setType(txtType.getText());
+        bookDto.setAdmin(AdminSignInFormController.admin);
+
+        bookDto.setId(bookData.getId());
+        bookDto.setStatus(bookData.getStatus());
+
+        if (bookService.updateBook(bookDto)) {
+            Navigation.closePopUpPane();
+            AdminBookManagementFormController.getInstance().allBookId();
+        } else {
+            System.out.println("Unable to update book!");
+        }
     }
 
     @FXML
@@ -88,22 +112,30 @@ public class UpdateBookPopUpFormController {
 
     @FXML
     void txtLanguageOnAction(ActionEvent event) {
-        txtTypeOnAction(event);
+        txtType.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-        txtLanguageOnAction(event);
-    }
-
-    @FXML
-    void txtQuantityOnAction(ActionEvent event) {
-        btnUpdateOnAction(event);
+        txtLanguage.requestFocus();
     }
 
     @FXML
     void txtTypeOnAction(ActionEvent event) {
-        txtQuantityOnAction(event);
+        btnUpdateOnAction(event);
     }
 
+    public void setData() {
+        bookData = bookService
+                .getBookData(AdminBookManagementBarFormController.bookId);
+
+        txtName.setText(bookData.getName());
+        txtType.setText(bookData.getType());
+        txtLanguage.setText(bookData.getLanguage());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
+    }
 }

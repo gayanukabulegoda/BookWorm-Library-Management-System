@@ -7,18 +7,18 @@ import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     @Override
-    public boolean save(User entity) {
-        return false;
+    public void save(User entity) {
+
     }
 
     @Override
-    public boolean update(User entity) {
-        return false;
+    public void update(User entity) {
+
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public void delete(User entity) {
+
     }
 
     @Override
