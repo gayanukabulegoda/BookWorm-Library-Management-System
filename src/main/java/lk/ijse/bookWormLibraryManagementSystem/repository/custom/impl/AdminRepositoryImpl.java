@@ -35,7 +35,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public List<Admin> getAllId() {
-        String hqlQuery = "From admin";
+        String hqlQuery = "From Admin";
         Query<Admin> query = session.createQuery(hqlQuery);
         return query.list();
     }
@@ -43,7 +43,7 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public boolean checkUsernameAndPassword(String username, String password) {
         String jpqlQuery = "SELECT COUNT(a) " +
-                           "FROM admin a " +
+                           "FROM Admin a " +
                            "WHERE a.username = :inputUsername " +
                            "AND a.password = :inputPassword";
 
@@ -57,7 +57,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public Admin getAdmin(String username) {
-        String jpqlQuery = "SELECT a FROM admin a WHERE a.username = :inputUsername";
+        String jpqlQuery = "SELECT a FROM Admin a WHERE a.username = :inputUsername";
 
         Query query = session.createQuery(jpqlQuery)
                 .setParameter("inputUsername", username);

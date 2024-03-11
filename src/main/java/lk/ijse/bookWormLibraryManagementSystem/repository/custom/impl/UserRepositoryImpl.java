@@ -1,5 +1,6 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
+import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.entity.User;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.UserRepository;
 import lombok.Setter;
@@ -35,9 +36,34 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> getAllId() {
-        String hqlQuery = "From user";
+        String hqlQuery = "From User";
         Query<User> query = session.createQuery(hqlQuery);
         return query.list();
+    }
+
+    @Override
+    public boolean checkUsernameAndPassword(String username, String password) {
+        String jpqlQuery = "SELECT COUNT(u) " +
+                "FROM User u " +
+                "WHERE u.username = :inputUsername " +
+                "AND u.password = :inputPassword";
+
+        Query query = session.createQuery(jpqlQuery)
+                .setParameter("inputUsername", username)
+                .setParameter("inputPassword", password);
+        Long result = (Long) query.uniqueResult();
+
+        return result > 0;
+    }
+
+    @Override
+    public User getUser(String username) {
+        String jpqlQuery = "SELECT u FROM User u WHERE u.username = :inputUsername";
+
+        Query query = session.createQuery(jpqlQuery)
+                .setParameter("inputUsername", username);
+
+        return (User) query.uniqueResult();
     }
 
 }

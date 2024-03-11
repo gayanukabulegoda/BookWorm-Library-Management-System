@@ -2,13 +2,25 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
+import lk.ijse.bookWormLibraryManagementSystem.util.DateTimeUtil;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
-public class UserBorrowBookConfirmPopUpFormController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class UserBorrowBookConfirmPopUpFormController implements Initializable {
 
     @FXML
     private Pane cancelPane;
@@ -33,6 +45,20 @@ public class UserBorrowBookConfirmPopUpFormController {
 
     @FXML
     private VBox vBox;
+
+    TransactionService transactionService =
+            (TransactionService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.TRANSACTION);
+
+    private static UserBorrowBookConfirmPopUpFormController controller;
+
+    public UserBorrowBookConfirmPopUpFormController() {
+        controller = this;
+    }
+
+    public static UserBorrowBookConfirmPopUpFormController getInstance() {
+        return controller;
+    }
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -62,6 +88,41 @@ public class UserBorrowBookConfirmPopUpFormController {
     @FXML
     void btnConfirmOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void allBorrowedBookId() {
+        List<BookDto> borrowedBooks = UserBorrowBooksFormController.getInstance().borrowedBooks;
+        vBox.getChildren().clear();
+        if (borrowedBooks == null) return;
+
+        for (BookDto dto : borrowedBooks) {
+            loadDataTable(dto.getId());
+        }
+    }
+
+    private void loadDataTable(int id) {
+        try {
+            FXMLLoader loader = new FXMLLoader(UserBorrowBookConfirmPopUpFormController.class.getResource("/view/userBorrowBookConfirmPopUpBarForm.fxml"));
+            Parent root = loader.load();
+            UserBorrowBookConfirmPopUpBarFormController controller = loader.getController();
+            controller.setData(id);
+            vBox.getChildren().add(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setData() {
+        lblDueDate.setText(DateTimeUtil.dateAfter30Days());
+        lblId.setText(String.valueOf(transactionService.getLastTransactionId() + 1));
+        lblTotalBooks.setText(
+                String.valueOf(UserBorrowBooksFormController.getInstance().borrowedBooks.size()));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setData();
+        allBorrowedBookId();
     }
 
 }

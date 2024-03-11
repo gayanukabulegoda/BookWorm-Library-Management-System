@@ -3,7 +3,7 @@ package lk.ijse.bookWormLibraryManagementSystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,38 +15,35 @@ import java.util.List;
 @Data
 
 @Entity
-@Table(name = "book")
-public class Book {
+@Table(name = "transaction")
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "transaction_id")
     private int id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "transaction_type", nullable = false)
+    private String transactionType;
 
-    @Column(nullable = false)
-    private String type;
+    @Column(name = "book_qty", nullable = false)
+    private int bookQty;
 
-    @Column(nullable = false)
-    private String language;
+    @Column(name = "due_date", nullable = false)
+    private String dueDate;
 
-    @Column(name = "availability_status", nullable = false)
-    private String status;
-
-    @UpdateTimestamp
-    @Column(name = "last_updated")
-    private Timestamp dateTimeUpdate;
+    @CreationTimestamp
+    @Column(name = "date_and_time")
+    private Timestamp dateAndTime;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "book"
+            mappedBy = "transaction"
     )
     private List<TransactionDetail> transactionDetails = new ArrayList<>();
 

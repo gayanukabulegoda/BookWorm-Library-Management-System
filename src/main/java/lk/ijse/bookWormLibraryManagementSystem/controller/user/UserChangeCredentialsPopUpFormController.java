@@ -7,7 +7,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 public class UserChangeCredentialsPopUpFormController {
 
@@ -37,6 +41,10 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     private PasswordField txtNewPassword;
+
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -70,7 +78,43 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {
-        Navigation.closeUserPopUpPane();
+        if (validatePasswords()) {
+            if (userService.updateUser(
+                    new UserDto(
+                            UserSignInFormController.user.getId(),
+                            UserSignInFormController.user.getName(),
+                            UserSignInFormController.user.getEmail(),
+                            UserSignInFormController.user.getUsername(),
+                            txtNewPassword.getText(),
+                            UserSignInFormController.user.getAdmin()
+                    )
+                )
+            ) Navigation.closeUserPopUpPane();
+            else {
+                System.out.println("Unable to Update User!");
+//                lblConfirmPwAlert.setText("Error!! Try Again!");
+            }
+        }
+    }
+
+    private boolean validatePasswords() {
+        boolean result = true;
+
+        if (!UserSignInFormController.user.getPassword().equals(txtCurrentPassword.getText())) {
+//            lblCurrentPwAlert.setText("Wrong Password!!");
+            result = false;
+        }
+
+        if (RegExPatterns.passwordPattern(txtNewPassword.getText())) {
+//            lblNewPwAlert.setText("Invalid Password!!\nPassword should contain at least 6 characters");
+            result = false;
+        }
+
+        if (!txtNewPassword.getText().equals(txtConfirmNewPassword.getText())){
+//            lblConfirmPwAlert.setText("New Password & Confirmation Doesn't Match!!");
+            result = false;
+        }
+        return result;
     }
 
     @FXML

@@ -6,17 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 
 @Embeddable
-public class Name {
+public class TransactionDetailPK implements Serializable {
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "transaction_id")
+    private int transactionId;
+
+    @Column(name = "book_id")
+    private int bookId;
 
 }

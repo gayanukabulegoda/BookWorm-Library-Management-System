@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
 import lk.ijse.bookWormLibraryManagementSystem.embedded.Name;
-import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
@@ -65,7 +64,7 @@ public class AdminSignUpFormController {
         adminDto.setContactNo(txtContactNo.getText());
         adminDto.setEmail(txtEmail.getText());
         adminDto.setUsername(txtUsername.getText());
-        adminDto.setPassword( txtPassword.getText());
+        adminDto.setPassword(txtPassword.getText());
 
         if (adminService.saveAdmin(adminDto)) {
             AdminSignInFormController.admin = adminService.getAdmin(txtUsername.getText());

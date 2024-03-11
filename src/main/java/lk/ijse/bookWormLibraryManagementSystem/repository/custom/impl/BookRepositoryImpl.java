@@ -35,7 +35,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> getAllId() {
-        String hqlQuery = "From book";
+        String hqlQuery = "From Book";
         Query<Book> query = session.createQuery(hqlQuery);
         return query.list();
     }

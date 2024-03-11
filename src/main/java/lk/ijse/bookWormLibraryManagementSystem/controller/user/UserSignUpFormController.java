@@ -7,6 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -43,6 +46,10 @@ public class UserSignUpFormController {
     @FXML
     private TextField txtUsername;
 
+    UserService userService =
+            (UserService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.USER);
+
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
@@ -51,7 +58,20 @@ public class UserSignUpFormController {
 
     @FXML
     void btnSignUpOnAction(ActionEvent event) throws IOException {
-        Navigation.switchNavigation("userGlobalForm.fxml", event);
+        UserDto userDto = new UserDto();
+        userDto.setName(txtFirstName.getText() +" "+ txtLastName.getText());
+        userDto.setEmail(txtEmail.getText());
+        userDto.setUsername(txtUsername.getText());
+        userDto.setPassword(txtPassword.getText());
+        userDto.setAdmin(userService.getAdminData(1));
+
+        if (userService.saveUser(userDto)) {
+            UserSignInFormController.user = userService.getUser(txtUsername.getText());
+            Navigation.switchNavigation("userGlobalForm.fxml", event);
+        }
+        else {
+            System.out.println("Unable to save user!");
+        }
     }
 
     @FXML
@@ -65,23 +85,23 @@ public class UserSignUpFormController {
     }
 
     @FXML
-    void txtContactNoOnAction(ActionEvent event) throws IOException {
-        txtEmailOnAction(event);
+    void txtContactNoOnAction(ActionEvent event) {
+        txtEmail.requestFocus();
     }
 
     @FXML
-    void txtEmailOnAction(ActionEvent event) throws IOException {
-        txtUsernameOnAction(event);
+    void txtEmailOnAction(ActionEvent event) {
+        txtUsername.requestFocus();
     }
 
     @FXML
-    void txtFirstNameOnAction(ActionEvent event) throws IOException {
-        txtLastNameOnAction(event);
+    void txtFirstNameOnAction(ActionEvent event) {
+        txtLastName.requestFocus();
     }
 
     @FXML
-    void txtLastNameOnAction(ActionEvent event) throws IOException {
-        txtContactNoOnAction(event);
+    void txtLastNameOnAction(ActionEvent event) {
+        txtContactNo.requestFocus();
     }
 
     @FXML
@@ -90,8 +110,8 @@ public class UserSignUpFormController {
     }
 
     @FXML
-    void txtUsernameOnAction(ActionEvent event) throws IOException {
-        txtPasswordOnAction(event);
+    void txtUsernameOnAction(ActionEvent event) {
+        txtPassword.requestFocus();
     }
 
 }

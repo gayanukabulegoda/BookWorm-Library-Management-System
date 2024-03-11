@@ -5,7 +5,9 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
 import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.entity.User;
 import lk.ijse.bookWormLibraryManagementSystem.repository.RepositoryFactory;
+import lk.ijse.bookWormLibraryManagementSystem.repository.custom.AdminRepository;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.UserRepository;
+import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.AdminRepositoryImpl;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.UserRepositoryImpl;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.SessionFactoryConfig;
@@ -20,6 +22,10 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository =
             (UserRepository) RepositoryFactory.getInstance()
                     .getRepository(RepositoryFactory.RepositoryTypes.USER);
+
+    AdminRepository adminRepository =
+            (AdminRepository) RepositoryFactory.getInstance()
+                    .getRepository(RepositoryFactory.RepositoryTypes.ADMIN);
 
     private Session session;
 
@@ -95,6 +101,49 @@ public class UserServiceImpl implements UserService {
             session.close();
         }
         return idList;
+    }
+
+    @Override
+    public AdminDto getAdminData(int id) {
+        try {
+            initializeSession();
+            AdminRepositoryImpl.setSession(session);
+            return convertToAdminDto(adminRepository.getData(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean checkUsernameAndPassword(String username, String password) {
+        try {
+            initializeSession();
+            UserRepositoryImpl.setSession(session);
+            return userRepository.checkUsernameAndPassword(username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public UserDto getUser(String username) {
+        try {
+            initializeSession();
+            UserRepositoryImpl.setSession(session);
+            User user = userRepository.getUser(username);
+            return convertToDto(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
     }
 
     private User convertToEntity(UserDto dto) {

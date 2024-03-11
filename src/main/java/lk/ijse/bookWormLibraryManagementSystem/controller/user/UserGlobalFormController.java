@@ -1,5 +1,7 @@
 package lk.ijse.bookWormLibraryManagementSystem.controller.user;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,7 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminGlobalFormController;
+import javafx.util.Duration;
+import lk.ijse.bookWormLibraryManagementSystem.util.DateTimeUtil;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -42,6 +45,12 @@ public class UserGlobalFormController implements Initializable {
 
     @FXML
     private Label lblUser;
+
+    @FXML
+    private Label lblDate;
+
+    @FXML
+    private Label lblTime;
 
     @FXML
     private Pane logOutPane;
@@ -146,9 +155,27 @@ public class UserGlobalFormController implements Initializable {
         }
     }
 
+    private void setUserName() {
+        lblUser.setText(UserSignInFormController.user.getName());
+    }
+
+    private void updateClock() {
+        lblTime.setText(DateTimeUtil.timeNow());
+    }
+
+    private void setTimeLine() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateClock()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pagingPane.setVisible(true);
+        setUserName();
+        setTimeLine();
+        lblDate.setText(DateTimeUtil.dateNowFormatted());
         loadDashboardForm();
     }
+
 }

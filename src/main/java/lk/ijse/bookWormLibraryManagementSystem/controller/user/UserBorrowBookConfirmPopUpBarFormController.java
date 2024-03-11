@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 
 public class UserBorrowBookConfirmPopUpBarFormController {
 
@@ -22,9 +25,16 @@ public class UserBorrowBookConfirmPopUpBarFormController {
     @FXML
     private Label lblType;
 
+    BookDto bookDto;
+
+    BookService bookService =
+            (BookService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.BOOK);
+
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) {
-
+        UserBorrowBooksFormController.getInstance().borrowedBooks.remove(bookDto);
+        UserBorrowBookConfirmPopUpFormController.getInstance().allBorrowedBookId();
     }
 
     @FXML
@@ -35,6 +45,15 @@ public class UserBorrowBookConfirmPopUpBarFormController {
     @FXML
     void imgDeleteOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData(int id) {
+        bookDto = bookService.getBookData(id);
+
+        lblId.setText(String.valueOf(bookDto.getId()));
+        lblName.setText(bookDto.getName());
+        lblType.setText(bookDto.getType());
+        lblLanguage.setText(bookDto.getLanguage());
     }
 
 }

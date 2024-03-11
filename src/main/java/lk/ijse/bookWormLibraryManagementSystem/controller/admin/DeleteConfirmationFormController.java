@@ -10,6 +10,8 @@ import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.DeleteService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
+import java.io.IOException;
+
 public class DeleteConfirmationFormController {
 
     @FXML
@@ -57,12 +59,13 @@ public class DeleteConfirmationFormController {
     }
 
     @FXML
-    void btnConfirmOnAction(ActionEvent event) {
+    void btnConfirmOnAction(ActionEvent event) throws IOException {
         switch (objectName) {
             case "admin":
                 if (deleteService.deleteAdmin(id)) {
 //                AdminBookManagementFormController.getInstance().allBookId();
-                    Navigation.closePopUpPane();
+                    Navigation.close(event);
+                    Navigation.switchNavigation("adminSignInGlobalForm.fxml", event);
                 } else System.out.println("Unable to Delete Admin!");
                 break;
             case "book":

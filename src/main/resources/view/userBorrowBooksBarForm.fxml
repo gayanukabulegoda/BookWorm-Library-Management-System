@@ -34,6 +34,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <CheckBox layoutX="1352.5" layoutY="21.0" mnemonicParsing="false" onAction="#checkBoxOnAction" />
+      <CheckBox fx:id="checkBox" layoutX="1352.5" layoutY="21.0" mnemonicParsing="false" onAction="#checkBoxOnAction" />
    </children>
 </Pane>

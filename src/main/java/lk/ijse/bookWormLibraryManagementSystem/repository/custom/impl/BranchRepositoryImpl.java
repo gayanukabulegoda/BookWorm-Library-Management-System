@@ -35,7 +35,7 @@ public class BranchRepositoryImpl implements BranchRepository {
 
     @Override
     public List<Branch> getAllId() {
-        String hqlQuery = "From branch";
+        String hqlQuery = "From Branch";
         Query<Branch> query = session.createQuery(hqlQuery);
         return query.list();
     }

@@ -46,7 +46,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean updateAdmin(AdminDto dto) {
+        System.out.println(dto+" admin DTTTT000");
         Admin admin = convertToEntity(dto);
+        System.out.println(admin+" admin Entityyyyyyyy");
         initializeSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -126,6 +128,7 @@ public class AdminServiceImpl implements AdminService {
 
     private Admin convertToEntity(AdminDto dto) {
         Admin entity = new Admin();
+        entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setContactNo(dto.getContactNo());
         entity.setEmail(dto.getEmail());

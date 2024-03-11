@@ -1,9 +1,6 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository;
 
-import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.AdminRepositoryImpl;
-import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.BookRepositoryImpl;
-import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.BranchRepositoryImpl;
-import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.UserRepositoryImpl;
+import lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl.*;
 
 public class RepositoryFactory {
 
@@ -18,7 +15,7 @@ public class RepositoryFactory {
     }
 
     public enum RepositoryTypes {
-        ADMIN, BOOK, BRANCH, USER
+        ADMIN, BOOK, BRANCH, USER, TRANSACTION
     }
 
     public SuperRepository getRepository(RepositoryTypes types) {
@@ -31,6 +28,8 @@ public class RepositoryFactory {
                 return new BranchRepositoryImpl();
             case USER:
                 return new UserRepositoryImpl();
+            case TRANSACTION:
+                return new TransactionRepositoryImpl();
             default:
                 return null;
         }

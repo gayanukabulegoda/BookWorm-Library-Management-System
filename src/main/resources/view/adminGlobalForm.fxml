@@ -124,12 +124,12 @@
                </font>
             </Label>
             <Line endX="100.0" endY="7.636669158935547" layoutX="1360.0" layoutY="57.0" startX="100.0" startY="-48.727176666259766" strokeWidth="2.0" />
-            <Label layoutX="1369.0" layoutY="15.0" text="12:29 PM">
+            <Label fx:id="lblTime" layoutX="1369.0" layoutY="15.0" text="12:29 PM">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="1367.0" layoutY="39.0" text="Mar 02, 2024" />
+            <Label fx:id="lblDate" layoutX="1363.0" layoutY="39.0" text="Mar 02, 2024" />
          </children>
       </Pane>
       <Pane fx:id="pagingPane" layoutX="223.0" layoutY="77.0" prefHeight="905.0" prefWidth="1522.0" visible="false" />
