@@ -9,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminBorrowedBookFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
+import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.DateTimeUtil;
@@ -62,6 +64,8 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
+        UserBorrowBooksFormController.getInstance().borrowedBooks.clear();
+        UserBorrowBooksFormController.getInstance().allBookId();
         Navigation.closeUserPopUpLargePane();
     }
 
@@ -77,7 +81,20 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {
-        Navigation.closeUserPopUpLargePane();
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setTransactionType("borrow");
+        transactionDto.setBookQty(Integer.parseInt(lblTotalBooks.getText()));
+        transactionDto.setDueDate(lblDueDate.getText());
+        transactionDto.setUser(UserSignInFormController.user);
+
+        if (transactionService.saveTransaction(transactionDto)) {
+            Navigation.closeUserPopUpLargePane();
+            UserBorrowBooksFormController.getInstance().borrowedBooks.clear();
+            UserBorrowBooksFormController.getInstance().allBookId();
+            //AdminBorrowedBookFormController.getInstance().getAllTransactionId();
+        } else {
+            System.out.println("Unable to save transaction!");
+        }
     }
 
     @FXML
@@ -91,6 +108,7 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
     }
 
     public void allBorrowedBookId() {
+        setData();
         List<BookDto> borrowedBooks = UserBorrowBooksFormController.getInstance().borrowedBooks;
         vBox.getChildren().clear();
         if (borrowedBooks == null) return;
@@ -121,7 +139,6 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setData();
         allBorrowedBookId();
     }
 

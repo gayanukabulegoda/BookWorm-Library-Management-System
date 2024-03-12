@@ -15,7 +15,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public void save(Transaction entity) {
-
+        session.save(entity);
     }
 
     @Override
@@ -30,12 +30,14 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public Transaction getData(int id) {
-        return null;
+        return session.get(Transaction.class, id);
     }
 
     @Override
     public List<Transaction> getAllId() {
-        return null;
+        String hqlQuery = "From Transaction";
+        Query<Transaction> query = session.createQuery(hqlQuery);
+        return query.list();
     }
 
     @Override

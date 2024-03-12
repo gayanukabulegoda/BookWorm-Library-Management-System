@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -17,7 +20,7 @@ public class AdminBorrowedBookBarFormController {
     private Label lblAmount;
 
     @FXML
-    private Label lblDateAndTime;
+    private Label lblBorrowedDate;
 
     @FXML
     private Label lblDueDate;
@@ -28,8 +31,15 @@ public class AdminBorrowedBookBarFormController {
     @FXML
     private Label lblUserId;
 
+    public static int transactionId;
+
+    TransactionService transactionService =
+            (TransactionService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.TRANSACTION);
+
     @FXML
     void imgViewOnMouseClicked(MouseEvent event) throws IOException {
+        transactionId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("adminBorrowedBooksViewPopUpForm.fxml");
     }
 
@@ -41,6 +51,18 @@ public class AdminBorrowedBookBarFormController {
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
 
+    }
+
+    public void setData(int id) {
+        TransactionDto transactionDto = transactionService.getTransactionData(id);
+
+        lblId.setText(String.valueOf(transactionDto.getId()));
+        lblUserId.setText(String.valueOf(transactionDto.getUser().getId()));
+        lblAmount.setText("0" + transactionDto.getBookQty());
+        lblDueDate.setText(transactionDto.getDueDate());
+
+        String[] split = String.valueOf(transactionDto.getDateAndTime()).split(" ");
+        lblBorrowedDate.setText(split[0]);
     }
 
 }

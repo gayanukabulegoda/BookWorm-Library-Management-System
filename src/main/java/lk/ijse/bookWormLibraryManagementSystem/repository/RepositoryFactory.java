@@ -15,7 +15,7 @@ public class RepositoryFactory {
     }
 
     public enum RepositoryTypes {
-        ADMIN, BOOK, BRANCH, USER, TRANSACTION
+        ADMIN, BOOK, BRANCH, USER, TRANSACTION, TRANSACTION_DETAIL
     }
 
     public SuperRepository getRepository(RepositoryTypes types) {
@@ -30,6 +30,8 @@ public class RepositoryFactory {
                 return new UserRepositoryImpl();
             case TRANSACTION:
                 return new TransactionRepositoryImpl();
+            case TRANSACTION_DETAIL:
+                return new TransactionDetailRepositoryImpl();
             default:
                 return null;
         }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -36,13 +37,17 @@ public class Transaction {
     @Column(name = "date_and_time")
     private Timestamp dateAndTime;
 
+    @UpdateTimestamp
+    @Column(name = "last_updated")
+    private Timestamp dateTimeUpdate;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "transaction"
     )
     private List<TransactionDetail> transactionDetails = new ArrayList<>();
