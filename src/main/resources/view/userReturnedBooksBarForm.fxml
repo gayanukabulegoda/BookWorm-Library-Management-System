@@ -25,7 +25,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblDateAndTime" layoutX="941.0" layoutY="20.0" text="25-02-2024  10:39:43">
+      <Label fx:id="lblBorrowedDate" layoutX="984.0" layoutY="20.0" text="25-02-2024">
          <font>
             <Font size="16.0" />
          </font>

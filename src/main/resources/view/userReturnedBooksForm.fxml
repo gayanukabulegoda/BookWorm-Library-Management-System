@@ -54,7 +54,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="62.0" layoutY="30.0" prefHeight="20.0" prefWidth="377.0" text="Date &amp; Time">
+                  <Label layoutX="62.0" layoutY="30.0" prefHeight="20.0" prefWidth="377.0" text="Borrowed Date">
                      <font>
                         <Font size="16.0" />
                      </font>

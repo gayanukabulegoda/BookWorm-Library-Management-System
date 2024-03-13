@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminBorrowedBookFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
@@ -91,7 +90,7 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
             Navigation.closeUserPopUpLargePane();
             UserBorrowBooksFormController.getInstance().borrowedBooks.clear();
             UserBorrowBooksFormController.getInstance().allBookId();
-            //AdminBorrowedBookFormController.getInstance().getAllTransactionId();
+            //AdminBorrowedBookFormController.getInstance().allBorrowedTransactionId();
         } else {
             System.out.println("Unable to save transaction!");
         }

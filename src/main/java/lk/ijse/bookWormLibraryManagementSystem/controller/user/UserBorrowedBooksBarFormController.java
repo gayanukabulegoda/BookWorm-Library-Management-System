@@ -36,12 +36,15 @@ public class UserBorrowedBooksBarFormController {
     @FXML
     private Pane returnBtnPane;
 
+    public static int transactionId;
+
     TransactionService transactionService =
             (TransactionService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.TRANSACTION);
 
     @FXML
     void btnReturnOnAction(ActionEvent event) throws IOException {
+        transactionId = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("userReturnBookConfirmPopUpForm.fxml");
     }
 

@@ -1,6 +1,7 @@
 package lk.ijse.bookWormLibraryManagementSystem.service.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowBooksFormController;
+import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserReturnBookConfirmPopUpFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
@@ -51,14 +52,9 @@ public class TransactionServiceImpl implements TransactionService {
         TransactionRepositoryImpl.setSession(session);
         transactionRepository.save(transactionEntity);
 
-        /*org.hibernate.Transaction bookTransaction = null;
-        org.hibernate.Transaction transactionDetailTransaction;*/
         for (BookDto borrowedBook : UserBorrowBooksFormController.getInstance().borrowedBooks) {
 
             Book bookEntity = convertToBookEntity(borrowedBook);
-
-            //initializeSession();
-            //bookTransaction = session.beginTransaction();
             BookRepositoryImpl.setSession(session);
             bookRepository.update(bookEntity);
 
@@ -71,11 +67,36 @@ public class TransactionServiceImpl implements TransactionService {
                             bookEntity.getId()
                     )
             );
-
-            //initializeSession();
-            //transactionDetailTransaction = session.beginTransaction();
             TransactionDetailRepositoryImpl.setSession(session);
             transactionDetailRepository.save(transactionDetail);
+        }
+
+        try {
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean updateTransaction(TransactionDto dto) {
+        Transaction transactionEntity = convertToEntity(dto);
+
+        initializeSession();
+        org.hibernate.Transaction transaction = session.beginTransaction();
+
+        TransactionRepositoryImpl.setSession(session);
+        transactionRepository.update(transactionEntity);
+
+        for (Book book : UserReturnBookConfirmPopUpFormController.booksToBeReturned) {
+            Book bookEntity = updateBookEntityStatus(book);
+            BookRepositoryImpl.setSession(session);
+            bookRepository.update(bookEntity);
         }
 
         try {
@@ -112,6 +133,24 @@ public class TransactionServiceImpl implements TransactionService {
             TransactionRepositoryImpl.setSession(session);
             List<Transaction> allTransactions = transactionRepository.getAllId();
             for (Transaction transaction : allTransactions) {;
+                list.add(convertToDto(transaction));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
+    @Override
+    public List<TransactionDto> getAllOverDueBorrowers() {
+        List<TransactionDto> list = new ArrayList<>();
+        try {
+            initializeSession();
+            TransactionRepositoryImpl.setSession(session);
+            List<Transaction> overDueBorrowers = transactionRepository.getAllOverDueBorrowers();
+            for (Transaction transaction : overDueBorrowers) {;
                 list.add(convertToDto(transaction));
             }
         } catch (Exception e) {
@@ -167,6 +206,16 @@ public class TransactionServiceImpl implements TransactionService {
         entity.setLanguage(dto.getLanguage());
         entity.setStatus("Unavailable");
         entity.setAdmin(convertToAdminEntity(dto.getAdmin()));
+        return entity;
+    }
+
+    private Book updateBookEntityStatus(Book entity) {
+        entity.setId(entity.getId());
+        entity.setName(entity.getName());
+        entity.setType(entity.getType());
+        entity.setLanguage(entity.getLanguage());
+        entity.setStatus("Available");
+        entity.setAdmin(entity.getAdmin());
         return entity;
     }
 

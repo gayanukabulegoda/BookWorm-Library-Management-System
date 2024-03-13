@@ -1,6 +1,7 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.entity.Transaction;
+import lk.ijse.bookWormLibraryManagementSystem.entity.User;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.TransactionRepository;
 import lombok.Setter;
 import org.hibernate.Session;
@@ -20,12 +21,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public void update(Transaction entity) {
-
-    }
-
-    @Override
-    public void delete(Transaction entity) {
-
+        session.update(entity);
     }
 
     @Override
@@ -41,11 +37,26 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
+    public List<Transaction> getAllOverDueBorrowers() {
+        String jpqlQuery = "SELECT t FROM Transaction t " +
+                           "WHERE t.transactionType = :transactionType " +
+                           "AND t.dueDate < CURRENT_DATE ";
+
+        Query<Transaction> query = session.createQuery(jpqlQuery);
+        query.setParameter("transactionType", "borrow");
+
+        return query.getResultList();
+    }
+
+    @Override
     public int getLastId() {
         String jpqlQuery = "SELECT MAX(t.id) FROM Transaction t";
         Query query = session.createQuery(jpqlQuery);
         if (query.uniqueResult() == null) return 0;
         else return (int) query.uniqueResult();
     }
+
+    @Override
+    public void delete(Transaction entity) {}
 
 }

@@ -2,16 +2,25 @@ package lk.ijse.bookWormLibraryManagementSystem.controller.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class UserReturnedBooksFormController {
+public class UserReturnedBooksFormController implements Initializable {
 
     @FXML
     private Pane borrowedBooksPane;
@@ -27,6 +36,20 @@ public class UserReturnedBooksFormController {
 
     @FXML
     private VBox vBoxReturnedBooks;
+
+    TransactionService transactionService =
+            (TransactionService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.TRANSACTION);
+
+    private static UserReturnedBooksFormController controller;
+
+    public UserReturnedBooksFormController() {
+        controller = this;
+    }
+
+    public static UserReturnedBooksFormController getInstance() {
+        return controller;
+    }
 
     @FXML
     void btnBorrowedBooksOnAction(ActionEvent event) throws IOException {
@@ -47,6 +70,35 @@ public class UserReturnedBooksFormController {
     @FXML
     void txtSearchOnAction(ActionEvent event) {
 
+    }
+
+    public void allReturnedTransactionId() {
+        vBoxReturnedBooks.getChildren().clear();
+        List<TransactionDto> list = transactionService.getTransactionAllId();
+        if (list == null) return;
+
+        for (TransactionDto dto : list) {
+            if (dto.getTransactionType().equals("return") &&
+                    dto.getUser().equals(UserSignInFormController.user)
+            ) loadDataTable(dto.getId());
+        }
+    }
+
+    private void loadDataTable(int id) {
+        try {
+            FXMLLoader loader = new FXMLLoader(UserReturnedBooksFormController.class.getResource("/view/userReturnedBooksBarForm.fxml"));
+            Parent root = loader.load();
+            UserReturnedBooksBarFormController controller = loader.getController();
+            controller.setData(id);
+            vBoxReturnedBooks.getChildren().add(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        allReturnedTransactionId();
     }
 
 }
