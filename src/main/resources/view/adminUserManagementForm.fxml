@@ -62,7 +62,7 @@
                   <Image url="@../assests/icon/searchIcon.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtSearch" layoutX="46.0" layoutY="1.5" onAction="#txtSearchOnAction" prefHeight="43.5" prefWidth="251.0" promptText="Search by ID or Name" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
+            <TextField fx:id="txtSearch" layoutX="46.0" layoutY="1.5" onAction="#txtSearchOnAction" prefHeight="43.5" prefWidth="251.0" promptText="Search by ID or Username" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
                <font>
                   <Font size="16.0" />
                </font>

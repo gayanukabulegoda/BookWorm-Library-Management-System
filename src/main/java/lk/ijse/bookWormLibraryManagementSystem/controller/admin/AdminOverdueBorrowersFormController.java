@@ -17,6 +17,7 @@ import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,6 +25,9 @@ public class AdminOverdueBorrowersFormController implements Initializable {
 
     @FXML
     private Pane borrowedBooksPane;
+
+    @FXML
+    private Pane btnRefreshPane;
 
     @FXML
     private Label lblBorrowedBooks;
@@ -36,6 +40,8 @@ public class AdminOverdueBorrowersFormController implements Initializable {
 
     @FXML
     private VBox vBoxOverdueBorrowers;
+
+    private List<TransactionDto> list;
 
     TransactionService transactionService =
             (TransactionService) ServiceFactory.getInstance()
@@ -58,13 +64,44 @@ public class AdminOverdueBorrowersFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
+    void btnRefreshTableOnAction(ActionEvent event) {
+        allOverDueBorrowers();
+    }
 
+    @FXML
+    void btnRefreshTableOnMouseEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnRefreshTableOnMouseExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        List<TransactionDto> selectedDtoList = new ArrayList<>();
+        for (TransactionDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getUser().getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getUser().getUsername())) {
+                selectedDtoList.add(dto);
+            }
+        }
+        if (!selectedDtoList.isEmpty()) allSelectedTransactionId(selectedDtoList);
+        txtSearch.clear();
+    }
+
+    public void allSelectedTransactionId(List<TransactionDto> selectedDtoList) {
+        vBoxOverdueBorrowers.getChildren().clear();
+
+        for (TransactionDto selectedDto : selectedDtoList) {
+            loadDataTable(selectedDto.getId());
+        }
     }
 
     public void allOverDueBorrowers() {
         vBoxOverdueBorrowers.getChildren().clear();
-        List<TransactionDto> list = transactionService.getAllOverDueBorrowers();
+        list = transactionService.getAllOverDueBorrowers();
         if (list == null) return;
 
         for (TransactionDto dto : list) {

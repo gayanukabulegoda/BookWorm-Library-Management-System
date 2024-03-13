@@ -41,6 +41,8 @@ public class AdminUserManagementFormController implements Initializable {
     @FXML
     private VBox vBoxUserManage;
 
+    private List<UserDto> list;
+
     UserService userService =
             (UserService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.USER);
@@ -71,13 +73,22 @@ public class AdminUserManagementFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
+    void txtSearchOnAction(ActionEvent event) throws IOException {
+        for (UserDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getUsername())) {
+                AdminUserManagementBarFormController.userId = dto.getId();
+                Navigation.imgPopUpBackground("viewUserPopUpForm.fxml");
+                txtSearch.clear();
+                return;
+            }
+        }
+        txtSearch.clear();
     }
 
     public void allUserId() {
         vBoxUserManage.getChildren().clear();
-        List<UserDto> list = userService.getAllUserId();
+        list = userService.getAllUserId();
         if (list == null) return;
 
         for (UserDto dto : list) {

@@ -10,9 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowedBooksBarFormController;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowedBooksFormController;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
@@ -20,6 +17,7 @@ import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -27,6 +25,9 @@ public class AdminBorrowedBookFormController implements Initializable {
 
     @FXML
     private Pane OverdueBorrowersPane;
+
+    @FXML
+    private Pane btnRefreshPane;
 
     @FXML
     private Label lblOverdueBorrowers;
@@ -39,6 +40,8 @@ public class AdminBorrowedBookFormController implements Initializable {
 
     @FXML
     private VBox vBoxBorrowedBooks;
+
+    private List<TransactionDto> list;
 
     TransactionService transactionService =
             (TransactionService) ServiceFactory.getInstance()
@@ -71,13 +74,44 @@ public class AdminBorrowedBookFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
+    void btnRefreshTableOnAction(ActionEvent event) {
+        allBorrowedTransactionId();
+    }
 
+    @FXML
+    void btnRefreshTableOnMouseEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnRefreshTableOnMouseExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        List<TransactionDto> selectedDtoList = new ArrayList<>();
+        for (TransactionDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getUser().getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getUser().getUsername())) {
+                if (dto.getTransactionType().equals("borrow")) selectedDtoList.add(dto);
+            }
+        }
+        if (!selectedDtoList.isEmpty()) allSelectedTransactionId(selectedDtoList);
+        txtSearch.clear();
+    }
+
+    public void allSelectedTransactionId(List<TransactionDto> selectedDtoList) {
+        vBoxBorrowedBooks.getChildren().clear();
+
+        for (TransactionDto selectedDto : selectedDtoList) {
+            loadDataTable(selectedDto.getId());
+        }
     }
 
     public void allBorrowedTransactionId() {
         vBoxBorrowedBooks.getChildren().clear();
-        List<TransactionDto> list = transactionService.getTransactionAllId();
+        list = transactionService.getTransactionAllId();
         if (list == null) return;
 
         for (TransactionDto dto : list) {

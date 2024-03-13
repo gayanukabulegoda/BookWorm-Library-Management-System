@@ -41,6 +41,8 @@ public class AdminBookManagementFormController implements Initializable {
     @FXML
     private VBox vBoxBookManage;
 
+    private List<BookDto> list;
+
     BookService bookService =
             (BookService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.BOOK);
@@ -71,13 +73,22 @@ public class AdminBookManagementFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
+    void txtSearchOnAction(ActionEvent event) throws IOException {
+        for (BookDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getName())) {
+                AdminBookManagementBarFormController.bookId = dto.getId();
+                Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
+                txtSearch.clear();
+                return;
+            }
+        }
+        txtSearch.clear();
     }
 
     public void allBookId() {
         vBoxBookManage.getChildren().clear();
-        List<BookDto> list = bookService.getAllBookId();
+        list = bookService.getAllBookId();
         if (list == null) return;
 
         for (BookDto dto : list) {

@@ -37,6 +37,8 @@ public class UserReturnedBooksFormController implements Initializable {
     @FXML
     private VBox vBoxReturnedBooks;
 
+    private List<TransactionDto> list;
+
     TransactionService transactionService =
             (TransactionService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.TRANSACTION);
@@ -68,13 +70,24 @@ public class UserReturnedBooksFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
+    void txtSearchOnAction(ActionEvent event) throws IOException {
+        for (TransactionDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getId()))) {
+                if (dto.getTransactionType().equals("return") &&
+                        dto.getUser().equals(UserSignInFormController.user)) {
+                    UserReturnedBooksBarFormController.transactionId = dto.getId();
+                    Navigation.imgPopUpBackground("userReturnedBooksViewPopUpForm.fxml");
+                    txtSearch.clear();
+                    return;
+                }
+            }
+        }
+        txtSearch.clear();
     }
 
     public void allReturnedTransactionId() {
         vBoxReturnedBooks.getChildren().clear();
-        List<TransactionDto> list = transactionService.getTransactionAllId();
+        list = transactionService.getTransactionAllId();
         if (list == null) return;
 
         for (TransactionDto dto : list) {

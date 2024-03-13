@@ -11,10 +11,10 @@ public class DateTimeUtil {
         return format.format(new Date());
     }
 
-    public static String dateAfter30Days() {
+    public static String dateAfter15Days() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, 30);
+        calendar.add(Calendar.DATE, 15);
         return format.format(calendar.getTime());
     }
 

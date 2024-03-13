@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,20 +17,6 @@
 <Pane prefHeight="905.0" prefWidth="1655.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserBorrowBooksFormController">
    <children>
       <JFXButton layoutX="-71.0" text=" " />
-      <Pane fx:id="searchPane" layoutX="1340.0" layoutY="23.0" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 12;">
-         <children>
-            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assests/icon/searchIcon.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="txtSearch" layoutX="46.0" layoutY="1.5" onAction="#txtSearchOnAction" prefHeight="43.5" prefWidth="251.0" promptText="Search by ID" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-         </children>
-      </Pane>
       <Pane layoutX="1534.0" layoutY="93.0" prefHeight="812.5" prefWidth="121.0" style="-fx-background-color: black; -fx-background-radius: 12 0 0 0;">
          <children>
             <Text fill="WHITE" layoutX="49.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B O O K  WO R M" wrappingWidth="22.31420900038222">
@@ -89,7 +76,7 @@
             <Pane layoutX="1472.0" layoutY="73.0" prefHeight="722.0" prefWidth="17.0" style="-fx-background-color: white;" />
          </children>
       </Pane>
-      <Pane fx:id="AcquireBookPane" layoutX="1188.0" layoutY="24.0" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: black; -fx-background-radius: 12;">
+      <Pane fx:id="AcquireBookPane" layoutX="1144.0" layoutY="24.0" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: black; -fx-background-radius: 12;">
          <children>
             <Label fx:id="lblAcquire" layoutX="52.0" layoutY="12.0" text="Acquire" textFill="WHITE">
                <font>
@@ -103,6 +90,37 @@
             </ImageView>
          </children>
       </Pane>
-      <JFXButton layoutX="1188.0" layoutY="24.0" onAction="#btnAcquireBookOnAction" onMouseEntered="#btnAcquireBookOnMouseEntered" onMouseExited="#btnAcquireBookOnMouseExited" prefHeight="44.0" prefWidth="136.0" style="-fx-background-radius: 12;" text=" " />
+      <JFXButton layoutX="1144.0" layoutY="24.0" onAction="#btnAcquireBookOnAction" onMouseEntered="#btnAcquireBookOnMouseEntered" onMouseExited="#btnAcquireBookOnMouseExited" prefHeight="44.0" prefWidth="136.0" style="-fx-background-radius: 12;" text=" " />
+      <Pane fx:id="searchPane" layoutX="1290.0" layoutY="24.0" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/searchIcon.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtSearch" layoutX="47.0" layoutY="1.0" onAction="#txtSearchOnAction" prefHeight="44.0" prefWidth="251.0" promptText="Search by ID | Name | Type" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Pane fx:id="btnRefreshPane" layoutX="1600.0" layoutY="24.0" prefHeight="46.0" prefWidth="46.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/refreshTableIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <JFXButton layoutX="1600.0" layoutY="24.0" onAction="#btnRefreshTableOnAction" onMouseEntered="#btnRefreshTableOnMouseEntered" onMouseExited="#btnRefreshTableOnMouseExited" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 12;" text=" ">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </Pane>

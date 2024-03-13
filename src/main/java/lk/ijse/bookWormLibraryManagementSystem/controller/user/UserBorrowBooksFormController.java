@@ -28,6 +28,9 @@ public class UserBorrowBooksFormController implements Initializable {
     private Pane AcquireBookPane;
 
     @FXML
+    private Pane btnRefreshPane;
+
+    @FXML
     private ImageView imgAcquire;
 
     @FXML
@@ -41,6 +44,8 @@ public class UserBorrowBooksFormController implements Initializable {
 
     @FXML
     private VBox vBoxBooks;
+
+    private List<BookDto> list;
 
     public List<BookDto> borrowedBooks = new ArrayList<>();
 
@@ -74,13 +79,44 @@ public class UserBorrowBooksFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
+    void btnRefreshTableOnAction(ActionEvent event) {
+        allBookId();
+    }
 
+    @FXML
+    void btnRefreshTableOnMouseEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnRefreshTableOnMouseExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        List<BookDto> selectedDtoList = new ArrayList<>();
+        for (BookDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getName())
+                    || txtSearch.getText().equalsIgnoreCase(dto.getType())
+            ) selectedDtoList.add(dto);
+        }
+        if (!selectedDtoList.isEmpty()) allSelectedBookId(selectedDtoList);
+        txtSearch.clear();
+    }
+
+    public void allSelectedBookId(List<BookDto> selectedDtoList) {
+        vBoxBooks.getChildren().clear();
+
+        for (BookDto selectedDto : selectedDtoList) {
+            loadDataTable(selectedDto.getId());
+        }
     }
 
     public void allBookId() {
         vBoxBooks.getChildren().clear();
-        List<BookDto> list = bookService.getAllBookId();
+        list = bookService.getAllBookId();
         if (list == null) return;
 
         for (BookDto dto : list) {

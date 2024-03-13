@@ -130,7 +130,7 @@ public class UserBorrowBookConfirmPopUpFormController implements Initializable {
     }
 
     public void setData() {
-        lblDueDate.setText(DateTimeUtil.dateAfter30Days());
+        lblDueDate.setText(DateTimeUtil.dateAfter15Days());
         lblId.setText(String.valueOf(transactionService.getLastTransactionId() + 1));
         lblTotalBooks.setText(
                 String.valueOf(UserBorrowBooksFormController.getInstance().borrowedBooks.size()));

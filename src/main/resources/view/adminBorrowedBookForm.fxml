@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -77,14 +78,14 @@
             <Pane layoutX="1472.0" layoutY="73.0" prefHeight="722.0" prefWidth="17.0" style="-fx-background-color: white;" />
          </children>
       </Pane>
-      <Pane fx:id="searchPane" layoutX="1207.0" layoutY="23.0" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+      <Pane fx:id="searchPane" layoutX="1156.0" layoutY="23.0" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 12;">
          <children>
-            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/icon/searchIcon.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtSearch" layoutX="46.0" layoutY="1.5" onAction="#txtSearchOnAction" prefHeight="43.5" prefWidth="251.0" promptText="Search by ID" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
+            <TextField fx:id="txtSearch" layoutX="39.0" layoutY="1.0" onAction="#txtSearchOnAction" prefHeight="44.0" prefWidth="258.5" promptText="Search by User ID / Username" style="-fx-background-color: white; -fx-background-radius: 0 12 12 0;">
                <font>
                   <Font size="16.0" />
                </font>
@@ -93,5 +94,22 @@
       </Pane>
       <JFXButton layoutX="18.0" layoutY="27.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-radius: 12 0 0 12;" text=" " />
       <JFXButton layoutX="283.0" layoutY="27.0" onAction="#btnOverdueBorrowersOnAction" onMouseEntered="#btnOverdueBorrowersOnMouseEntered" onMouseExited="#btnOverdueBorrowersOnMouseExited" prefHeight="38.0" prefWidth="244.0" style="-fx-background-radius: 0 12 12 0;" text=" " />
+      <Pane fx:id="btnRefreshPane" layoutX="1466.0" layoutY="23.0" prefHeight="46.0" prefWidth="46.0" style="-fx-background-color: white; -fx-background-radius: 12;">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/refreshTableIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <JFXButton layoutX="1466.0" layoutY="23.0" onAction="#btnRefreshTableOnAction" onMouseEntered="#btnRefreshTableOnMouseEntered" onMouseExited="#btnRefreshTableOnMouseExited" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 12;" text=" ">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </Pane>

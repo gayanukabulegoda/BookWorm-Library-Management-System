@@ -41,6 +41,8 @@ public class AdminBranchManagementFormController implements Initializable {
     @FXML
     private VBox vBoxBranchManage;
 
+    private List<BranchDto> list;
+
     BranchService branchService =
             (BranchService) ServiceFactory.getInstance()
                     .getService(ServiceFactory.ServiceTypes.BRANCH);
@@ -71,13 +73,22 @@ public class AdminBranchManagementFormController implements Initializable {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
+    void txtSearchOnAction(ActionEvent event) throws IOException {
+        for (BranchDto dto : list) {
+            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                    || txtSearch.getText().equalsIgnoreCase(dto.getLocation())) {
+                AdminBranchManagementBarFormController.branchId = dto.getId();
+                Navigation.imgPopUpBackground("viewBranchPopUpForm.fxml");
+                txtSearch.clear();
+                return;
+            }
+        }
+        txtSearch.clear();
     }
 
     public void allBranchId() {
         vBoxBranchManage.getChildren().clear();
-        List<BranchDto> list = branchService.getAllBranchId();
+        list = branchService.getAllBranchId();
         if (list == null) return;
 
         for (BranchDto dto : list) {
