@@ -15,7 +15,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceTypes {
-        ADMIN, BOOK, BRANCH, USER, DELETE, TRANSACTION
+        ADMIN, BOOK, BRANCH, USER, DELETE, TRANSACTION, DASHBOARD
     }
 
     public SuperService getService(ServiceTypes types) {
@@ -32,6 +32,8 @@ public class ServiceFactory {
                 return new DeleteServiceImpl();
             case TRANSACTION:
                 return new TransactionServiceImpl();
+            case DASHBOARD:
+                return new DashboardServiceImpl();
             default:
                 return null;
         }

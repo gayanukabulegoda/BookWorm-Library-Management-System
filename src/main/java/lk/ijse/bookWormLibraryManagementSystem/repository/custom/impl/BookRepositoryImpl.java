@@ -40,4 +40,13 @@ public class BookRepositoryImpl implements BookRepository {
         return query.list();
     }
 
+    @Override
+    public int getAllBookCount() {
+        String jpqlQuery = "SELECT COUNT (B) FROM Book B";
+
+        Query query = session.createQuery(jpqlQuery);
+        Long count = (Long) query.uniqueResult();
+        return Math.toIntExact(count);
+    }
+
 }

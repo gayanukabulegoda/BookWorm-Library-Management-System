@@ -66,4 +66,13 @@ public class UserRepositoryImpl implements UserRepository {
         return (User) query.uniqueResult();
     }
 
+    @Override
+    public int getAllUserCount() {
+        String jpqlQuery = "SELECT COUNT (U) FROM User U";
+
+        Query query = session.createQuery(jpqlQuery);
+        Long count = (Long) query.uniqueResult();
+        return Math.toIntExact(count);
+    }
+
 }

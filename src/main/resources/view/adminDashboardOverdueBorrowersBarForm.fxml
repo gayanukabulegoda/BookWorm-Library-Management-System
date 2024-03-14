@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<Pane prefHeight="50.0" prefWidth="308.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: black; -fx-border-radius: 12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminDashboardOverdueBorrowersBarFormController">
+   <children>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/overDueBorrowersIcon.png" />
+         </image>
+      </ImageView>
+      <Line endX="-115.8453369140625" endY="56.212860107421875" layoutX="166.0" layoutY="-12.0" startX="-115.8453369140625" startY="18.394607543945312" />
+      <Label fx:id="lblUserName" layoutX="68.0" layoutY="9.0" text="Sasmith Gunasekara" />
+      <Label layoutX="68.0" layoutY="25.0" text="Borrowed ID : " />
+      <Label fx:id="lblTransactionId" layoutX="161.0" layoutY="25.0" text="10" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="270.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/expandIcon.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="263.0" layoutY="5.5" onAction="#btnViewTransactionOnAction" prefHeight="39.0" prefWidth="38.0" style="-fx-background-radius: 14;" text=" " />
+   </children>
+</Pane>

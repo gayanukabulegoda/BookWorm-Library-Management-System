@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="72.0" prefWidth="389.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: black; -fx-border-radius: 12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminDashboardAdminsBarFormController">
+   <children>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="336.0" layoutY="19.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/expandIconLarge.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="331.0" layoutY="14.0" onAction="#btnViewAdminOnAction" prefHeight="46.0" prefWidth="45.0" style="-fx-background-radius: 14;" text=" " />
+      <Pane layoutX="6.0" layoutY="5.0" prefHeight="63.0" prefWidth="308.0" style="-fx-background-color: #E3E3E3; -fx-background-radius: 12;">
+         <children>
+            <Line endX="55.883018493652344" endY="57.608421325683594" layoutX="5.0" layoutY="-2.0" startX="55.883018493652344" startY="9.729455947875977" />
+            <Label fx:id="lblAdminName" layoutX="73.0" layoutY="13.0" text="Nisal Gunasekara">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="74.0" layoutY="35.0" text="Admin ID : " />
+            <Label fx:id="lblAdminId" layoutX="146.0" layoutY="34.5" text="10" />
+            <ImageView fitHeight="34.98" fitWidth="30.1" layoutX="16.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/icon/adminIcon.png" />
+               </image>
+            </ImageView>
+            <Circle fill="#151619" layoutX="254.0" layoutY="51.5" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label fx:id="lblStatus" layoutX="263.0" layoutY="44.5" text="Active">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

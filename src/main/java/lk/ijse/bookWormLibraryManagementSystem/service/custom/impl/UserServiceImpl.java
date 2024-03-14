@@ -13,6 +13,7 @@ import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;

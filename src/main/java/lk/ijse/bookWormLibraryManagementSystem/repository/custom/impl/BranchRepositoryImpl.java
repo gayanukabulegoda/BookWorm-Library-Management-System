@@ -40,4 +40,13 @@ public class BranchRepositoryImpl implements BranchRepository {
         return query.list();
     }
 
+    @Override
+    public int getAllBranchCount() {
+        String jpqlQuery = "SELECT COUNT (B) FROM Branch B";
+
+        Query query = session.createQuery(jpqlQuery);
+        Long count = (Long) query.uniqueResult();
+        return Math.toIntExact(count);
+    }
+
 }

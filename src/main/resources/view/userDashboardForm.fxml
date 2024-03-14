@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <Pane prefHeight="905.0" prefWidth="1655.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserDashboardFormController">
    <children>
@@ -38,7 +38,7 @@
          <children>
             <Text fx:id="textQuote" layoutX="104.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Embarking on the journey of reading fosters personal growth, nurturing a path towards excellence and the refinement of character.&quot;" wrappingWidth="739.4623107910156">
                <font>
-                  <Font size="33.0" />
+                  <Font name="System Italic" size="33.0" />
                </font>
             </Text>
             <Text layoutX="674.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="~ BookWorm Team">
@@ -116,5 +116,9 @@
       <JFXButton layoutX="52.0" layoutY="52.0" onAction="#btnBorrowedBookOnAction" onMouseEntered="#btnBorrowedBookOnMouseEntered" onMouseExited="#btnBorrowedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
       <JFXButton layoutX="522.0" layoutY="52.0" onAction="#btnReturnedBookOnAction" onMouseEntered="#btnReturnedBookOnMouseEntered" onMouseExited="#btnReturnedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
       <JFXButton layoutX="52.0" layoutY="299.0" onAction="#btnAvailableBookOnAction" onMouseEntered="#btnAvailableBookOnMouseEntered" onMouseExited="#btnAvailableBookOnMouseExited" prefHeight="204.0" prefWidth="509.0" style="-fx-background-radius: 12;" text=" " />
+      <Pane fx:id="pieChartPane" layoutX="980.0" layoutY="44.0" prefHeight="631.0" prefWidth="631.0">
+         <children>
+            <PieChart fx:id="pieChart" layoutX="18.0" layoutY="15.0" prefHeight="600.0" prefWidth="600.0" />
+         </children></Pane>
    </children>
 </Pane>

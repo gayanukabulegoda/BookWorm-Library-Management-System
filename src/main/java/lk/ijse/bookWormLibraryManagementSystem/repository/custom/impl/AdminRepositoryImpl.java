@@ -1,6 +1,7 @@
 package lk.ijse.bookWormLibraryManagementSystem.repository.custom.impl;
 
 import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
+import lk.ijse.bookWormLibraryManagementSystem.projection.AdminProjection;
 import lk.ijse.bookWormLibraryManagementSystem.repository.custom.AdminRepository;
 import lombok.Setter;
 import org.hibernate.Session;
@@ -63,6 +64,17 @@ public class AdminRepositoryImpl implements AdminRepository {
                 .setParameter("inputUsername", username);
 
         return (Admin) query.uniqueResult();
+    }
+
+    @Override
+    public List<AdminProjection> getAdminIdAndName() {
+        String jpqlQuery = "SELECT " +
+                "new lk.ijse.bookWormLibraryManagementSystem.projection.AdminProjection(A.id, A.name) " +
+                "FROM Admin AS A";
+        Query query = session.createQuery(jpqlQuery);
+        List<AdminProjection> list = query.list();
+        session.close();
+        return list;
     }
 
 }
