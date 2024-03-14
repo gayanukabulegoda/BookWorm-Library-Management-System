@@ -75,12 +75,14 @@ public class AdminBookManagementFormController implements Initializable {
     @FXML
     void txtSearchOnAction(ActionEvent event) throws IOException {
         for (BookDto dto : list) {
-            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
-                    || txtSearch.getText().equalsIgnoreCase(dto.getName())) {
-                AdminBookManagementBarFormController.bookId = dto.getId();
-                Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
-                txtSearch.clear();
-                return;
+            if (!dto.getStatus().equals("Removed")) {
+                if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                        || txtSearch.getText().equalsIgnoreCase(dto.getName())) {
+                    AdminBookManagementBarFormController.bookId = dto.getId();
+                    Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
+                    txtSearch.clear();
+                    return;
+                }
             }
         }
         txtSearch.clear();
@@ -92,7 +94,7 @@ public class AdminBookManagementFormController implements Initializable {
         if (list == null) return;
 
         for (BookDto dto : list) {
-            loadDataTable(dto.getId());
+            if (!dto.getStatus().equals("Removed")) loadDataTable(dto.getId());
         }
     }
 

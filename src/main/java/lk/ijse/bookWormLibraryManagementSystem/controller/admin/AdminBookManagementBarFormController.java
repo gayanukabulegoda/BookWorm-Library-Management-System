@@ -37,6 +37,8 @@ public class AdminBookManagementBarFormController {
     @FXML
     private Label lblType;
 
+    private BookDto bookDto;
+
     public static int bookId;
 
     BookService bookService =
@@ -45,6 +47,10 @@ public class AdminBookManagementBarFormController {
 
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
+        if (bookDto.getStatus().equals("Unavailable")) {
+            System.out.println("Unable To Delete Borrowed Book!");
+            return;
+        }
         DeleteConfirmationFormController.objectName = "book";
         DeleteConfirmationFormController.id = Integer.parseInt(lblId.getText());
         Navigation.imgPopUpBackground("deleteConfirmationForm.fxml");
@@ -93,7 +99,7 @@ public class AdminBookManagementBarFormController {
     }
 
     public void setData(int id) {
-        BookDto bookDto = bookService.getBookData(id);
+        bookDto = bookService.getBookData(id);
 
         lblId.setText(String.valueOf(bookDto.getId()));
         lblName.setText(bookDto.getName());

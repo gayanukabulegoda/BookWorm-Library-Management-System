@@ -3,6 +3,7 @@ package lk.ijse.bookWormLibraryManagementSystem.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Random;
 
 public class Utility {
 
@@ -16,6 +17,20 @@ public class Utility {
             e.printStackTrace();
         }
         return properties;
+    }
+
+    public static String generateOTP() {
+        String numbers = "0123456789";
+        StringBuilder otp = new StringBuilder(6);
+
+        Random random = new Random();
+
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(numbers.length());
+            char digit = numbers.charAt(index);
+            otp.append(digit);
+        }
+        return otp.toString();
     }
 
 }

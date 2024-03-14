@@ -159,6 +159,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto convertToDto(User entity) {
+        if (entity == null) return null;
         return new UserDto(
                 entity.getId(),
                 entity.getName(),

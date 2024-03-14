@@ -138,6 +138,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     private AdminDto convertToDto(Admin entity) {
+        if (entity == null) return null;
         return new AdminDto(
                 entity.getId(),
                 entity.getName(),

@@ -6,6 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserForgotPasswordFormController;
+import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInGlobalFormController;
+import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
+import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 
 import java.io.IOException;
@@ -30,6 +34,10 @@ public class AdminResetPasswordFormController {
     @FXML
     private PasswordField txtNewPassword;
 
+    AdminService adminService =
+            (AdminService) ServiceFactory.getInstance()
+                    .getService(ServiceFactory.ServiceTypes.ADMIN);
+
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
         Navigation.switchPaging(
@@ -48,8 +56,12 @@ public class AdminResetPasswordFormController {
 
     @FXML
     void btnResetPasswordOnAction(ActionEvent event) throws IOException {
-        Navigation.switchPaging(
-                AdminSignInGlobalFormController.getInstance().signInSignUpPane, "adminSignInForm.fxml");
+        if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
+            AdminForgotPasswordFormController.admin.setPassword(txtNewPassword.getText());
+            adminService.updateAdmin(AdminForgotPasswordFormController.admin);
+            Navigation.switchPaging(AdminSignInGlobalFormController
+                    .getInstance().signInSignUpPane, "adminSignInForm.fxml");
+        }
     }
 
     @FXML
@@ -68,8 +80,8 @@ public class AdminResetPasswordFormController {
     }
 
     @FXML
-    void txtNewPasswordOnAction(ActionEvent event) throws IOException {
-        txtConfirmPasswordOnAction(event);
+    void txtNewPasswordOnAction(ActionEvent event) {
+        txtConfirmPassword.requestFocus();
     }
 
 }

@@ -97,10 +97,12 @@ public class UserBorrowBooksFormController implements Initializable {
     void txtSearchOnAction(ActionEvent event) {
         List<BookDto> selectedDtoList = new ArrayList<>();
         for (BookDto dto : list) {
-            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
-                    || txtSearch.getText().equalsIgnoreCase(dto.getName())
-                    || txtSearch.getText().equalsIgnoreCase(dto.getType())
-            ) selectedDtoList.add(dto);
+            if (!dto.getStatus().equals("Removed")) {
+                if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                        || txtSearch.getText().equalsIgnoreCase(dto.getName())
+                        || txtSearch.getText().equalsIgnoreCase(dto.getType())
+                ) selectedDtoList.add(dto);
+            }
         }
         if (!selectedDtoList.isEmpty()) allSelectedBookId(selectedDtoList);
         txtSearch.clear();
@@ -120,7 +122,7 @@ public class UserBorrowBooksFormController implements Initializable {
         if (list == null) return;
 
         for (BookDto dto : list) {
-            loadDataTable(dto.getId());
+            if (!dto.getStatus().equals("Removed")) loadDataTable(dto.getId());
         }
     }
 

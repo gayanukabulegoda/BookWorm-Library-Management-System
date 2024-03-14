@@ -25,7 +25,8 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public void delete(Book entity) {
-        session.delete(entity);
+        entity.setStatus("Removed");
+        session.update(entity);
     }
 
     @Override
