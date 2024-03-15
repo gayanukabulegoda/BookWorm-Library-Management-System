@@ -8,6 +8,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.io.IOException;
 
@@ -45,12 +46,12 @@ public class AdminBorrowedBookBarFormController {
 
     @FXML
     void imgViewOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.viewImgSelected(imgView);
     }
 
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
-
+        StyleUtil.viewImgUnselected(imgView);
     }
 
     public void setData(int id) {

@@ -18,7 +18,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblAmount" layoutX="437.0" layoutY="20.0" text="02 Books">
+      <Label fx:id="lblAmount" layoutX="452.0" layoutY="20.0" text="02 Books">
          <font>
             <Font size="16.0" />
          </font>
@@ -28,12 +28,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblBorrowedDate" layoutX="1007.0" layoutY="20.0" text="25-02-2024">
+      <Label fx:id="lblBorrowedDate" layoutX="1010.0" layoutY="20.0" text="25-02-2024">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgView" fitHeight="24.0" fitWidth="24.0" layoutX="1360.5" layoutY="18.0" onMouseClicked="#imgViewOnMouseClicked" onMouseEntered="#imgViewOnMouseEntered" onMouseExited="#imgViewOnMouseExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgView" fitHeight="24.0" fitWidth="24.0" layoutX="1359.5" layoutY="18.0" onMouseClicked="#imgViewOnMouseClicked" onMouseEntered="#imgViewOnMouseEntered" onMouseExited="#imgViewOnMouseExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assests/icon/viewIconBlack.png" />
          </image>

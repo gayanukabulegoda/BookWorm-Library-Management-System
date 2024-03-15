@@ -23,7 +23,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblLanguage" layoutX="782.0" layoutY="20.0" text="English">
+      <Label fx:id="lblLanguage" layoutX="780.0" layoutY="20.0" text="English">
          <font>
             <Font size="16.0" />
          </font>

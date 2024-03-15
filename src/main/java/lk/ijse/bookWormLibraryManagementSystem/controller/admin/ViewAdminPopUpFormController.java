@@ -11,6 +11,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,12 +58,12 @@ public class ViewAdminPopUpFormController implements Initializable {
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(closePane, lblClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(closePane, lblClose);
     }
 
     @FXML
@@ -72,12 +73,12 @@ public class ViewAdminPopUpFormController implements Initializable {
 
     @FXML
     void btnExitOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.closeIconBtnSelected(exitPane, imgExit);
     }
 
     @FXML
     void btnExitOnMouseExited(MouseEvent event) {
-
+        StyleUtil.closeIconBtnUnselected(exitPane, imgExit);
     }
 
     public void setData() {

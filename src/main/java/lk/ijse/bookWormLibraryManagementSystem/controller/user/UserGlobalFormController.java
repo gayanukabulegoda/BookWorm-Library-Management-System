@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -77,34 +78,91 @@ public class UserGlobalFormController implements Initializable {
         return controller;
     }
 
-    @FXML
-    void btnBooksOnAction(ActionEvent event) throws IOException {
-        Navigation.switchPaging(pagingPane, "userBorrowBooksForm.fxml");
-    }
+    private boolean dashboardButtonSelected = false;
+    private boolean catalogButtonSelected = false;
+    private boolean booksButtonSelected = false;
+    private boolean logOutButtonSelected = false;
 
     @FXML
-    void btnBooksOnMouseEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void btnBooksOnMouseExited(MouseEvent event) {
-
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        buttonUnSelected();
+        dashboardButtonSelected = true;
+        unSelectedButtons();
+        selectedButton(dashboardPane, imgDashboard, "dashboardIconBlack.png");
+        Navigation.switchPaging(pagingPane, "userDashboardForm.fxml");
     }
 
     @FXML
     void btnCatalogOnAction(ActionEvent event) throws IOException {
+        buttonUnSelected();
+        catalogButtonSelected = true;
+        unSelectedButtons();
+        selectedButton(catalogPane, imgCatalog, "catalogIconBlack.png");
         Navigation.switchPaging(pagingPane, "userBorrowedBooksForm.fxml");
     }
 
     @FXML
-    void btnCatalogOnMouseEntered(MouseEvent event) {
+    void btnBooksOnAction(ActionEvent event) throws IOException {
+        buttonUnSelected();
+        booksButtonSelected = true;
+        unSelectedButtons();
+        selectedButton(booksPane, imgBooks, "booksIconBlack.png");
+        Navigation.switchPaging(pagingPane, "userBorrowBooksForm.fxml");
+    }
 
+    @FXML
+    void btnLogOutOnAction(ActionEvent event) throws IOException {
+        selectedButton(logOutPane, imgLogOut, "logOutIconBlack.png");
+        Navigation.close(event);
+        Navigation.switchNavigation("userSignInGlobalForm.fxml", event);
+    }
+
+    @FXML
+    void btnDashboardOnMouseEntered(MouseEvent event) {
+        if(!dashboardButtonSelected) allBtnHoverCss(dashboardPane,
+                imgDashboard, "dashboardIconBlack.png");
+    }
+
+    @FXML
+    void btnDashboardOnMouseExited(MouseEvent event) {
+        if(!dashboardButtonSelected) btnUnselected(dashboardPane,
+                imgDashboard, "dashboardIconWhite.png");
+    }
+
+    @FXML
+    void btnCatalogOnMouseEntered(MouseEvent event) {
+        if(!catalogButtonSelected) allBtnHoverCss(catalogPane,
+                imgCatalog, "catalogIconBlack.png");
     }
 
     @FXML
     void btnCatalogOnMouseExited(MouseEvent event) {
+        if(!catalogButtonSelected) btnUnselected(catalogPane,
+                imgCatalog, "catalogIconWhite.png");
+    }
 
+    @FXML
+    void btnBooksOnMouseEntered(MouseEvent event) {
+        if(!booksButtonSelected) allBtnHoverCss(booksPane,
+                imgBooks, "booksIconBlack.png");
+    }
+
+    @FXML
+    void btnBooksOnMouseExited(MouseEvent event) {
+        if(!booksButtonSelected) btnUnselected(booksPane,
+                imgBooks, "booksIconWhite.png");
+    }
+
+    @FXML
+    void btnLogOutOnMouseEntered(MouseEvent event) {
+        if(!logOutButtonSelected) allBtnHoverCss(logOutPane,
+                imgLogOut, "logOutIconBlack.png");
+    }
+
+    @FXML
+    void btnLogOutOnMouseExited(MouseEvent event) {
+        if(!logOutButtonSelected) btnUnselected(logOutPane,
+                imgLogOut, "logOutIconWhite.png");
     }
 
     @FXML
@@ -116,35 +174,40 @@ public class UserGlobalFormController implements Initializable {
         }
     }
 
-    @FXML
-    void btnDashboardOnAction(ActionEvent event) throws IOException {
-        Navigation.switchPaging(pagingPane, "userDashboardForm.fxml");
+    private void buttonUnSelected() {
+        dashboardButtonSelected = false;
+        catalogButtonSelected = false;
+        booksButtonSelected = false;
+        logOutButtonSelected = false;
     }
 
-    @FXML
-    void btnDashboardOnMouseEntered(MouseEvent event) {
-
+    private void unSelectedButtons() {
+        btnUnselected(dashboardPane, imgDashboard, "dashboardIconWhite.png");
+        btnUnselected(catalogPane, imgCatalog, "catalogIconWhite.png");
+        btnUnselected(booksPane, imgBooks, "booksIconWhite.png");
     }
 
-    @FXML
-    void btnDashboardOnMouseExited(MouseEvent event) {
-
+    private void selectedButton(Pane pane, ImageView imageView, String path) {
+        btnSelected(pane, imageView, path);
     }
 
-    @FXML
-    void btnLogOutOnAction(ActionEvent event) throws IOException {
-        Navigation.close(event);
-        Navigation.switchNavigation("userSignInGlobalForm.fxml", event);
+    void btnSelected(Pane pane, ImageView imageView, String path) {
+        pane.setStyle(
+                "-fx-background-color: white;" +
+                        "-fx-background-radius: 1px;");
+        imageView.setImage(new Image("assests/icon/" + path));
     }
 
-    @FXML
-    void btnLogOutOnMouseEntered(MouseEvent event) {
-
+    void btnUnselected(Pane pane, ImageView imageView, String path) {
+        pane.setStyle(
+                "-fx-background-radius: 1px;");
+        imageView.setImage(new Image("assests/icon/" + path));
     }
 
-    @FXML
-    void btnLogOutOnMouseExited(MouseEvent event) {
-
+    void allBtnHoverCss(Pane pane, ImageView imageView, String path){
+        pane.setStyle("-fx-background-color: #D7D7D7;" +
+                "-fx-background-radius: 1px;");
+        imageView.setImage(new Image("assests/icon/" + path));
     }
 
     private void loadDashboardForm() {
@@ -169,13 +232,19 @@ public class UserGlobalFormController implements Initializable {
         timeline.play();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void initializeValues() {
+        dashboardButtonSelected = true;
+        btnSelected(dashboardPane, imgDashboard, "dashboardIconBlack.png");
         pagingPane.setVisible(true);
         setUserName();
         setTimeLine();
         lblDate.setText(DateTimeUtil.dateNowFormatted());
         loadDashboardForm();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeValues();
     }
 
 }

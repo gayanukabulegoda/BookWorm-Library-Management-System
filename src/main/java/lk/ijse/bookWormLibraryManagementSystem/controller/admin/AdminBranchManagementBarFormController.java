@@ -8,6 +8,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.io.IOException;
 
@@ -49,12 +50,12 @@ public class AdminBranchManagementBarFormController {
 
     @FXML
     void imgDeleteOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.deleteImgSelected(imgDelete);
     }
 
     @FXML
     void imgDeleteOnMouseExited(MouseEvent event) {
-
+        StyleUtil.deleteImgUnselected(imgDelete);
     }
 
     @FXML
@@ -65,12 +66,12 @@ public class AdminBranchManagementBarFormController {
 
     @FXML
     void imgEditOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.updateImgSelected(imgEdit);
     }
 
     @FXML
     void imgEditOnMouseExited(MouseEvent event) {
-
+        StyleUtil.updateImgUnselected(imgEdit);
     }
 
     @FXML
@@ -81,12 +82,12 @@ public class AdminBranchManagementBarFormController {
 
     @FXML
     void imgViewOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.viewImgSelected(imgView);
     }
 
     @FXML
     void imgViewOnMouseExited(MouseEvent event) {
-
+        StyleUtil.viewImgUnselected(imgView);
     }
 
     public void setData(int id) {

@@ -13,6 +13,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.DashboardService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,50 +46,53 @@ public class UserDashboardFormController implements Initializable {
 
     @FXML
     void btnAvailableBookOnAction(ActionEvent event) throws IOException {
+        UserGlobalFormController.getInstance().btnBooksOnAction(event);
         Navigation.switchPaging(
                 UserGlobalFormController.getInstance().pagingPane, "userBorrowBooksForm.fxml");
     }
 
     @FXML
     void btnAvailableBookOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsSelected(availableBookPane);
     }
 
     @FXML
     void btnAvailableBookOnMouseExited(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsUnselected(availableBookPane);
     }
 
     @FXML
     void btnBorrowedBookOnAction(ActionEvent event) throws IOException {
+        UserGlobalFormController.getInstance().btnCatalogOnAction(event);
         Navigation.switchPaging(
                 UserGlobalFormController.getInstance().pagingPane, "userBorrowedBooksForm.fxml");
     }
 
     @FXML
     void btnBorrowedBookOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsSelected(borrowedBookPane);
     }
 
     @FXML
     void btnBorrowedBookOnMouseExited(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsUnselected(borrowedBookPane);
     }
 
     @FXML
     void btnReturnedBookOnAction(ActionEvent event) throws IOException {
+        UserGlobalFormController.getInstance().btnCatalogOnAction(event);
         Navigation.switchPaging(
                 UserGlobalFormController.getInstance().pagingPane, "userReturnedBooksForm.fxml");
     }
 
     @FXML
     void btnReturnedBookOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsSelected(returnedBookPane);
     }
 
     @FXML
     void btnReturnedBookOnMouseExited(MouseEvent event) {
-
+        StyleUtil.userDashboardButtonsUnselected(returnedBookPane);
     }
 
     private void setPieChart() {

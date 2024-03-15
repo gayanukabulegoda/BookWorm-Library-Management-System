@@ -8,12 +8,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminSignInFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 public class UserChangeCredentialsPopUpFormController {
 
@@ -64,12 +64,12 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     void btnCancelOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.cancelBtnSelected(cancelPane, lblCancel);
     }
 
     @FXML
     void btnCancelOnMouseExited(MouseEvent event) {
-
+        StyleUtil.cancelBtnUnselected(cancelPane, lblCancel);
     }
 
     @FXML
@@ -79,12 +79,12 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.closeIconBtnSelected(closePane, imgClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.closeIconBtnUnselected(closePane, imgClose);
     }
 
     @FXML
@@ -130,12 +130,12 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     void btnConfirmOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(confirmPane, lblConfirm);
     }
 
     @FXML
     void btnConfirmOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(confirmPane, lblConfirm);
     }
 
     @FXML

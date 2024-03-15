@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -113,12 +114,24 @@
             <Image url="@../assests/img/bookWormLogoBlack.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="52.0" layoutY="52.0" onAction="#btnBorrowedBookOnAction" onMouseEntered="#btnBorrowedBookOnMouseEntered" onMouseExited="#btnBorrowedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
-      <JFXButton layoutX="522.0" layoutY="52.0" onAction="#btnReturnedBookOnAction" onMouseEntered="#btnReturnedBookOnMouseEntered" onMouseExited="#btnReturnedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" " />
-      <JFXButton layoutX="52.0" layoutY="299.0" onAction="#btnAvailableBookOnAction" onMouseEntered="#btnAvailableBookOnMouseEntered" onMouseExited="#btnAvailableBookOnMouseExited" prefHeight="204.0" prefWidth="509.0" style="-fx-background-radius: 12;" text=" " />
+      <JFXButton layoutX="52.0" layoutY="52.0" onAction="#btnBorrowedBookOnAction" onMouseEntered="#btnBorrowedBookOnMouseEntered" onMouseExited="#btnBorrowedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="522.0" layoutY="52.0" onAction="#btnReturnedBookOnAction" onMouseEntered="#btnReturnedBookOnMouseEntered" onMouseExited="#btnReturnedBookOnMouseExited" prefHeight="204.0" prefWidth="435.0" style="-fx-background-radius: 12;" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="52.0" layoutY="299.0" onAction="#btnAvailableBookOnAction" onMouseEntered="#btnAvailableBookOnMouseEntered" onMouseExited="#btnAvailableBookOnMouseExited" prefHeight="204.0" prefWidth="509.0" style="-fx-background-radius: 12;" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <Pane fx:id="pieChartPane" layoutX="980.0" layoutY="44.0" prefHeight="631.0" prefWidth="631.0">
          <children>
-            <PieChart fx:id="pieChart" layoutX="18.0" layoutY="15.0" prefHeight="600.0" prefWidth="600.0" />
+            <PieChart fx:id="pieChart" layoutX="18.0" layoutY="15.0" prefHeight="600.0" prefWidth="600.0">
+               <cursor>
+                  <Cursor fx:constant="WAIT" />
+               </cursor></PieChart>
          </children></Pane>
    </children>
 </Pane>

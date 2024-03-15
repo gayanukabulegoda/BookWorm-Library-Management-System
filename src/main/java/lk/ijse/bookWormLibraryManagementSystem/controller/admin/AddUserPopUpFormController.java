@@ -13,6 +13,7 @@ import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 public class AddUserPopUpFormController {
 
@@ -108,12 +109,12 @@ public class AddUserPopUpFormController {
 
     @FXML
     void btnAddOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(addPane, lblAdd);
     }
 
     @FXML
     void btnAddOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(addPane, lblAdd);
     }
 
     @FXML
@@ -123,12 +124,12 @@ public class AddUserPopUpFormController {
 
     @FXML
     void btnCancelOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.cancelBtnSelected(cancelPane, lblCancel);
     }
 
     @FXML
     void btnCancelOnMouseExited(MouseEvent event) {
-
+        StyleUtil.cancelBtnUnselected(cancelPane, lblCancel);
     }
 
     @FXML
@@ -138,12 +139,12 @@ public class AddUserPopUpFormController {
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.closeIconBtnSelected(closePane, imgClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.closeIconBtnUnselected(closePane, imgClose);
     }
 
     @FXML

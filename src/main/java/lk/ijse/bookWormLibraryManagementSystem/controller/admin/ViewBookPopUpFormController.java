@@ -11,6 +11,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,22 +61,22 @@ public class ViewBookPopUpFormController implements Initializable {
 
     @FXML
     void btnExitOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.closeIconBtnSelected(exitPane, imgExit);
     }
 
     @FXML
     void btnExitOnMouseExited(MouseEvent event) {
-
+        StyleUtil.closeIconBtnUnselected(exitPane, imgExit);
     }
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(closePane, lblClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(closePane, lblClose);
     }
 
     public void setData() {

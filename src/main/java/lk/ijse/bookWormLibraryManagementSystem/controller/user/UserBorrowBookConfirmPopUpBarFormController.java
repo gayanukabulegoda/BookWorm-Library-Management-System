@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 public class UserBorrowBookConfirmPopUpBarFormController {
 
@@ -39,12 +40,12 @@ public class UserBorrowBookConfirmPopUpBarFormController {
 
     @FXML
     void imgDeleteOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.deleteImgSelected(imgDelete);
     }
 
     @FXML
     void imgDeleteOnMouseExited(MouseEvent event) {
-
+        StyleUtil.deleteImgUnselected(imgDelete);
     }
 
     public void setData(int id) {

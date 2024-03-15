@@ -14,6 +14,7 @@ import lk.ijse.bookWormLibraryManagementSystem.entity.TransactionDetail;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,12 +52,12 @@ public class AdminOverdueBooksViewPopUpFormController implements Initializable {
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(closePane, lblClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(closePane, lblClose);
     }
 
     public void allOverDueBooks() {

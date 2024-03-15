@@ -15,6 +15,7 @@ import lk.ijse.bookWormLibraryManagementSystem.entity.TransactionDetail;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,12 +64,12 @@ public class UserReturnBookConfirmPopUpFormController implements Initializable {
 
     @FXML
     void btnCancelOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.cancelBtnSelected(cancelPane, lblCancel);
     }
 
     @FXML
     void btnCancelOnMouseExited(MouseEvent event) {
-
+        StyleUtil.cancelBtnUnselected(cancelPane, lblCancel);
     }
 
     @FXML
@@ -92,12 +93,12 @@ public class UserReturnBookConfirmPopUpFormController implements Initializable {
 
     @FXML
     void btnReturnOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(returnPane, lblReturn);
     }
 
     @FXML
     void btnReturnOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(returnPane, lblReturn);
     }
 
     public void allBorrowedBookId() {

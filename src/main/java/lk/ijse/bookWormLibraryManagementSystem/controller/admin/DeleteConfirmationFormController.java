@@ -6,11 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInFormController;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.DeleteService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
 import lk.ijse.bookWormLibraryManagementSystem.util.SendMail;
+import lk.ijse.bookWormLibraryManagementSystem.util.StyleUtil;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -43,22 +43,22 @@ public class DeleteConfirmationFormController {
 
     @FXML
     void btnCloseOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.closeIconBtnSelected(closePane, imgClose);
     }
 
     @FXML
     void btnCloseOnMouseExited(MouseEvent event) {
-
+        StyleUtil.closeIconBtnUnselected(closePane, imgClose);
     }
 
     @FXML
     void btnConfirmOnMouseEntered(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnSelected(confirmPane, lblConfirm);
     }
 
     @FXML
     void btnConfirmOnMouseExited(MouseEvent event) {
-
+        StyleUtil.addUpdateConfirmReturnBtnUnselected(confirmPane, lblConfirm);
     }
 
     @FXML
