@@ -52,7 +52,7 @@
                 <Font size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtFirstName" layoutX="502.0" layoutY="218.0" onAction="#txtFirstNameOnAction" prefHeight="42.0" prefWidth="195.0" promptText="  First name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtFirstName" layoutX="502.0" layoutY="218.0" onAction="#txtFirstNameOnAction" onKeyPressed="#txtFirstNameOnKeyPressed" prefHeight="42.0" prefWidth="195.0" promptText="  First name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -60,7 +60,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="txtLastName" layoutX="713.0" layoutY="218.0" onAction="#txtLastNameOnAction" prefHeight="42.0" prefWidth="195.0" promptText="  Last name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtLastName" layoutX="713.0" layoutY="218.0" onAction="#txtLastNameOnAction" onKeyPressed="#txtLastNameOnKeyPressed" prefHeight="42.0" prefWidth="195.0" promptText="  Last name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -68,7 +68,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="txtContactNo" layoutX="502.0" layoutY="284.0" onAction="#txtContactNoOnAction" prefHeight="42.0" prefWidth="170.0" promptText="  Contact No" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtContactNo" layoutX="502.0" layoutY="284.0" onAction="#txtContactNoOnAction" onKeyPressed="#txtContactNoOnKeyPressed" prefHeight="42.0" prefWidth="170.0" promptText="  Contact No" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -76,7 +76,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="txtEmail" layoutX="688.0" layoutY="284.0" onAction="#txtEmailOnAction" prefHeight="42.0" prefWidth="220.0" promptText="  Email" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtEmail" layoutX="688.0" layoutY="284.0" onAction="#txtEmailOnAction" onKeyPressed="#txtEmailOnKeyPressed" prefHeight="42.0" prefWidth="220.0" promptText="  Email" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -84,7 +84,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="txtUsername" layoutX="502.0" layoutY="350.0" onAction="#txtUsernameOnAction" prefHeight="42.0" prefWidth="195.0" promptText="  Username" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtUsername" layoutX="502.0" layoutY="350.0" onAction="#txtUsernameOnAction" onKeyPressed="#txtUsernameOnKeyPressed" prefHeight="42.0" prefWidth="195.0" promptText="  Username" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -92,7 +92,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <PasswordField fx:id="txtPassword" layoutX="713.0" layoutY="350.0" onAction="#txtPasswordOnAction" prefHeight="42.0" prefWidth="195.0" promptText="  Password" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-border-color: #727374; -fx-border-radius: 12px;">
+        <PasswordField fx:id="txtPassword" layoutX="713.0" layoutY="350.0" onAction="#txtPasswordOnAction" onKeyPressed="#txtPasswordOnKeyPressed" prefHeight="42.0" prefWidth="195.0" promptText="  Password" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-border-color: #727374; -fx-border-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -110,5 +110,35 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
+      <Label fx:id="lblFirstNameAlert" layoutX="515.0" layoutY="261.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLastNameAlert" layoutX="726.0" layoutY="261.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblContactNoAlert" layoutX="515.0" layoutY="327.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmailAlert" layoutX="703.0" layoutY="326.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPasswordAlert" layoutX="728.0" layoutY="393.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsernameAlert" layoutX="515.0" layoutY="393.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

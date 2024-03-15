@@ -5,12 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 public class AddUserPopUpFormController {
 
@@ -33,6 +35,18 @@ public class AddUserPopUpFormController {
     private Label lblCancel;
 
     @FXML
+    private Label lblEmailAlert;
+
+    @FXML
+    private Label lblNameAlert;
+
+    @FXML
+    private Label lblPasswordAlert;
+
+    @FXML
+    private Label lblUsernameAlert;
+
+    @FXML
     private TextField txtEmail;
 
     @FXML
@@ -50,19 +64,46 @@ public class AddUserPopUpFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        UserDto userDto = new UserDto();
-        userDto.setName(txtName.getText());
-        userDto.setEmail(txtEmail.getText());
-        userDto.setUsername(txtUsername.getText());
-        userDto.setPassword(txtPassword.getText());
-        userDto.setAdmin(AdminSignInFormController.admin);
+        if (validateUser()) {
+            UserDto userDto = new UserDto();
+            userDto.setName(txtName.getText());
+            userDto.setEmail(txtEmail.getText());
+            userDto.setUsername(txtUsername.getText());
+            userDto.setPassword(txtPassword.getText());
+            userDto.setAdmin(AdminSignInFormController.admin);
 
-        if (userService.saveUser(userDto)) {
-            Navigation.closePopUpPane();
-            AdminUserManagementFormController.getInstance().allUserId();
-        } else {
-            System.out.println("Unable to save user!");
+            if (userService.saveUser(userDto)) {
+                Navigation.closePopUpPane();
+                AdminUserManagementFormController.getInstance().allUserId();
+            } else {
+                System.out.println("Unable to save user!");
+            }
         }
+    }
+
+    private boolean validateUser() {
+        boolean isValid = true;
+
+        if (RegExPatterns.namePattern(txtName.getText())) {
+            lblNameAlert.setText("Invalid Name!!");
+            isValid = false;
+        }
+
+        if (RegExPatterns.emailPattern(txtEmail.getText())) {
+            lblEmailAlert.setText("Invalid Email!!");
+            isValid = false;
+        }
+
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!!");
+            isValid = false;
+        }
+
+        if (RegExPatterns.passwordPattern(txtPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!!");
+            isValid = false;
+        }
+        return isValid;
     }
 
     @FXML
@@ -123,6 +164,34 @@ public class AddUserPopUpFormController {
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
         txtPassword.requestFocus();
+    }
+
+    @FXML
+    void txtNameOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtName.getText())) {
+            lblNameAlert.setText("Invalid Name!!");
+        } else lblNameAlert.setText(" ");
+    }
+
+    @FXML
+    void txtEmailOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.emailPattern(txtEmail.getText())) {
+            lblEmailAlert.setText("Invalid Email!!");
+        } else lblEmailAlert.setText(" ");
+    }
+
+    @FXML
+    void txtUsernameOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!!");
+        } else lblUsernameAlert.setText(" ");
+    }
+
+    @FXML
+    void txtPasswordOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.passwordPattern(txtPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!!");
+        } else lblPasswordAlert.setText(" ");
     }
 
 }

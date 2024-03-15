@@ -15,6 +15,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +32,9 @@ public class AdminBookManagementFormController implements Initializable {
 
     @FXML
     private Label lblAddBook;
+
+    @FXML
+    private Label lblSearchAlert;
 
     @FXML
     private Pane searchPane;
@@ -74,18 +78,42 @@ public class AdminBookManagementFormController implements Initializable {
 
     @FXML
     void txtSearchOnAction(ActionEvent event) throws IOException {
-        for (BookDto dto : list) {
-            if (!dto.getStatus().equals("Removed")) {
-                if (txtSearch.getText().equals(String.valueOf(dto.getId()))
-                        || txtSearch.getText().equalsIgnoreCase(dto.getName())) {
-                    AdminBookManagementBarFormController.bookId = dto.getId();
-                    Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
-                    txtSearch.clear();
-                    return;
+        if (validateSearch()) {
+            for (BookDto dto : list) {
+                if (!dto.getStatus().equals("Removed")) {
+                    if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                            || txtSearch.getText().equalsIgnoreCase(dto.getName())) {
+                        AdminBookManagementBarFormController.bookId = dto.getId();
+                        Navigation.imgPopUpBackground("viewBookPopUpForm.fxml");
+                        txtSearch.clear();
+                        lblSearchAlert.setText(" ");
+                        return;
+                    }
                 }
             }
         }
         txtSearch.clear();
+    }
+
+    private boolean validateSearch() {
+        if (validateName() & validateId()) {
+            lblSearchAlert.setText("Invalid Id Or Name!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateName() {
+        return RegExPatterns.namePattern(txtSearch.getText());
+    }
+
+    public boolean validateId() {
+        return RegExPatterns.idPattern(txtSearch.getText());
+    }
+
+    @FXML
+    void txtSearchOnMouseMoved(MouseEvent event) {
+        lblSearchAlert.setText(" ");
     }
 
     public void allBookId() {

@@ -14,6 +14,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +32,9 @@ public class AdminBorrowedBookFormController implements Initializable {
 
     @FXML
     private Label lblOverdueBorrowers;
+
+    @FXML
+    private Label lblSearchAlert;
 
     @FXML
     private Pane searchPane;
@@ -75,6 +79,7 @@ public class AdminBorrowedBookFormController implements Initializable {
 
     @FXML
     void btnRefreshTableOnAction(ActionEvent event) {
+        lblSearchAlert.setText(" ");
         allBorrowedTransactionId();
     }
 
@@ -91,14 +96,40 @@ public class AdminBorrowedBookFormController implements Initializable {
     @FXML
     void txtSearchOnAction(ActionEvent event) {
         List<TransactionDto> selectedDtoList = new ArrayList<>();
-        for (TransactionDto dto : list) {
-            if (txtSearch.getText().equals(String.valueOf(dto.getUser().getId()))
-                    || txtSearch.getText().equalsIgnoreCase(dto.getUser().getUsername())) {
-                if (dto.getTransactionType().equals("borrow")) selectedDtoList.add(dto);
+        if (validateSearch()) {
+            for (TransactionDto dto : list) {
+                if (txtSearch.getText().equals(String.valueOf(dto.getUser().getId()))
+                        || txtSearch.getText().equalsIgnoreCase(dto.getUser().getUsername())) {
+                    if (dto.getTransactionType().equals("borrow")) selectedDtoList.add(dto);
+                }
             }
         }
-        if (!selectedDtoList.isEmpty()) allSelectedTransactionId(selectedDtoList);
+        if (!selectedDtoList.isEmpty()) {
+            allSelectedTransactionId(selectedDtoList);
+            lblSearchAlert.setText(" ");
+        }
         txtSearch.clear();
+    }
+
+    private boolean validateSearch() {
+        if (validateName() & validateId()) {
+            lblSearchAlert.setText("Invalid User Id Or Username!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateName() {
+        return RegExPatterns.namePattern(txtSearch.getText());
+    }
+
+    public boolean validateId() {
+        return RegExPatterns.idPattern(txtSearch.getText());
+    }
+
+    @FXML
+    void txtSearchOnMouseMoved(MouseEvent event) {
+        lblSearchAlert.setText(" ");
     }
 
     public void allSelectedTransactionId(List<TransactionDto> selectedDtoList) {

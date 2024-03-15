@@ -15,6 +15,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +32,9 @@ public class AdminBranchManagementFormController implements Initializable {
 
     @FXML
     private Label lblAddBranch;
+
+    @FXML
+    private Label lblSearchAlert;
 
     @FXML
     private Pane searchPane;
@@ -74,16 +78,40 @@ public class AdminBranchManagementFormController implements Initializable {
 
     @FXML
     void txtSearchOnAction(ActionEvent event) throws IOException {
-        for (BranchDto dto : list) {
-            if (txtSearch.getText().equals(String.valueOf(dto.getId()))
-                    || txtSearch.getText().equalsIgnoreCase(dto.getLocation())) {
-                AdminBranchManagementBarFormController.branchId = dto.getId();
-                Navigation.imgPopUpBackground("viewBranchPopUpForm.fxml");
-                txtSearch.clear();
-                return;
+        if (validateSearch()) {
+            for (BranchDto dto : list) {
+                if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                        || txtSearch.getText().equalsIgnoreCase(dto.getLocation())) {
+                    AdminBranchManagementBarFormController.branchId = dto.getId();
+                    Navigation.imgPopUpBackground("viewBranchPopUpForm.fxml");
+                    lblSearchAlert.setText(" ");
+                    txtSearch.clear();
+                    return;
+                }
             }
         }
         txtSearch.clear();
+    }
+
+    private boolean validateSearch() {
+        if (validateName() & validateId()) {
+            lblSearchAlert.setText("Invalid Id Or Location!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateName() {
+        return RegExPatterns.namePattern(txtSearch.getText());
+    }
+
+    public boolean validateId() {
+        return RegExPatterns.idPattern(txtSearch.getText());
+    }
+
+    @FXML
+    void txtSearchOnMouseMoved(MouseEvent event) {
+        lblSearchAlert.setText(" ");
     }
 
     public void allBranchId() {

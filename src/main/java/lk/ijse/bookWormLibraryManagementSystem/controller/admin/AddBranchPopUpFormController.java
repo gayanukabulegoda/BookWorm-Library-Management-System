@@ -7,10 +7,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.bookWormLibraryManagementSystem.dto.BranchDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BranchService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 public class AddBranchPopUpFormController {
 
@@ -33,6 +35,15 @@ public class AddBranchPopUpFormController {
     private Label lblCancel;
 
     @FXML
+    private Label lblContactNoAlert;
+
+    @FXML
+    private Label lblLocationAlert;
+
+    @FXML
+    private Label lblNameAlert;
+
+    @FXML
     private TextField txtContactNo;
 
     @FXML
@@ -47,18 +58,40 @@ public class AddBranchPopUpFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        BranchDto branchDto = new BranchDto();
-        branchDto.setName(txtName.getText());
-        branchDto.setLocation(txtLocation.getText());
-        branchDto.setContactNo(txtContactNo.getText());
-        branchDto.setAdmin(AdminSignInFormController.admin);
+        if (validateBranch()) {
+            BranchDto branchDto = new BranchDto();
+            branchDto.setName(txtName.getText());
+            branchDto.setLocation(txtLocation.getText());
+            branchDto.setContactNo(txtContactNo.getText());
+            branchDto.setAdmin(AdminSignInFormController.admin);
 
-        if (branchService.saveBranch(branchDto)) {
-            Navigation.closePopUpPane();
-            AdminBranchManagementFormController.getInstance().allBranchId();
-        } else {
-            System.out.println("Unable to save branch!");
+            if (branchService.saveBranch(branchDto)) {
+                Navigation.closePopUpPane();
+                AdminBranchManagementFormController.getInstance().allBranchId();
+            } else {
+                System.out.println("Unable to save branch!");
+            }
         }
+    }
+
+    private boolean validateBranch() {
+        boolean isValid = true;
+
+        if (RegExPatterns.namePattern(txtName.getText())) {
+            lblNameAlert.setText("Invalid Name!!");
+            isValid = false;
+        }
+
+        if (RegExPatterns.contactNoPattern(txtContactNo.getText())) {
+            lblContactNoAlert.setText("Invalid Contact Number!!");
+            isValid = false;
+        }
+
+        if (RegExPatterns.namePattern(txtLocation.getText())) {
+            lblLocationAlert.setText("Invalid Location!!");
+            isValid = false;
+        }
+        return isValid;
     }
 
     @FXML
@@ -114,6 +147,27 @@ public class AddBranchPopUpFormController {
     @FXML
     void txtNameOnAction(ActionEvent event) {
         txtContactNo.requestFocus();
+    }
+
+    @FXML
+    void txtNameOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtName.getText())) {
+            lblNameAlert.setText("Invalid Name!!");
+        } else lblNameAlert.setText(" ");
+    }
+
+    @FXML
+    void txtContactNoOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.contactNoPattern(txtContactNo.getText())) {
+            lblContactNoAlert.setText("Invalid Contact Number!!");
+        } else lblContactNoAlert.setText(" ");
+    }
+
+    @FXML
+    void txtLocationOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtLocation.getText())) {
+            lblLocationAlert.setText("Invalid Location!!");
+        } else lblLocationAlert.setText(" ");
     }
 
 }

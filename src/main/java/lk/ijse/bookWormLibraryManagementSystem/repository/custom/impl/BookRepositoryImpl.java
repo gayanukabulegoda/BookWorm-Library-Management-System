@@ -43,10 +43,13 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public int getAllBookCount() {
-        String jpqlQuery = "SELECT COUNT (B) FROM Book B";
+        String jpqlQuery = "SELECT COUNT(B) FROM Book B " +
+                "WHERE B.status != :removed";
 
-        Query query = session.createQuery(jpqlQuery);
+        Query query = session.createQuery(jpqlQuery)
+                .setParameter("removed", "Removed");
         Long count = (Long) query.uniqueResult();
+
         return Math.toIntExact(count);
     }
 

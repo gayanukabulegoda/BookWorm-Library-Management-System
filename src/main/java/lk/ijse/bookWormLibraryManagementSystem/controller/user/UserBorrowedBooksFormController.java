@@ -14,6 +14,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.TransactionDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.TransactionService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,9 @@ public class UserBorrowedBooksFormController implements Initializable {
 
     @FXML
     private Label lblReturnedBooks;
+
+    @FXML
+    private Label lblSearchAlert;
 
     @FXML
     private Pane searchPane;
@@ -71,18 +75,38 @@ public class UserBorrowedBooksFormController implements Initializable {
 
     @FXML
     void txtSearchOnAction(ActionEvent event) throws IOException {
-        for (TransactionDto dto : list) {
-            if (txtSearch.getText().equals(String.valueOf(dto.getId()))) {
-                if (dto.getTransactionType().equals("borrow") &&
-                        dto.getUser().equals(UserSignInFormController.user)) {
-                    UserBorrowedBooksBarFormController.transactionId = dto.getId();
-                    Navigation.imgPopUpBackground("userReturnBookConfirmPopUpForm.fxml");
-                    txtSearch.clear();
-                    return;
+        if (validateSearch()) {
+            for (TransactionDto dto : list) {
+                if (txtSearch.getText().equals(String.valueOf(dto.getId()))) {
+                    if (dto.getTransactionType().equals("borrow") &&
+                            dto.getUser().equals(UserSignInFormController.user)) {
+                        UserBorrowedBooksBarFormController.transactionId = dto.getId();
+                        Navigation.imgPopUpBackground("userReturnBookConfirmPopUpForm.fxml");
+                        lblSearchAlert.setText(" ");
+                        txtSearch.clear();
+                        return;
+                    }
                 }
             }
         }
         txtSearch.clear();
+    }
+
+    private boolean validateSearch() {
+        if (validateId()) {
+            lblSearchAlert.setText("Invalid Id!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateId() {
+        return RegExPatterns.idPattern(txtSearch.getText());
+    }
+
+    @FXML
+    void txtSearchOnMouseMoved(MouseEvent event) {
+        lblSearchAlert.setText(" ");
     }
 
     public void allBorrowedTransactionId() {

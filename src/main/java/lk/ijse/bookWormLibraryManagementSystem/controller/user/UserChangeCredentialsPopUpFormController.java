@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminSignInFormController;
 import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
@@ -32,6 +34,15 @@ public class UserChangeCredentialsPopUpFormController {
 
     @FXML
     private Label lblConfirm;
+
+    @FXML
+    private Label lblConfirmPasswordAlert;
+
+    @FXML
+    private Label lblCurrentPasswordAlert;
+
+    @FXML
+    private Label lblNewPasswordAlert;
 
     @FXML
     private PasswordField txtConfirmNewPassword;
@@ -92,29 +103,29 @@ public class UserChangeCredentialsPopUpFormController {
             ) Navigation.closeUserPopUpPane();
             else {
                 System.out.println("Unable to Update User!");
-//                lblConfirmPwAlert.setText("Error!! Try Again!");
+                lblConfirmPasswordAlert.setText("Error!! Try Again!");
             }
         }
     }
 
     private boolean validatePasswords() {
-        boolean result = true;
+        boolean isValid = true;
 
         if (!UserSignInFormController.user.getPassword().equals(txtCurrentPassword.getText())) {
-//            lblCurrentPwAlert.setText("Wrong Password!!");
-            result = false;
+            lblCurrentPasswordAlert.setText("Wrong Password!!");
+            isValid = false;
         }
 
         if (RegExPatterns.passwordPattern(txtNewPassword.getText())) {
-//            lblNewPwAlert.setText("Invalid Password!!\nPassword should contain at least 6 characters");
-            result = false;
+            lblNewPasswordAlert.setText("Invalid Password!!\nPassword should contain at least 6 characters");
+            isValid = false;
         }
 
-        if (!txtNewPassword.getText().equals(txtConfirmNewPassword.getText())){
-//            lblConfirmPwAlert.setText("New Password & Confirmation Doesn't Match!!");
-            result = false;
+        if (!txtNewPassword.getText().equals(txtConfirmNewPassword.getText())) {
+            lblConfirmPasswordAlert.setText("New Password & Confirmation Doesn't Match!!");
+            isValid = false;
         }
-        return result;
+        return isValid;
     }
 
     @FXML
@@ -140,6 +151,27 @@ public class UserChangeCredentialsPopUpFormController {
     @FXML
     void txtNewPasswordOnAction(ActionEvent event) {
         txtConfirmNewPassword.requestFocus();
+    }
+
+    @FXML
+    void txtCurrentPasswordOnKeyPressed(KeyEvent event) {
+        if (!UserSignInFormController.user.getPassword().equals(txtCurrentPassword.getText())) {
+            lblCurrentPasswordAlert.setText("Wrong Password!!");
+        } else lblCurrentPasswordAlert.setText(" ");
+    }
+
+    @FXML
+    void txtNewPasswordOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.passwordPattern(txtNewPassword.getText())) {
+            lblNewPasswordAlert.setText("Invalid Password!!\nPassword should contain at least 6 characters");
+        } else lblNewPasswordAlert.setText(" ");
+    }
+
+    @FXML
+    void txtConfirmPasswordOnKeyPressed(KeyEvent event) {
+        if (!txtNewPassword.getText().equals(txtConfirmNewPassword.getText())) {
+            lblConfirmPasswordAlert.setText("New Password & Confirmation Doesn't Match!!");
+        } else lblConfirmPasswordAlert.setText(" ");
     }
 
 }

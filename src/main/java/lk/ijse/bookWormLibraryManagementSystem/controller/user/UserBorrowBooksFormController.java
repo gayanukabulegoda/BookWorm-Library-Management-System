@@ -15,6 +15,7 @@ import lk.ijse.bookWormLibraryManagementSystem.dto.BookDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.BookService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +36,9 @@ public class UserBorrowBooksFormController implements Initializable {
 
     @FXML
     private Label lblAcquire;
+
+    @FXML
+    private Label lblSearchAlert;
 
     @FXML
     private Pane searchPane;
@@ -80,6 +84,7 @@ public class UserBorrowBooksFormController implements Initializable {
 
     @FXML
     void btnRefreshTableOnAction(ActionEvent event) {
+        lblSearchAlert.setText(" ");
         allBookId();
     }
 
@@ -96,16 +101,42 @@ public class UserBorrowBooksFormController implements Initializable {
     @FXML
     void txtSearchOnAction(ActionEvent event) {
         List<BookDto> selectedDtoList = new ArrayList<>();
-        for (BookDto dto : list) {
-            if (!dto.getStatus().equals("Removed")) {
-                if (txtSearch.getText().equals(String.valueOf(dto.getId()))
-                        || txtSearch.getText().equalsIgnoreCase(dto.getName())
-                        || txtSearch.getText().equalsIgnoreCase(dto.getType())
-                ) selectedDtoList.add(dto);
+        if (validateSearch()) {
+            for (BookDto dto : list) {
+                if (!dto.getStatus().equals("Removed")) {
+                    if (txtSearch.getText().equals(String.valueOf(dto.getId()))
+                            || txtSearch.getText().equalsIgnoreCase(dto.getName())
+                            || txtSearch.getText().equalsIgnoreCase(dto.getType())
+                    ) selectedDtoList.add(dto);
+                }
             }
         }
-        if (!selectedDtoList.isEmpty()) allSelectedBookId(selectedDtoList);
+        if (!selectedDtoList.isEmpty()) {
+            allSelectedBookId(selectedDtoList);
+            lblSearchAlert.setText(" ");
+        }
         txtSearch.clear();
+    }
+
+    private boolean validateSearch() {
+        if (validateName() & validateId()) {
+            lblSearchAlert.setText("Invalid Id, Name or Type!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateName() {
+        return RegExPatterns.namePattern(txtSearch.getText());
+    }
+
+    public boolean validateId() {
+        return RegExPatterns.idPattern(txtSearch.getText());
+    }
+
+    @FXML
+    void txtSearchOnMouseMoved(MouseEvent event) {
+        lblSearchAlert.setText(" ");
     }
 
     public void allSelectedBookId(List<BookDto> selectedDtoList) {

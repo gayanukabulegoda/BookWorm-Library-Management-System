@@ -5,13 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.AdminDto;
-import lk.ijse.bookWormLibraryManagementSystem.entity.Admin;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 
@@ -22,6 +23,12 @@ public class AdminSignInFormController {
 
     @FXML
     private Label lblSignUp;
+
+    @FXML
+    private Label lblUsernameAlert;
+
+    @FXML
+    private Label lblPasswordAlert;
 
     @FXML
     private Pane signInPane;
@@ -43,16 +50,44 @@ public class AdminSignInFormController {
 
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
-        if (adminService.checkUsernameAndPassword(
-                txtUsername.getText(),
-                txtPassword.getText()))
-        {
-            admin = adminService.getAdmin(txtUsername.getText());
-            Navigation.switchNavigation("adminGlobalForm.fxml", event);
+        if (validateCredentials()) {
+            if (adminService.checkUsernameAndPassword(
+                    txtUsername.getText(),
+                    txtPassword.getText())) {
+                admin = adminService.getAdmin(txtUsername.getText());
+                Navigation.switchNavigation("adminGlobalForm.fxml", event);
+            } else {
+                lblPasswordAlert.setText("Incorrect Credentials!");
+            }
         }
-        else {
-            System.out.println("Unable to Sign In");
+        txtUsername.clear();
+        txtPassword.clear();
+    }
+
+    private boolean validateCredentials() {
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!");
+            return false;
         }
+        if (RegExPatterns.passwordPattern(txtPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    void txtUsernameOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!");
+        } else lblUsernameAlert.setText(" ");
+    }
+
+    @FXML
+    void txtPasswordOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.passwordPattern(txtPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!");
+        } else lblPasswordAlert.setText(" ");
     }
 
     @FXML
@@ -95,6 +130,11 @@ public class AdminSignInFormController {
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
         txtPassword.requestFocus();
+    }
+
+    @FXML
+    void btnPowerOffOnAction(ActionEvent event) {
+        Navigation.exit();
     }
 
 }

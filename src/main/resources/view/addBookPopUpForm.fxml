@@ -58,7 +58,7 @@
       </Pane>
       <JFXButton layoutX="48.0" layoutY="391.0" onAction="#btnCancelOnAction" onMouseEntered="#btnCancelOnMouseEntered" onMouseExited="#btnCancelOnMouseExited" prefHeight="54.0" prefWidth="259.0" style="-fx-background-radius: 10;" text=" " />
       <JFXButton layoutX="320.0" layoutY="391.0" onAction="#btnAddOnAction" onMouseEntered="#btnAddOnMouseEntered" onMouseExited="#btnAddOnMouseExited" prefHeight="54.0" prefWidth="259.0" style="-fx-background-radius: 10;" text=" " />
-      <TextField fx:id="txtName" layoutX="93.0" layoutY="168.0" onAction="#txtNameOnAction" prefHeight="42.0" prefWidth="441.0" promptText="  Name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+      <TextField fx:id="txtName" layoutX="93.0" layoutY="168.0" onAction="#txtNameOnAction" onKeyPressed="#txtNameOnKeyPressed" prefHeight="42.0" prefWidth="441.0" promptText="  Name" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
          <font>
             <Font size="15.0" />
          </font>
@@ -66,7 +66,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="txtLanguage" layoutX="93.0" layoutY="235.0" onAction="#txtLanguageOnAction" prefHeight="42.0" prefWidth="441.0" promptText="  Language" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+      <TextField fx:id="txtLanguage" layoutX="93.0" layoutY="235.0" onAction="#txtLanguageOnAction" onKeyPressed="#txtLanguageOnKeyPressed" prefHeight="42.0" prefWidth="441.0" promptText="  Language" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
          <font>
             <Font size="15.0" />
          </font>
@@ -74,7 +74,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="txtType" layoutX="93.0" layoutY="302.0" onAction="#txtTypeOnAction" prefHeight="42.0" prefWidth="441.0" promptText="  Type" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+      <TextField fx:id="txtType" layoutX="93.0" layoutY="302.0" onAction="#txtTypeOnAction" onKeyPressed="#txtTypeOnKeyPressed" prefHeight="42.0" prefWidth="441.0" promptText="  Type (Ex:- Educational)" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
          <font>
             <Font size="15.0" />
          </font>
@@ -82,5 +82,20 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
+      <Label fx:id="lblNameAlert" layoutX="106.0" layoutY="211.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLanguageAlert" layoutX="106.0" layoutY="278.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTypeAlert" layoutX="106.0" layoutY="345.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

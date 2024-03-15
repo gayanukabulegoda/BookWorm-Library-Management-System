@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.dto.UserDto;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.UserService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 
@@ -23,6 +25,9 @@ public class UserForgotPasswordFormController {
 
     @FXML
     private Label lblResetPassword;
+
+    @FXML
+    private Label lblUsernameAlert;
 
     @FXML
     private Pane resetPasswordPane;
@@ -54,15 +59,33 @@ public class UserForgotPasswordFormController {
 
     @FXML
     void btnResetPasswordOnAction(ActionEvent event) {
-        try {
-            user = userService.getUser(txtUsername.getText());
-            if (txtUsername.getText().equalsIgnoreCase(user.getUsername())) {
-                Navigation.switchPaging(UserSignInGlobalFormController
-                        .getInstance().signInSignUpPane, "userOtpForm.fxml");
+        if (validateUsername()) {
+            try {
+                user = userService.getUser(txtUsername.getText());
+                if (txtUsername.getText().equalsIgnoreCase(user.getUsername())) {
+                    Navigation.switchPaging(UserSignInGlobalFormController
+                            .getInstance().signInSignUpPane, "userOtpForm.fxml");
+                }
+            } catch (Exception e) {
+                lblUsernameAlert.setText("Invalid Username!!");
             }
-        } catch (Exception e) {
-            System.out.println("Username Invalid!");
         }
+        txtUsername.clear();
+    }
+
+    private boolean validateUsername() {
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!!");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    void txtUsernameOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.namePattern(txtUsername.getText())) {
+            lblUsernameAlert.setText("Invalid Username!!");
+        } else lblUsernameAlert.setText(" ");
     }
 
     @FXML

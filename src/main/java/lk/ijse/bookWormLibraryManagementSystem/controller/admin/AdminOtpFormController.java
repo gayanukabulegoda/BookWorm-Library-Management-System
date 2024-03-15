@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserForgotPasswordFormController;
 import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInGlobalFormController;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 import lk.ijse.bookWormLibraryManagementSystem.util.SendMail;
 import lk.ijse.bookWormLibraryManagementSystem.util.Utility;
 
@@ -28,6 +30,9 @@ public class AdminOtpFormController implements Initializable {
 
     @FXML
     private Label lblVerify;
+
+    @FXML
+    private Label lblOtpAlert;
 
     @FXML
     private TextField txtOtp;
@@ -55,10 +60,28 @@ public class AdminOtpFormController implements Initializable {
 
     @FXML
     void btnVerifyOnAction(ActionEvent event) throws IOException {
-        if (txtOtp.getText().equals(otp)) {
-            Navigation.switchPaging(AdminSignInGlobalFormController
-                    .getInstance().signInSignUpPane, "adminResetPasswordForm.fxml");
+        if (validateOtp()) {
+            if (txtOtp.getText().equals(otp)) {
+                Navigation.switchPaging(AdminSignInGlobalFormController
+                        .getInstance().signInSignUpPane, "adminResetPasswordForm.fxml");
+            }
         }
+        txtOtp.clear();
+    }
+
+    private boolean validateOtp() {
+        if (RegExPatterns.otpPattern(txtOtp.getText())) {
+            lblOtpAlert.setText("Wrong OTP! Try again!");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    void txtOtpOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.otpPattern(txtOtp.getText())) {
+            lblOtpAlert.setText("Wrong OTP! Try again!");
+        } else lblOtpAlert.setText(" ");
     }
 
     @FXML

@@ -48,7 +48,7 @@ public class AdminBookManagementBarFormController {
     @FXML
     void imgDeleteOnMouseClicked(MouseEvent event) throws IOException {
         if (bookDto.getStatus().equals("Unavailable")) {
-            System.out.println("Unable To Delete Borrowed Book!");
+            Navigation.imgPopUpBackground("borrowedBookCanNotDeleteAlertForm.fxml");
             return;
         }
         DeleteConfirmationFormController.objectName = "book";

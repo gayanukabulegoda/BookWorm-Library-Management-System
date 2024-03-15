@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="575.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.admin.AdminOtpFormController">
    <children>
-      <TextField fx:id="txtOtp" layoutX="102.0" layoutY="328.0" onAction="#txtOtpOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  OTP" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+      <TextField fx:id="txtOtp" layoutX="102.0" layoutY="328.0" onAction="#txtOtpOnAction" onKeyPressed="#txtOtpOnKeyPressed" prefHeight="42.0" prefWidth="267.0" promptText="  OTP" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
          <font>
             <Font size="15.0" />
          </font>
@@ -77,5 +77,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Label fx:id="lblOtpAlert" layoutX="114.0" layoutY="371.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

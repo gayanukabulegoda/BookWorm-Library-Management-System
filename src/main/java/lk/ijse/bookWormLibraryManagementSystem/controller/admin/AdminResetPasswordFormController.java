@@ -4,13 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserForgotPasswordFormController;
-import lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInGlobalFormController;
 import lk.ijse.bookWormLibraryManagementSystem.service.ServiceFactory;
 import lk.ijse.bookWormLibraryManagementSystem.service.custom.AdminService;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 
 import java.io.IOException;
 
@@ -24,6 +24,9 @@ public class AdminResetPasswordFormController {
 
     @FXML
     private Label lblResetPassword;
+
+    @FXML
+    private Label lblPasswordAlert;
 
     @FXML
     private Pane resetPasswordPane;
@@ -56,12 +59,43 @@ public class AdminResetPasswordFormController {
 
     @FXML
     void btnResetPasswordOnAction(ActionEvent event) throws IOException {
-        if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
-            AdminForgotPasswordFormController.admin.setPassword(txtNewPassword.getText());
-            adminService.updateAdmin(AdminForgotPasswordFormController.admin);
-            Navigation.switchPaging(AdminSignInGlobalFormController
-                    .getInstance().signInSignUpPane, "adminSignInForm.fxml");
+        if (validatePasswords()) {
+            if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
+                AdminForgotPasswordFormController.admin.setPassword(txtNewPassword.getText());
+                adminService.updateAdmin(AdminForgotPasswordFormController.admin);
+                Navigation.switchPaging(AdminSignInGlobalFormController
+                        .getInstance().signInSignUpPane, "adminSignInForm.fxml");
+            }
         }
+        txtNewPassword.clear();
+        txtConfirmPassword.clear();
+        lblPasswordAlert.setText("Invalid! Try Again!");
+    }
+
+    private boolean validatePasswords() {
+        if (RegExPatterns.passwordPattern(txtNewPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!");
+            return false;
+        }
+        if (RegExPatterns.passwordPattern(txtConfirmPassword.getText())) {
+            lblPasswordAlert.setText("New Password & Confirmation Doesn't match!");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    void txtNewPasswordOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.passwordPattern(txtNewPassword.getText())) {
+            lblPasswordAlert.setText("Invalid Password!");
+        } else lblPasswordAlert.setText(" ");
+    }
+
+    @FXML
+    void txtConfirmPasswordOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.passwordPattern(txtConfirmPassword.getText())) {
+            lblPasswordAlert.setText("New Password & Confirmation Doesn't match!");
+        } else lblPasswordAlert.setText(" ");
     }
 
     @FXML

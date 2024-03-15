@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="575.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookWormLibraryManagementSystem.controller.user.UserSignInFormController">
     <children>
-        <TextField fx:id="txtUsername" layoutX="96.0" layoutY="255.0" onAction="#txtUsernameOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  Username" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
+        <TextField fx:id="txtUsername" layoutX="96.0" layoutY="255.0" onAction="#txtUsernameOnAction" onKeyPressed="#txtUsernameOnKeyPressed" prefHeight="42.0" prefWidth="267.0" promptText="  Username" style="-fx-border-color: #727374; -fx-border-radius: 12px; -fx-background-color: white; -fx-background-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -22,7 +22,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <PasswordField fx:id="txtPassword" layoutX="96.0" layoutY="316.0" onAction="#txtPasswordOnAction" prefHeight="42.0" prefWidth="267.0" promptText="  Password" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-border-color: #727374; -fx-border-radius: 12px;">
+        <PasswordField fx:id="txtPassword" layoutX="96.0" layoutY="316.0" onAction="#txtPasswordOnAction" onKeyPressed="#txtPasswordOnKeyPressed" prefHeight="42.0" prefWidth="267.0" promptText="  Password" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-border-color: #727374; -fx-border-radius: 12px;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -79,5 +79,21 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
+      <Label fx:id="lblUsernameAlert" layoutX="107.0" layoutY="298.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPasswordAlert" layoutX="107.0" layoutY="359.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="892.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/icon/stopIcon.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="889.0" layoutY="5.0" onAction="#btnPowerOffOnAction" prefHeight="35.0" prefWidth="35.0" text=" " />
     </children>
 </AnchorPane>

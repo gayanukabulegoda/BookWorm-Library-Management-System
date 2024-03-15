@@ -5,17 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lk.ijse.bookWormLibraryManagementSystem.util.Navigation;
+import lk.ijse.bookWormLibraryManagementSystem.util.RegExPatterns;
 import lk.ijse.bookWormLibraryManagementSystem.util.SendMail;
 import lk.ijse.bookWormLibraryManagementSystem.util.Utility;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class UserOtpFormController implements Initializable {
@@ -28,6 +28,9 @@ public class UserOtpFormController implements Initializable {
 
     @FXML
     private Label lblVerify;
+
+    @FXML
+    private Label lblOtpAlert;
 
     @FXML
     private TextField txtOtp;
@@ -55,10 +58,28 @@ public class UserOtpFormController implements Initializable {
 
     @FXML
     void btnVerifyOnAction(ActionEvent event) throws IOException {
-        if (txtOtp.getText().equals(otp)) {
-            Navigation.switchPaging(UserSignInGlobalFormController
-                    .getInstance().signInSignUpPane, "userResetPasswordForm.fxml");
+        if (validateOtp()) {
+            if (txtOtp.getText().equals(otp)) {
+                Navigation.switchPaging(UserSignInGlobalFormController
+                        .getInstance().signInSignUpPane, "userResetPasswordForm.fxml");
+            }
         }
+        txtOtp.clear();
+    }
+
+    private boolean validateOtp() {
+        if (RegExPatterns.otpPattern(txtOtp.getText())) {
+            lblOtpAlert.setText("Wrong OTP! Try again!");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    void txtOtpOnKeyPressed(KeyEvent event) {
+        if (RegExPatterns.otpPattern(txtOtp.getText())) {
+            lblOtpAlert.setText("Wrong OTP! Try again!");
+        } else lblOtpAlert.setText(" ");
     }
 
     @FXML
