@@ -56,5 +56,13 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 For any questions or inquiries, feel free to connect with me via [LinkedIn](https://www.linkedin.com/in/gayanuka-bulegoda-2b993127a).
 
-
-
+##
+<div align="center">
+<a href="https://github.com/gayanukabulegoda" target="_blank"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>
+<a href="https://git-scm.com/" target="_blank"><img src = "https://img.shields.io/badge/Git-100000?style=for-the-badge&logo=git&logoColor=white"></a>
+<a href="https://jdk.java.net/java-se-ri/11-MR2" target="_blank"><img src = "https://img.shields.io/badge/Java-100000?style=for-the-badge&logo=openjdk&logoColor=white"></a>
+<a href="https://hibernate.org/orm/releases/5.6/" target="_blank"><img src = "https://img.shields.io/badge/Hibernate-100000?style=for-the-badge&logo=Hibernate&logoColor=white"></a>
+</div> <br>
+<p align="center">
+  &copy; 2024 Gayanuka Bulegoda
+</p>
